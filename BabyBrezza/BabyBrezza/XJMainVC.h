@@ -12,7 +12,7 @@
 
 @interface XJMainVC : XJBaseVC
 
-//单例
+//单例 git test
 + (XJMainVC *)sharedInstance;
 
 - (IBAction)clickScanBtn:(id)sender;
