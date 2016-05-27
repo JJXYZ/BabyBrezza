@@ -8,45 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		28E4925C7EEF5A2CB17D61F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CDA07874C5E95588F39D5E /* libPods.a */; };
-		6931CE251BBCC5E300EF3BA9 /* XJFunctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE231BBCC5E300EF3BA9 /* XJFunctionVC.m */; settings = {ASSET_TAGS = (); }; };
-		6931CE261BBCC5E300EF3BA9 /* XJFunctionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6931CE241BBCC5E300EF3BA9 /* XJFunctionVC.xib */; settings = {ASSET_TAGS = (); }; };
-		6931CE2B1BBCDBA100EF3BA9 /* XJMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2A1BBCDBA100EF3BA9 /* XJMainCell.m */; settings = {ASSET_TAGS = (); }; };
-		6931CE2E1BBD0F9100EF3BA9 /* UIColor+XJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2D1BBD0F9100EF3BA9 /* UIColor+XJColor.m */; settings = {ASSET_TAGS = (); }; };
-		6931CE321BBD27CC00EF3BA9 /* XJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* XJMessage.m */; settings = {ASSET_TAGS = (); }; };
+		6931CE251BBCC5E300EF3BA9 /* XJFunctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE231BBCC5E300EF3BA9 /* XJFunctionVC.m */; };
+		6931CE261BBCC5E300EF3BA9 /* XJFunctionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6931CE241BBCC5E300EF3BA9 /* XJFunctionVC.xib */; };
+		6931CE2B1BBCDBA100EF3BA9 /* XJMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2A1BBCDBA100EF3BA9 /* XJMainCell.m */; };
+		6931CE2E1BBD0F9100EF3BA9 /* UIColor+XJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2D1BBD0F9100EF3BA9 /* UIColor+XJColor.m */; };
+		6931CE321BBD27CC00EF3BA9 /* XJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* XJMessage.m */; };
 		6973F4151BBBD00400D7737D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4141BBBD00400D7737D /* main.m */; };
 		6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4171BBBD00400D7737D /* AppDelegate.m */; };
 		6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6973F41F1BBBD00400D7737D /* Assets.xcassets */; };
-		6973F42E1BBBD00400D7737D /* BabyBrezzaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F42D1BBBD00400D7737D /* BabyBrezzaTests.m */; };
-		6973F4391BBBD00400D7737D /* BabyBrezzaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4381BBBD00400D7737D /* BabyBrezzaUITests.m */; };
-		6973F44D1BBBD1E700D7737D /* XJBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44C1BBBD1E700D7737D /* XJBaseVC.m */; settings = {ASSET_TAGS = (); }; };
-		6973F4511BBBD20D00D7737D /* XJMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44F1BBBD20D00D7737D /* XJMainVC.m */; settings = {ASSET_TAGS = (); }; };
-		6973F4521BBBD20D00D7737D /* XJMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6973F4501BBBD20D00D7737D /* XJMainVC.xib */; settings = {ASSET_TAGS = (); }; };
-		69F9379F1BBBE90F005F7399 /* UIView+XJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+XJCommon.m */; settings = {ASSET_TAGS = (); }; };
-		69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A11BBBEFA4005F7399 /* KSCentralManager.m */; settings = {ASSET_TAGS = (); }; };
-		69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */; settings = {ASSET_TAGS = (); }; };
-		69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A51BBBEFA4005F7399 /* KSPeripheralManager.m */; settings = {ASSET_TAGS = (); }; };
+		6973F44D1BBBD1E700D7737D /* XJBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44C1BBBD1E700D7737D /* XJBaseVC.m */; };
+		6973F4511BBBD20D00D7737D /* XJMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44F1BBBD20D00D7737D /* XJMainVC.m */; };
+		69F9379F1BBBE90F005F7399 /* UIView+XJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+XJCommon.m */; };
+		69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A11BBBEFA4005F7399 /* KSCentralManager.m */; };
+		69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */; };
+		69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A51BBBEFA4005F7399 /* KSPeripheralManager.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		6973F42A1BBBD00400D7737D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6973F4081BBBD00400D7737D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6973F40F1BBBD00400D7737D;
-			remoteInfo = BabyBrezza;
-		};
-		6973F4351BBBD00400D7737D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6973F4081BBBD00400D7737D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6973F40F1BBBD00400D7737D;
-			remoteInfo = BabyBrezza;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1B65778A7BAD62BE9629EC9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4D57FE29A601413A6DBD4C3E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		691D8F171CF893E700170430 /* BabyBrezza-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BabyBrezza-Prefix.pch"; sourceTree = "<group>"; };
 		6931CE221BBCC5E300EF3BA9 /* XJFunctionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJFunctionVC.h; sourceTree = "<group>"; };
 		6931CE231BBCC5E300EF3BA9 /* XJFunctionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJFunctionVC.m; sourceTree = "<group>"; };
 		6931CE241BBCC5E300EF3BA9 /* XJFunctionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XJFunctionVC.xib; sourceTree = "<group>"; };
@@ -62,18 +43,10 @@
 		6973F4171BBBD00400D7737D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6973F41F1BBBD00400D7737D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6973F4241BBBD00400D7737D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6973F4291BBBD00400D7737D /* BabyBrezzaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyBrezzaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6973F42D1BBBD00400D7737D /* BabyBrezzaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BabyBrezzaTests.m; sourceTree = "<group>"; };
-		6973F42F1BBBD00400D7737D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6973F4341BBBD00400D7737D /* BabyBrezzaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyBrezzaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6973F4381BBBD00400D7737D /* BabyBrezzaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BabyBrezzaUITests.m; sourceTree = "<group>"; };
-		6973F43A1BBBD00400D7737D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6973F44B1BBBD1E700D7737D /* XJBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBaseVC.h; sourceTree = "<group>"; };
 		6973F44C1BBBD1E700D7737D /* XJBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJBaseVC.m; sourceTree = "<group>"; };
 		6973F44E1BBBD20D00D7737D /* XJMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMainVC.h; sourceTree = "<group>"; };
 		6973F44F1BBBD20D00D7737D /* XJMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJMainVC.m; sourceTree = "<group>"; };
-		6973F4501BBBD20D00D7737D /* XJMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XJMainVC.xib; sourceTree = "<group>"; };
-		69F9379A1BBBE570005F7399 /* XJDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDefine.h; sourceTree = "<group>"; };
 		69F9379D1BBBE90F005F7399 /* UIView+XJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XJCommon.h"; sourceTree = "<group>"; };
 		69F9379E1BBBE90F005F7399 /* UIView+XJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XJCommon.m"; sourceTree = "<group>"; };
 		69F937A11BBBEFA4005F7399 /* KSCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCentralManager.m; sourceTree = "<group>"; };
@@ -96,20 +69,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6973F4261BBBD00400D7737D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6973F4311BBBD00400D7737D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -128,7 +87,6 @@
 			children = (
 				6973F44E1BBBD20D00D7737D /* XJMainVC.h */,
 				6973F44F1BBBD20D00D7737D /* XJMainVC.m */,
-				6973F4501BBBD20D00D7737D /* XJMainVC.xib */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -155,8 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				6973F4121BBBD00400D7737D /* BabyBrezza */,
-				6973F42C1BBBD00400D7737D /* BabyBrezzaTests */,
-				6973F4371BBBD00400D7737D /* BabyBrezzaUITests */,
 				6973F4111BBBD00400D7737D /* Products */,
 				FF26BDAF446B07437E7D263A /* Pods */,
 				B82AA011897AF1E622ADBBB9 /* Frameworks */,
@@ -167,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				6973F4101BBBD00400D7737D /* BabyBrezza.app */,
-				6973F4291BBBD00400D7737D /* BabyBrezzaTests.xctest */,
-				6973F4341BBBD00400D7737D /* BabyBrezzaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,28 +143,10 @@
 		6973F4131BBBD00400D7737D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				69F9379B1BBBE5AF005F7399 /* Third_Libraries */,
 				6973F4141BBBD00400D7737D /* main.m */,
+				691D8F171CF893E700170430 /* BabyBrezza-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6973F42C1BBBD00400D7737D /* BabyBrezzaTests */ = {
-			isa = PBXGroup;
-			children = (
-				6973F42D1BBBD00400D7737D /* BabyBrezzaTests.m */,
-				6973F42F1BBBD00400D7737D /* Info.plist */,
-			);
-			path = BabyBrezzaTests;
-			sourceTree = "<group>";
-		};
-		6973F4371BBBD00400D7737D /* BabyBrezzaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				6973F4381BBBD00400D7737D /* BabyBrezzaUITests.m */,
-				6973F43A1BBBD00400D7737D /* Info.plist */,
-			);
-			path = BabyBrezzaUITests;
 			sourceTree = "<group>";
 		};
 		6973F4461BBBD11200D7737D /* AppDelegate */ = {
@@ -243,6 +179,7 @@
 		6973F4491BBBD1A600D7737D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				69F9379B1BBBE5AF005F7399 /* Third_Libraries */,
 				6931CE2F1BBD26DF00EF3BA9 /* Message */,
 				69F937A01BBBEF96005F7399 /* BLE */,
 				69F9379C1BBBE8EC005F7399 /* Category */,
@@ -264,7 +201,6 @@
 		69F937991BBBE544005F7399 /* Define */ = {
 			isa = PBXGroup;
 			children = (
-				69F9379A1BBBE570005F7399 /* XJDefine.h */,
 			);
 			name = Define;
 			sourceTree = "<group>";
@@ -331,6 +267,7 @@
 				6973F40D1BBBD00400D7737D /* Frameworks */,
 				6973F40E1BBBD00400D7737D /* Resources */,
 				C96786439B89652BB97614C5 /* Copy Pods Resources */,
+				1CFCC0ABC781C68F89CB370D /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -340,42 +277,6 @@
 			productName = BabyBrezza;
 			productReference = 6973F4101BBBD00400D7737D /* BabyBrezza.app */;
 			productType = "com.apple.product-type.application";
-		};
-		6973F4281BBBD00400D7737D /* BabyBrezzaTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6973F4401BBBD00400D7737D /* Build configuration list for PBXNativeTarget "BabyBrezzaTests" */;
-			buildPhases = (
-				6973F4251BBBD00400D7737D /* Sources */,
-				6973F4261BBBD00400D7737D /* Frameworks */,
-				6973F4271BBBD00400D7737D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6973F42B1BBBD00400D7737D /* PBXTargetDependency */,
-			);
-			name = BabyBrezzaTests;
-			productName = BabyBrezzaTests;
-			productReference = 6973F4291BBBD00400D7737D /* BabyBrezzaTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		6973F4331BBBD00400D7737D /* BabyBrezzaUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6973F4431BBBD00400D7737D /* Build configuration list for PBXNativeTarget "BabyBrezzaUITests" */;
-			buildPhases = (
-				6973F4301BBBD00400D7737D /* Sources */,
-				6973F4311BBBD00400D7737D /* Frameworks */,
-				6973F4321BBBD00400D7737D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6973F4361BBBD00400D7737D /* PBXTargetDependency */,
-			);
-			name = BabyBrezzaUITests;
-			productName = BabyBrezzaUITests;
-			productReference = 6973F4341BBBD00400D7737D /* BabyBrezzaUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -389,14 +290,6 @@
 				TargetAttributes = {
 					6973F40F1BBBD00400D7737D = {
 						CreatedOnToolsVersion = 7.0;
-					};
-					6973F4281BBBD00400D7737D = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 6973F40F1BBBD00400D7737D;
-					};
-					6973F4331BBBD00400D7737D = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 6973F40F1BBBD00400D7737D;
 					};
 				};
 			};
@@ -414,8 +307,6 @@
 			projectRoot = "";
 			targets = (
 				6973F40F1BBBD00400D7737D /* BabyBrezza */,
-				6973F4281BBBD00400D7737D /* BabyBrezzaTests */,
-				6973F4331BBBD00400D7737D /* BabyBrezzaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -427,27 +318,27 @@
 			files = (
 				6931CE261BBCC5E300EF3BA9 /* XJFunctionVC.xib in Resources */,
 				6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */,
-				6973F4521BBBD20D00D7737D /* XJMainVC.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6973F4271BBBD00400D7737D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6973F4321BBBD00400D7737D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1CFCC0ABC781C68F89CB370D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		676741909A48D8AD80FDB9EC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,36 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6973F4251BBBD00400D7737D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6973F42E1BBBD00400D7737D /* BabyBrezzaTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6973F4301BBBD00400D7737D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6973F4391BBBD00400D7737D /* BabyBrezzaUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6973F42B1BBBD00400D7737D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6973F40F1BBBD00400D7737D /* BabyBrezza */;
-			targetProxy = 6973F42A1BBBD00400D7737D /* PBXContainerItemProxy */;
-		};
-		6973F4361BBBD00400D7737D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6973F40F1BBBD00400D7737D /* BabyBrezza */;
-			targetProxy = 6973F4351BBBD00400D7737D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6973F43B1BBBD00400D7737D /* Debug */ = {
@@ -559,6 +421,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BabyBrezza/BabyBrezza-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -601,6 +465,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BabyBrezza/BabyBrezza-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -642,54 +508,6 @@
 			};
 			name = Release;
 		};
-		6973F4411BBBD00400D7737D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = BabyBrezzaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.XJ.BabyBrezzaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BabyBrezza.app/BabyBrezza";
-			};
-			name = Debug;
-		};
-		6973F4421BBBD00400D7737D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = BabyBrezzaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.XJ.BabyBrezzaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BabyBrezza.app/BabyBrezza";
-			};
-			name = Release;
-		};
-		6973F4441BBBD00400D7737D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BabyBrezzaUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.XJ.BabyBrezzaUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = BabyBrezza;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		6973F4451BBBD00400D7737D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BabyBrezzaUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.XJ.BabyBrezzaUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = BabyBrezza;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -707,24 +525,6 @@
 			buildConfigurations = (
 				6973F43E1BBBD00400D7737D /* Debug */,
 				6973F43F1BBBD00400D7737D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6973F4401BBBD00400D7737D /* Build configuration list for PBXNativeTarget "BabyBrezzaTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6973F4411BBBD00400D7737D /* Debug */,
-				6973F4421BBBD00400D7737D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6973F4431BBBD00400D7737D /* Build configuration list for PBXNativeTarget "BabyBrezzaUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6973F4441BBBD00400D7737D /* Debug */,
-				6973F4451BBBD00400D7737D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

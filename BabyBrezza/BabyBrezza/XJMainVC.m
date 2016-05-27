@@ -9,7 +9,6 @@
 #import "XJMainVC.h"
 #import "SVProgressHUD.h"
 #import "KSCentralManager.h"
-#import "XJDefine.h"
 #import "KSCBPeripheral.h"
 #import "Config.h"
 #import "XJMainCell.h"
@@ -367,7 +366,7 @@
         return _tableView;
     }
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 200, SCREEN_WIDTH - 40, 200) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 200, M_SCREEN_W - 40, 200) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;

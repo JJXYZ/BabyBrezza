@@ -1,0 +1,15 @@
+//
+//  BabyBrezza-Prefix.pch
+//  BabyBrezza
+//
+//  Created by Jay on 16/5/27.
+//  Copyright © 2016年 XJ. All rights reserved.
+//
+
+#ifndef BabyBrezza_Prefix_pch
+#define BabyBrezza_Prefix_pch
+
+#import "JJDefine.h"
+
+
+#endif /* BabyBrezza_Prefix_pch */

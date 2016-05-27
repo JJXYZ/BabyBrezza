@@ -10,4 +10,6 @@
 
 @interface XJBaseVC : UIViewController
 
+@property (nonatomic, strong) UIImageView *bgImgView;
+
 @end
