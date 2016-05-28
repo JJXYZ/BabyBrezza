@@ -1,19 +1,19 @@
 //
-//  XJMainVC.h
+//  JJMainVC.h
 //  BabyBrezza
 //
 //  Created by Jay on 15/9/30.
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "XJBaseVC.h"
+#import "JJRootVC.h"
 
-#define MAIN_VC [XJMainVC sharedInstance]
+#define MAIN_VC [JJMainVC sharedInstance]
 
-@interface XJMainVC : XJBaseVC
+@interface JJMainVC : JJRootVC
 
 //单例 git test
-+ (XJMainVC *)sharedInstance;
++ (JJMainVC *)sharedInstance;
 
 - (IBAction)clickScanBtn:(id)sender;
 

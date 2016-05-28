@@ -1,5 +1,5 @@
 //
-//  UIColor+XJColor.h
+//  UIColor+JJColor.h
 //  BabyBrezza
 //
 //  Created by Jay on 15/10/1.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (XJColor)
+@interface UIColor (JJColor)
 
 + (UIColor *)homeBG;
 

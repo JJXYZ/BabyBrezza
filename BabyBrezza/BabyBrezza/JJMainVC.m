@@ -1,21 +1,21 @@
 //
-//  XJMainVC.m
+//  JJMainVC.m
 //  BabyBrezza
 //
 //  Created by Jay on 15/9/30.
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "XJMainVC.h"
+#import "JJMainVC.h"
 #import "SVProgressHUD.h"
 #import "KSCentralManager.h"
 #import "KSCBPeripheral.h"
 #import "Config.h"
-#import "XJMainCell.h"
-#import "XJFunctionVC.h"
-#import "XJMessage.h"
+#import "JJMainCell.h"
+#import "JJFunctionVC.h"
+#import "JJMessage.h"
 
-@interface XJMainVC () <UITableViewDataSource, UITableViewDelegate,KSCentralManagerDelegate, XJMainCellDelegate>
+@interface JJMainVC () <UITableViewDataSource, UITableViewDelegate,KSCentralManagerDelegate, XJMainCellDelegate>
 
 //是否显示Progress
 @property (nonatomic, assign) BOOL isShowProgress;
@@ -36,15 +36,15 @@
 
 @end
 
-@implementation XJMainVC
+@implementation JJMainVC
 
 #pragma mark - Lifecycle
 
 //单例
-+ (XJMainVC *)sharedInstance
++ (JJMainVC *)sharedInstance
 {
     static dispatch_once_t pred = 0;
-    __strong static XJMainVC * _sharedObject = nil;
+    __strong static JJMainVC * _sharedObject = nil;
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init];
     });
@@ -129,7 +129,7 @@
 }
 
 - (void)pushFunctionVC {
-    XJFunctionVC *vc = [[XJFunctionVC alloc] init];
+    JJFunctionVC *vc = [[JJFunctionVC alloc] init];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nc animated:YES completion:^{}];
 }
@@ -203,7 +203,7 @@
 
 
 #pragma mark - XJMainCellDelegate
-- (void)mainCell:(XJMainCell *)cell longTap:(UILongPressGestureRecognizer *)longRecognizer {
+- (void)mainCell:(JJMainCell *)cell longTap:(UILongPressGestureRecognizer *)longRecognizer {
     
     UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:@"Notification on the connected device" message:@"Do you want to turn off the device" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -213,7 +213,7 @@
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"OK");
-        [XJMessage closeCurPeripheral];
+        [JJMessage closeCurPeripheral];
     }];
     
     [alertCtl addAction:cancleAction];
@@ -294,13 +294,13 @@
 - (void)ksCentralManager:(KSCentralManager *)central readyToSendDataForService:(CBService *)service withCharacteristic:(CBCharacteristic *)characteristic {
     
     //订阅成功 会写一次数据   确保手机和设备数据同步
-    [XJMessage sendData];
+    [JJMessage sendData];
     
 }
 
 /** 接收/读取数据成功 */
 - (void)ksCentralManager:(KSCentralManager *)central didReceiveData:(NSData *)data {
-    [XJMessage receiveData:data];
+    [JJMessage receiveData:data];
 }
 
 /** 发送/写数据成功 */
@@ -322,9 +322,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifiy = @"peripheralID";
-    XJMainCell *cell = [tableView dequeueReusableCellWithIdentifier:identifiy];
+    JJMainCell *cell = [tableView dequeueReusableCellWithIdentifier:identifiy];
     if (cell == nil) {
-        cell = [[XJMainCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifiy];
+        cell = [[JJMainCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifiy];
         cell.delegate = self;
     }
     

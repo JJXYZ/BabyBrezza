@@ -1,16 +1,16 @@
 //
-//  XJMessage.m
+//  JJMessage.m
 //  BabyBrezza
 //
 //  Created by Jay on 15/10/1.
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "XJMessage.h"
+#import "JJMessage.h"
 #import "Config.h"
 #import "KSCentralManager.h"
 
-@implementation XJMessage
+@implementation JJMessage
 
 
 + (void)sendData {

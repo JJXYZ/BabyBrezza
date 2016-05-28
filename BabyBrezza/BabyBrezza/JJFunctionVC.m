@@ -1,14 +1,14 @@
 //
-//  XJFunctionVC.m
+//  JJFunctionVC.m
 //  BabyBrezza
 //
 //  Created by Jay on 15/10/1.
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "XJFunctionVC.h"
+#import "JJFunctionVC.h"
 
-@interface XJFunctionVC () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface JJFunctionVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIPickerView *numberPickView;
 @property (nonatomic, strong) NSArray *numberPickArr;
@@ -31,15 +31,15 @@
 
 @end
 
-@implementation XJFunctionVC
+@implementation JJFunctionVC
 
 #pragma mark - Lifecycle
 
 //单例
-+ (XJFunctionVC *)sharedInstance
++ (JJFunctionVC *)sharedInstance
 {
     static dispatch_once_t pred = 0;
-    __strong static XJFunctionVC * _sharedObject = nil;
+    __strong static JJFunctionVC * _sharedObject = nil;
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init];
     });

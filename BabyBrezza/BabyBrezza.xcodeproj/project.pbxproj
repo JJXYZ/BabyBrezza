@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		28E4925C7EEF5A2CB17D61F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CDA07874C5E95588F39D5E /* libPods.a */; };
-		6931CE251BBCC5E300EF3BA9 /* XJFunctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE231BBCC5E300EF3BA9 /* XJFunctionVC.m */; };
-		6931CE261BBCC5E300EF3BA9 /* XJFunctionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6931CE241BBCC5E300EF3BA9 /* XJFunctionVC.xib */; };
-		6931CE2B1BBCDBA100EF3BA9 /* XJMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2A1BBCDBA100EF3BA9 /* XJMainCell.m */; };
-		6931CE2E1BBD0F9100EF3BA9 /* UIColor+XJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2D1BBD0F9100EF3BA9 /* UIColor+XJColor.m */; };
-		6931CE321BBD27CC00EF3BA9 /* XJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* XJMessage.m */; };
+		6931CE251BBCC5E300EF3BA9 /* JJFunctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */; };
+		6931CE2B1BBCDBA100EF3BA9 /* JJMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2A1BBCDBA100EF3BA9 /* JJMainCell.m */; };
+		6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */; };
+		6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* JJMessage.m */; };
 		6973F4151BBBD00400D7737D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4141BBBD00400D7737D /* main.m */; };
 		6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4171BBBD00400D7737D /* AppDelegate.m */; };
 		6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6973F41F1BBBD00400D7737D /* Assets.xcassets */; };
-		6973F44D1BBBD1E700D7737D /* XJBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44C1BBBD1E700D7737D /* XJBaseVC.m */; };
-		6973F4511BBBD20D00D7737D /* XJMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44F1BBBD20D00D7737D /* XJMainVC.m */; };
-		69F9379F1BBBE90F005F7399 /* UIView+XJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+XJCommon.m */; };
+		6973F44D1BBBD1E700D7737D /* JJRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44C1BBBD1E700D7737D /* JJRootVC.m */; };
+		6973F4511BBBD20D00D7737D /* JJMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44F1BBBD20D00D7737D /* JJMainVC.m */; };
+		69AB0F781CF9648E00F15D4A /* JJRootNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F771CF9648E00F15D4A /* JJRootNC.m */; };
+		69AB0F7C1CF96A4A00F15D4A /* JJConnectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F7B1CF96A4A00F15D4A /* JJConnectVC.m */; };
+		69AB0F801CF96CCF00F15D4A /* JJSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F7F1CF96CCF00F15D4A /* JJSettingVC.m */; };
+		69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */; };
 		69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A11BBBEFA4005F7399 /* KSCentralManager.m */; };
 		69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */; };
 		69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A51BBBEFA4005F7399 /* KSPeripheralManager.m */; };
@@ -28,27 +30,32 @@
 		1B65778A7BAD62BE9629EC9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4D57FE29A601413A6DBD4C3E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		691D8F171CF893E700170430 /* BabyBrezza-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BabyBrezza-Prefix.pch"; sourceTree = "<group>"; };
-		6931CE221BBCC5E300EF3BA9 /* XJFunctionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJFunctionVC.h; sourceTree = "<group>"; };
-		6931CE231BBCC5E300EF3BA9 /* XJFunctionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJFunctionVC.m; sourceTree = "<group>"; };
-		6931CE241BBCC5E300EF3BA9 /* XJFunctionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XJFunctionVC.xib; sourceTree = "<group>"; };
-		6931CE291BBCDBA100EF3BA9 /* XJMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMainCell.h; sourceTree = "<group>"; };
-		6931CE2A1BBCDBA100EF3BA9 /* XJMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJMainCell.m; sourceTree = "<group>"; };
-		6931CE2C1BBD0F9100EF3BA9 /* UIColor+XJColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+XJColor.h"; sourceTree = "<group>"; };
-		6931CE2D1BBD0F9100EF3BA9 /* UIColor+XJColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+XJColor.m"; sourceTree = "<group>"; };
-		6931CE301BBD27CC00EF3BA9 /* XJMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMessage.h; sourceTree = "<group>"; };
-		6931CE311BBD27CC00EF3BA9 /* XJMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJMessage.m; sourceTree = "<group>"; };
+		6931CE221BBCC5E300EF3BA9 /* JJFunctionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunctionVC.h; sourceTree = "<group>"; };
+		6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunctionVC.m; sourceTree = "<group>"; };
+		6931CE291BBCDBA100EF3BA9 /* JJMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMainCell.h; sourceTree = "<group>"; };
+		6931CE2A1BBCDBA100EF3BA9 /* JJMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMainCell.m; sourceTree = "<group>"; };
+		6931CE2C1BBD0F9100EF3BA9 /* UIColor+JJColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JJColor.h"; sourceTree = "<group>"; };
+		6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JJColor.m"; sourceTree = "<group>"; };
+		6931CE301BBD27CC00EF3BA9 /* JJMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMessage.h; sourceTree = "<group>"; };
+		6931CE311BBD27CC00EF3BA9 /* JJMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMessage.m; sourceTree = "<group>"; };
 		6973F4101BBBD00400D7737D /* BabyBrezza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyBrezza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6973F4141BBBD00400D7737D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6973F4161BBBD00400D7737D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6973F4171BBBD00400D7737D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6973F41F1BBBD00400D7737D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6973F4241BBBD00400D7737D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6973F44B1BBBD1E700D7737D /* XJBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJBaseVC.h; sourceTree = "<group>"; };
-		6973F44C1BBBD1E700D7737D /* XJBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJBaseVC.m; sourceTree = "<group>"; };
-		6973F44E1BBBD20D00D7737D /* XJMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJMainVC.h; sourceTree = "<group>"; };
-		6973F44F1BBBD20D00D7737D /* XJMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJMainVC.m; sourceTree = "<group>"; };
-		69F9379D1BBBE90F005F7399 /* UIView+XJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XJCommon.h"; sourceTree = "<group>"; };
-		69F9379E1BBBE90F005F7399 /* UIView+XJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XJCommon.m"; sourceTree = "<group>"; };
+		6973F44B1BBBD1E700D7737D /* JJRootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRootVC.h; sourceTree = "<group>"; };
+		6973F44C1BBBD1E700D7737D /* JJRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRootVC.m; sourceTree = "<group>"; };
+		6973F44E1BBBD20D00D7737D /* JJMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMainVC.h; sourceTree = "<group>"; };
+		6973F44F1BBBD20D00D7737D /* JJMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMainVC.m; sourceTree = "<group>"; };
+		69AB0F761CF9648E00F15D4A /* JJRootNC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRootNC.h; sourceTree = "<group>"; };
+		69AB0F771CF9648E00F15D4A /* JJRootNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRootNC.m; sourceTree = "<group>"; };
+		69AB0F7A1CF96A4A00F15D4A /* JJConnectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJConnectVC.h; sourceTree = "<group>"; };
+		69AB0F7B1CF96A4A00F15D4A /* JJConnectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJConnectVC.m; sourceTree = "<group>"; };
+		69AB0F7E1CF96CCF00F15D4A /* JJSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJSettingVC.h; sourceTree = "<group>"; };
+		69AB0F7F1CF96CCF00F15D4A /* JJSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSettingVC.m; sourceTree = "<group>"; };
+		69F9379D1BBBE90F005F7399 /* UIView+JJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JJCommon.h"; sourceTree = "<group>"; };
+		69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JJCommon.m"; sourceTree = "<group>"; };
 		69F937A11BBBEFA4005F7399 /* KSCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCentralManager.m; sourceTree = "<group>"; };
 		69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCBPeripheral.m; sourceTree = "<group>"; };
 		69F937A31BBBEFA4005F7399 /* KSCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCentralManager.h; sourceTree = "<group>"; };
@@ -75,9 +82,8 @@
 		6931CE211BBCC5B900EF3BA9 /* FunctionVC */ = {
 			isa = PBXGroup;
 			children = (
-				6931CE221BBCC5E300EF3BA9 /* XJFunctionVC.h */,
-				6931CE231BBCC5E300EF3BA9 /* XJFunctionVC.m */,
-				6931CE241BBCC5E300EF3BA9 /* XJFunctionVC.xib */,
+				6931CE221BBCC5E300EF3BA9 /* JJFunctionVC.h */,
+				6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */,
 			);
 			name = FunctionVC;
 			sourceTree = "<group>";
@@ -85,8 +91,8 @@
 		6931CE271BBCDB5F00EF3BA9 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				6973F44E1BBBD20D00D7737D /* XJMainVC.h */,
-				6973F44F1BBBD20D00D7737D /* XJMainVC.m */,
+				6973F44E1BBBD20D00D7737D /* JJMainVC.h */,
+				6973F44F1BBBD20D00D7737D /* JJMainVC.m */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -94,8 +100,8 @@
 		6931CE281BBCDB6700EF3BA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6931CE291BBCDBA100EF3BA9 /* XJMainCell.h */,
-				6931CE2A1BBCDBA100EF3BA9 /* XJMainCell.m */,
+				6931CE291BBCDBA100EF3BA9 /* JJMainCell.h */,
+				6931CE2A1BBCDBA100EF3BA9 /* JJMainCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -103,8 +109,8 @@
 		6931CE2F1BBD26DF00EF3BA9 /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				6931CE301BBD27CC00EF3BA9 /* XJMessage.h */,
-				6931CE311BBD27CC00EF3BA9 /* XJMessage.m */,
+				6931CE301BBD27CC00EF3BA9 /* JJMessage.h */,
+				6931CE311BBD27CC00EF3BA9 /* JJMessage.m */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -167,13 +173,15 @@
 			name = MainVC;
 			sourceTree = "<group>";
 		};
-		6973F4481BBBD19700D7737D /* BaseVC */ = {
+		6973F4481BBBD19700D7737D /* RootVC */ = {
 			isa = PBXGroup;
 			children = (
-				6973F44B1BBBD1E700D7737D /* XJBaseVC.h */,
-				6973F44C1BBBD1E700D7737D /* XJBaseVC.m */,
+				6973F44B1BBBD1E700D7737D /* JJRootVC.h */,
+				6973F44C1BBBD1E700D7737D /* JJRootVC.m */,
+				69AB0F761CF9648E00F15D4A /* JJRootNC.h */,
+				69AB0F771CF9648E00F15D4A /* JJRootNC.m */,
 			);
-			name = BaseVC;
+			name = RootVC;
 			sourceTree = "<group>";
 		};
 		6973F4491BBBD1A600D7737D /* Lib */ = {
@@ -191,11 +199,31 @@
 		6973F44A1BBBD1B800D7737D /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				6973F4481BBBD19700D7737D /* BaseVC */,
+				6973F4481BBBD19700D7737D /* RootVC */,
+				69AB0F7D1CF96CB800F15D4A /* SettingVC */,
+				69AB0F791CF969A600F15D4A /* ConnectVC */,
 				6931CE211BBCC5B900EF3BA9 /* FunctionVC */,
 				6973F4471BBBD15800D7737D /* MainVC */,
 			);
 			name = VC;
+			sourceTree = "<group>";
+		};
+		69AB0F791CF969A600F15D4A /* ConnectVC */ = {
+			isa = PBXGroup;
+			children = (
+				69AB0F7A1CF96A4A00F15D4A /* JJConnectVC.h */,
+				69AB0F7B1CF96A4A00F15D4A /* JJConnectVC.m */,
+			);
+			name = ConnectVC;
+			sourceTree = "<group>";
+		};
+		69AB0F7D1CF96CB800F15D4A /* SettingVC */ = {
+			isa = PBXGroup;
+			children = (
+				69AB0F7E1CF96CCF00F15D4A /* JJSettingVC.h */,
+				69AB0F7F1CF96CCF00F15D4A /* JJSettingVC.m */,
+			);
+			name = SettingVC;
 			sourceTree = "<group>";
 		};
 		69F937991BBBE544005F7399 /* Define */ = {
@@ -215,10 +243,10 @@
 		69F9379C1BBBE8EC005F7399 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				69F9379D1BBBE90F005F7399 /* UIView+XJCommon.h */,
-				69F9379E1BBBE90F005F7399 /* UIView+XJCommon.m */,
-				6931CE2C1BBD0F9100EF3BA9 /* UIColor+XJColor.h */,
-				6931CE2D1BBD0F9100EF3BA9 /* UIColor+XJColor.m */,
+				69F9379D1BBBE90F005F7399 /* UIView+JJCommon.h */,
+				69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */,
+				6931CE2C1BBD0F9100EF3BA9 /* UIColor+JJColor.h */,
+				6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -316,7 +344,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6931CE261BBCC5E300EF3BA9 /* XJFunctionVC.xib in Resources */,
 				6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,18 +403,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6931CE2B1BBCDBA100EF3BA9 /* XJMainCell.m in Sources */,
-				6973F44D1BBBD1E700D7737D /* XJBaseVC.m in Sources */,
-				6931CE2E1BBD0F9100EF3BA9 /* UIColor+XJColor.m in Sources */,
-				6973F4511BBBD20D00D7737D /* XJMainVC.m in Sources */,
-				69F9379F1BBBE90F005F7399 /* UIView+XJCommon.m in Sources */,
+				6931CE2B1BBCDBA100EF3BA9 /* JJMainCell.m in Sources */,
+				6973F44D1BBBD1E700D7737D /* JJRootVC.m in Sources */,
+				6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */,
+				6973F4511BBBD20D00D7737D /* JJMainVC.m in Sources */,
+				69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */,
 				69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */,
 				6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */,
+				69AB0F781CF9648E00F15D4A /* JJRootNC.m in Sources */,
 				69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */,
-				6931CE251BBCC5E300EF3BA9 /* XJFunctionVC.m in Sources */,
-				6931CE321BBD27CC00EF3BA9 /* XJMessage.m in Sources */,
+				6931CE251BBCC5E300EF3BA9 /* JJFunctionVC.m in Sources */,
+				69AB0F801CF96CCF00F15D4A /* JJSettingVC.m in Sources */,
+				6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */,
 				6973F4151BBBD00400D7737D /* main.m in Sources */,
 				69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */,
+				69AB0F7C1CF96A4A00F15D4A /* JJConnectVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

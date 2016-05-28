@@ -1,5 +1,5 @@
 //
-//  UIView+XJCommon.h
+//  UIView+JJCommon.h
 //  BabyBrezza
 //
 //  Created by Jay on 15/9/30.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (XJCommon)
+@interface UIView (JJCommon)
 
 /**
  * Shortcut for frame.origin.x.

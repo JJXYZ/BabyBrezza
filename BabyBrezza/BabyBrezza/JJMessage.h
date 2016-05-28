@@ -1,5 +1,5 @@
 //
-//  XJMessage.h
+//  JJMessage.h
 //  BabyBrezza
 //
 //  Created by Jay on 15/10/1.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XJMessage : NSObject
+@interface JJMessage : NSObject
 
 + (void)sendData;
 

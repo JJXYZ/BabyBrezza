@@ -1,14 +1,14 @@
 //
-//  UIColor+XJColor.m
+//  UIColor+JJColor.m
 //  BabyBrezza
 //
 //  Created by Jay on 15/10/1.
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "UIColor+XJColor.h"
+#import "UIColor+JJColor.h"
 
-@implementation UIColor (XJColor)
+@implementation UIColor (JJColor)
 
 
 + (UIColor *)homeBG

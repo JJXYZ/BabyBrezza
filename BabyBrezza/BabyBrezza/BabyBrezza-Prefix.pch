@@ -10,6 +10,7 @@
 #define BabyBrezza_Prefix_pch
 
 #import "JJDefine.h"
-
+#import "UIView+JJCommon.h"
+#import "UIColor+JJColor.h"
 
 #endif /* BabyBrezza_Prefix_pch */

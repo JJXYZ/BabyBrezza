@@ -1,14 +1,14 @@
 //
-//  UIView+XJCommon.m
+//  UIView+JJCommon.m
 //  BabyBrezza
 //
 //  Created by Jay on 15/9/30.
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "UIView+XJCommon.h"
+#import "UIView+JJCommon.h"
 
-@implementation UIView (XJCommon)
+@implementation UIView (JJCommon)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)left {

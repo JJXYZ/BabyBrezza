@@ -1,5 +1,5 @@
 //
-//  XJBaseVC.h
+//  JJRootVC.h
 //  BabyBrezza
 //
 //  Created by Jay on 15/9/30.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XJBaseVC : UIViewController
+@interface JJRootVC : UIViewController
 
 @property (nonatomic, strong) UIImageView *bgImgView;
 

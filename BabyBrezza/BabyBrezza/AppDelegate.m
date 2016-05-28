@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "XJMainVC.h"
+#import "JJMainVC.h"
+#import "JJRootNC.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +23,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:MAIN_VC];
+    self.window.rootViewController = [[JJRootNC alloc] initWithRootViewController:MAIN_VC];
     
     return YES;
 }

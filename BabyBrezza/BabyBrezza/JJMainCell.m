@@ -6,17 +6,17 @@
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "XJMainCell.h"
+#import "JJMainCell.h"
 
 
-@implementation XJMainCell
+@implementation JJMainCell
 
 #pragma mark - Lifecycle
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self layoutUI];
+        [self layoutMainCellUI];
     }
     return self;
 }
@@ -28,7 +28,7 @@
 
 
 #pragma mark - Private Methods
-- (void)layoutUI {
+- (void)layoutMainCellUI {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

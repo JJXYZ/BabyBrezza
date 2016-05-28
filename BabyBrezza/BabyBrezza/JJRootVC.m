@@ -1,27 +1,25 @@
 //
-//  XJBaseVC.m
+//  JJBaseVC.m
 //  BabyBrezza
 //
 //  Created by Jay on 15/9/30.
 //  Copyright © 2015年 XJ. All rights reserved.
 //
 
-#import "XJBaseVC.h"
-#import "UIColor+XJColor.h"
+#import "JJRootVC.h"
+#import "UIColor+JJColor.h"
 
-@interface XJBaseVC ()
+@interface JJRootVC ()
 
 @end
 
-@implementation XJBaseVC
+@implementation JJRootVC
 
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self layoutBaseUI];
-    
 }
 
 #pragma mark - Private Methods
