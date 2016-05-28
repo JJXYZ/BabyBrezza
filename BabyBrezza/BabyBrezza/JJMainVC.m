@@ -12,15 +12,17 @@
 #import "KSCBPeripheral.h"
 #import "Config.h"
 #import "JJMainCell.h"
-#import "JJFunctionVC.h"
 #import "JJMessage.h"
+/** VC */
+#import "JJConnectVC.h"
+#import "JJFunctionVC.h"
 
-@interface JJMainVC () <UITableViewDataSource, UITableViewDelegate,KSCentralManagerDelegate, XJMainCellDelegate>
+@interface JJMainVC () <KSCentralManagerDelegate, JJMainCellDelegate>
+
+@property (nonatomic, strong) UIButton *scanBtn;
 
 //是否显示Progress
 @property (nonatomic, assign) BOOL isShowProgress;
-
-@property (nonatomic, strong) UITableView *tableView;
 
 //自动扫描定时器 30秒
 @property (nonatomic, strong) NSTimer *scanTimer;
@@ -52,19 +54,17 @@
     return _sharedObject;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.centralManager = CENTRAL_MANAGER;
     self.centralManager.delegate = self;
-    
-    [self.view addSubview:self.tableView];
+    [self layoutMainUI];
 }
 
-
-
 #pragma mark - Private Methods
+- (void)layoutMainUI {
+    [self.view addSubview:self.scanBtn];
+}
 
 - (void)stopScanPeripheral
 {
@@ -95,8 +95,6 @@
             [self.peripheralArr addObject:addKsp];
         }
     }
-    
-    [self.tableView reloadData];
 }
 
 //连接上次连接过的设备
@@ -137,13 +135,14 @@
 #pragma mark - Event
 
 
-- (IBAction)clickScanBtn:(id)sender {
-    
+- (void)clickScanBtn:(id)sender {
+    JJConnectVC *vc = [[JJConnectVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    return ;
     [self stopScanPeripheral];
     
     //移除所有的Peripherals
     [self.peripheralArr removeAllObjects];
-    [self.tableView reloadData];
     
     //获取操作系统已经连接的设备
     [self addConnectedPeripherals];
@@ -202,7 +201,7 @@
 //=============================================================
 
 
-#pragma mark - XJMainCellDelegate
+#pragma mark - JJMainCellDelegate
 - (void)mainCell:(JJMainCell *)cell longTap:(UILongPressGestureRecognizer *)longRecognizer {
     
     UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:@"Notification on the connected device" message:@"Do you want to turn off the device" preferredStyle:UIAlertControllerStyleAlert];
@@ -229,7 +228,6 @@
     self.centralManager.curPeripheral = nil;
     
     [self.peripheralArr removeAllObjects];
-    [self.tableView reloadData];
 }
 
 /** 可以进行扫描 */
@@ -254,7 +252,6 @@
         }
     }
     
-    [self.tableView reloadData];
 }
 
 /** 已经连接了设备 */
@@ -267,7 +264,6 @@
     
     [self.peripheralArr removeAllObjects];
     [self.peripheralArr addObject:ksPeripheral];
-    [self.tableView reloadData];
     
     NSLog(@"已经连接了设备 %@", ksPeripheral.peripheral.name);
     
@@ -308,34 +304,6 @@
     NSLog(@"写数据成功");
 }
 
-#pragma mark - UITableViewDataSource
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return MAIN_CELL_H;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.peripheralArr.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *identifiy = @"peripheralID";
-    JJMainCell *cell = [tableView dequeueReusableCellWithIdentifier:identifiy];
-    if (cell == nil) {
-        cell = [[JJMainCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifiy];
-        cell.delegate = self;
-    }
-    
-    KSCBPeripheral *ksp = [self.peripheralArr objectAtIndex:indexPath.row];
-    
-    [cell cellWithPeripheral:ksp];
-    
-    return cell;
-    
-    
-}
 
 #pragma mark - UITableViewDelegate
 
@@ -360,21 +328,17 @@
 
 
 #pragma mark - Property
-
-- (UITableView *)tableView {
-    if (_tableView) {
-        return _tableView;
+- (UIButton *)scanBtn {
+    if (_scanBtn){
+        return _scanBtn;
     }
-    
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 200, M_SCREEN_W - 40, 200) style:UITableViewStylePlain];
-    _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    return _tableView;
+    _scanBtn = [[UIButton alloc] init];
+    _scanBtn.frame = CGRectMake(0, 0, 100, 200);
+    _scanBtn.center = CGPointMake(self.view.center.x, self.view.center.y);
+    [_scanBtn setImage:[UIImage imageNamed:@"bluetooth_icon"] forState:UIControlStateNormal];
+    [_scanBtn addTarget:self action:@selector(clickScanBtn:) forControlEvents:UIControlEventTouchUpInside];
+    return _scanBtn;
 }
-
 - (NSMutableArray *)peripheralArr
 {
     if (_peripheralArr){

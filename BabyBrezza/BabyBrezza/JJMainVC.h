@@ -15,6 +15,6 @@
 //单例 git test
 + (JJMainVC *)sharedInstance;
 
-- (IBAction)clickScanBtn:(id)sender;
+- (void)clickScanBtn:(id)sender;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 XJ. All rights reserved.
 //
 
-#import "JJSettingVC.h"
+#import "JJSettingGuideVC.h"
 
-@interface JJSettingVC () <UIScrollViewDelegate>
+@interface JJSettingGuideVC () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation JJSettingVC
+@implementation JJSettingGuideVC
 
 #pragma mark - Lifecycle
 

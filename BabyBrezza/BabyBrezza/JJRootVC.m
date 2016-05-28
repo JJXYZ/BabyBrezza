@@ -62,6 +62,7 @@
         imageString = @"app_bg_i6p";
     }
     _bgImgView.image = [UIImage imageNamed:imageString];
+    _bgImgView.userInteractionEnabled = YES;
     return _bgImgView;
 }
 

@@ -7,27 +7,22 @@
 //
 
 #import "JJFunctionVC.h"
+#import "JJFunSettingView.h"
 
-@interface JJFunctionVC () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface JJFunctionVC () 
 
-@property (weak, nonatomic) IBOutlet UIPickerView *numberPickView;
-@property (nonatomic, strong) NSArray *numberPickArr;
+@property (nonatomic, strong) JJFunSettingView *funSettingView;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *speedPickView;
-@property (nonatomic, strong) NSArray *speedPickArr;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *tempPickView;
-@property (nonatomic, strong) NSArray *tempPickArr;
-
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 @property (assign, nonatomic) NSUInteger timeout;
 ;
 //倒计时
 @property (nonatomic, strong) NSTimer *countDownTimer;
-@property (weak, nonatomic) IBOutlet UIButton *startBtn;
+@property (nonatomic, strong) UIButton *startBtn;
 
-- (IBAction)clickBackBtn:(id)sender;
-- (IBAction)clickStartBtn:(id)sender;
+- (void)clickBackBtn:(id)sender;
+- (void)clickStartBtn:(id)sender;
 
 @end
 
@@ -49,8 +44,8 @@
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
+    [super viewDidLoad];    
+    [self layoutFuncionUI];
 }
 
 - (void)dealloc {
@@ -58,6 +53,10 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)layoutFuncionUI {
+    [self.view addSubview:self.funSettingView];
+}
 
 - (void)timeCountDown {
     self.timeout--;
@@ -97,63 +96,15 @@
 
 
 
-#pragma mark - UIPickerViewDataSource
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    if (pickerView == self.numberPickView) {
-        return self.numberPickArr.count;
-    }
-    else if (pickerView == self.speedPickView) {
-        return self.speedPickArr.count;
-    }
-    else if (pickerView == self.tempPickView) {
-        return self.tempPickArr.count;
-    }
-    return 0;
-}
-
-#pragma mark - UIPickerViewDelegate
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (pickerView == self.numberPickView) {
-        NSString *time = [self.numberPickArr objectAtIndex:row];
-        self.timeLabel.text = [NSString stringWithFormat:@"%.2ld:00", (long)time.integerValue];
-    }
-    else if (pickerView == self.speedPickView) {
-        
-    }
-    else if (pickerView == self.tempPickView) {
-        
-    }
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
-    if (pickerView == self.numberPickView) {
-        return [self.numberPickArr objectAtIndex:row];
-    }
-    else if (pickerView == self.speedPickView) {
-        return [self.speedPickArr objectAtIndex:row];
-    }
-    else if (pickerView == self.tempPickView) {
-        return [self.tempPickArr objectAtIndex:row];
-    }
-    
-    return nil;
-}
 
 
 #pragma mark - Event
 
-- (IBAction)clickBackBtn:(id)sender {
+- (void)clickBackBtn:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
-- (IBAction)clickStartBtn:(id)sender {
+- (void)clickStartBtn:(id)sender {
     
     NSString *time = [self.numberPickArr objectAtIndex:[self.numberPickView selectedRowInComponent:0]];
     self.timeLabel.text = [NSString stringWithFormat:@"%.2ld:00", (long)time.integerValue];
@@ -169,30 +120,5 @@
     }
 }
 
-#pragma mark - Property
-- (NSArray *)numberPickArr {
-    if (_numberPickArr) {
-        return _numberPickArr;
-    }
-    _numberPickArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
-    return _numberPickArr;
-}
-
-- (NSArray *)speedPickArr {
-    if (_speedPickArr) {
-        return _speedPickArr;
-    }
-    _speedPickArr = [NSArray arrayWithObjects:@"fast",@"slow", nil];
-    return _speedPickArr;
-}
-
-
-- (NSArray *)tempPickArr {
-    if (_tempPickArr) {
-        return _tempPickArr;
-    }
-    _tempPickArr = [NSArray arrayWithObjects:@"room",@"cold", nil];
-    return _tempPickArr;
-}
 
 @end

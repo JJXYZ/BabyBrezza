@@ -19,7 +19,8 @@
 		6973F4511BBBD20D00D7737D /* JJMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F44F1BBBD20D00D7737D /* JJMainVC.m */; };
 		69AB0F781CF9648E00F15D4A /* JJRootNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F771CF9648E00F15D4A /* JJRootNC.m */; };
 		69AB0F7C1CF96A4A00F15D4A /* JJConnectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F7B1CF96A4A00F15D4A /* JJConnectVC.m */; };
-		69AB0F801CF96CCF00F15D4A /* JJSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F7F1CF96CCF00F15D4A /* JJSettingVC.m */; };
+		69AB0F801CF96CCF00F15D4A /* JJSettingGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F7F1CF96CCF00F15D4A /* JJSettingGuideVC.m */; };
+		69AB0F851CF97C8500F15D4A /* JJFunSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F841CF97C8500F15D4A /* JJFunSettingView.m */; };
 		69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */; };
 		69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A11BBBEFA4005F7399 /* KSCentralManager.m */; };
 		69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */; };
@@ -52,8 +53,10 @@
 		69AB0F771CF9648E00F15D4A /* JJRootNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRootNC.m; sourceTree = "<group>"; };
 		69AB0F7A1CF96A4A00F15D4A /* JJConnectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJConnectVC.h; sourceTree = "<group>"; };
 		69AB0F7B1CF96A4A00F15D4A /* JJConnectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJConnectVC.m; sourceTree = "<group>"; };
-		69AB0F7E1CF96CCF00F15D4A /* JJSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJSettingVC.h; sourceTree = "<group>"; };
-		69AB0F7F1CF96CCF00F15D4A /* JJSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSettingVC.m; sourceTree = "<group>"; };
+		69AB0F7E1CF96CCF00F15D4A /* JJSettingGuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJSettingGuideVC.h; sourceTree = "<group>"; };
+		69AB0F7F1CF96CCF00F15D4A /* JJSettingGuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSettingGuideVC.m; sourceTree = "<group>"; };
+		69AB0F831CF97C8500F15D4A /* JJFunSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunSettingView.h; sourceTree = "<group>"; };
+		69AB0F841CF97C8500F15D4A /* JJFunSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunSettingView.m; sourceTree = "<group>"; };
 		69F9379D1BBBE90F005F7399 /* UIView+JJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JJCommon.h"; sourceTree = "<group>"; };
 		69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JJCommon.m"; sourceTree = "<group>"; };
 		69F937A11BBBEFA4005F7399 /* KSCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCentralManager.m; sourceTree = "<group>"; };
@@ -82,8 +85,8 @@
 		6931CE211BBCC5B900EF3BA9 /* FunctionVC */ = {
 			isa = PBXGroup;
 			children = (
-				6931CE221BBCC5E300EF3BA9 /* JJFunctionVC.h */,
-				6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */,
+				69AB0F811CF97C4A00F15D4A /* VC */,
+				69AB0F821CF97C5300F15D4A /* View */,
 			);
 			name = FunctionVC;
 			sourceTree = "<group>";
@@ -200,7 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				6973F4481BBBD19700D7737D /* RootVC */,
-				69AB0F7D1CF96CB800F15D4A /* SettingVC */,
+				69AB0F7D1CF96CB800F15D4A /* SettingGuideVC */,
 				69AB0F791CF969A600F15D4A /* ConnectVC */,
 				6931CE211BBCC5B900EF3BA9 /* FunctionVC */,
 				6973F4471BBBD15800D7737D /* MainVC */,
@@ -217,13 +220,31 @@
 			name = ConnectVC;
 			sourceTree = "<group>";
 		};
-		69AB0F7D1CF96CB800F15D4A /* SettingVC */ = {
+		69AB0F7D1CF96CB800F15D4A /* SettingGuideVC */ = {
 			isa = PBXGroup;
 			children = (
-				69AB0F7E1CF96CCF00F15D4A /* JJSettingVC.h */,
-				69AB0F7F1CF96CCF00F15D4A /* JJSettingVC.m */,
+				69AB0F7E1CF96CCF00F15D4A /* JJSettingGuideVC.h */,
+				69AB0F7F1CF96CCF00F15D4A /* JJSettingGuideVC.m */,
 			);
-			name = SettingVC;
+			name = SettingGuideVC;
+			sourceTree = "<group>";
+		};
+		69AB0F811CF97C4A00F15D4A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				6931CE221BBCC5E300EF3BA9 /* JJFunctionVC.h */,
+				6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		69AB0F821CF97C5300F15D4A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				69AB0F831CF97C8500F15D4A /* JJFunSettingView.h */,
+				69AB0F841CF97C8500F15D4A /* JJFunSettingView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		69F937991BBBE544005F7399 /* Define */ = {
@@ -406,6 +427,7 @@
 				6931CE2B1BBCDBA100EF3BA9 /* JJMainCell.m in Sources */,
 				6973F44D1BBBD1E700D7737D /* JJRootVC.m in Sources */,
 				6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */,
+				69AB0F851CF97C8500F15D4A /* JJFunSettingView.m in Sources */,
 				6973F4511BBBD20D00D7737D /* JJMainVC.m in Sources */,
 				69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */,
 				69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */,
@@ -413,7 +435,7 @@
 				69AB0F781CF9648E00F15D4A /* JJRootNC.m in Sources */,
 				69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */,
 				6931CE251BBCC5E300EF3BA9 /* JJFunctionVC.m in Sources */,
-				69AB0F801CF96CCF00F15D4A /* JJSettingVC.m in Sources */,
+				69AB0F801CF96CCF00F15D4A /* JJSettingGuideVC.m in Sources */,
 				6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */,
 				6973F4151BBBD00400D7737D /* main.m in Sources */,
 				69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */,

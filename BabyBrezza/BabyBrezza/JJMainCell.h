@@ -12,7 +12,7 @@
 #define MAIN_CELL_H 60
 
 @class JJMainCell;
-@protocol XJMainCellDelegate <NSObject>
+@protocol JJMainCellDelegate <NSObject>
 
 - (void)mainCell:(JJMainCell *)cell longTap:(UILongPressGestureRecognizer *)longRecognizer;
 
@@ -20,7 +20,7 @@
 
 @interface JJMainCell : UITableViewCell
 
-@property (nonatomic, weak) id<XJMainCellDelegate> delegate;
+@property (nonatomic, weak) id<JJMainCellDelegate> delegate;
 
 - (void)cellWithPeripheral:(KSCBPeripheral *)peripheral;
 

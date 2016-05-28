@@ -8,6 +8,6 @@
 
 #import "JJRootVC.h"
 
-@interface JJSettingVC : JJRootVC
+@interface JJSettingGuideVC : JJRootVC
 
 @end
