@@ -21,6 +21,15 @@
 		69AB0F7C1CF96A4A00F15D4A /* JJConnectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F7B1CF96A4A00F15D4A /* JJConnectVC.m */; };
 		69AB0F801CF96CCF00F15D4A /* JJSettingGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F7F1CF96CCF00F15D4A /* JJSettingGuideVC.m */; };
 		69AB0F851CF97C8500F15D4A /* JJFunSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F841CF97C8500F15D4A /* JJFunSettingView.m */; };
+		69AB0F881CF99C6500F15D4A /* JJFunSettingLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F871CF99C6500F15D4A /* JJFunSettingLabelView.m */; };
+		69AB0F8B1CF9A00C00F15D4A /* JJFunSettingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F8A1CF9A00C00F15D4A /* JJFunSettingBtnView.m */; };
+		69AB0F8F1CFA795D00F15D4A /* JJFunSettingBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F8E1CFA795D00F15D4A /* JJFunSettingBtn.m */; };
+		69AB0F921CFA8AF000F15D4A /* JJControllerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F911CFA8AF000F15D4A /* JJControllerBtn.m */; };
+		69AB0F951CFA8D4000F15D4A /* JJFunTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F941CFA8D4000F15D4A /* JJFunTimeView.m */; };
+		69AB0F981CFA901300F15D4A /* JJFunBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F971CFA901300F15D4A /* JJFunBottomView.m */; };
+		69AB0F9B1CFAB1DA00F15D4A /* UIButton+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F9A1CFAB1DA00F15D4A /* UIButton+JJCommon.m */; };
+		69AB0F9E1CFAB1FF00F15D4A /* UIImage+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F9D1CFAB1FE00F15D4A /* UIImage+JJCommon.m */; };
+		69AB0FA21CFAB9C800F15D4A /* JJRoundBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */; };
 		69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */; };
 		69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A11BBBEFA4005F7399 /* KSCentralManager.m */; };
 		69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */; };
@@ -57,6 +66,24 @@
 		69AB0F7F1CF96CCF00F15D4A /* JJSettingGuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSettingGuideVC.m; sourceTree = "<group>"; };
 		69AB0F831CF97C8500F15D4A /* JJFunSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunSettingView.h; sourceTree = "<group>"; };
 		69AB0F841CF97C8500F15D4A /* JJFunSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunSettingView.m; sourceTree = "<group>"; };
+		69AB0F861CF99C6500F15D4A /* JJFunSettingLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunSettingLabelView.h; sourceTree = "<group>"; };
+		69AB0F871CF99C6500F15D4A /* JJFunSettingLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunSettingLabelView.m; sourceTree = "<group>"; };
+		69AB0F891CF9A00C00F15D4A /* JJFunSettingBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunSettingBtnView.h; sourceTree = "<group>"; };
+		69AB0F8A1CF9A00C00F15D4A /* JJFunSettingBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunSettingBtnView.m; sourceTree = "<group>"; };
+		69AB0F8D1CFA795D00F15D4A /* JJFunSettingBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunSettingBtn.h; sourceTree = "<group>"; };
+		69AB0F8E1CFA795D00F15D4A /* JJFunSettingBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunSettingBtn.m; sourceTree = "<group>"; };
+		69AB0F901CFA8AF000F15D4A /* JJControllerBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJControllerBtn.h; sourceTree = "<group>"; };
+		69AB0F911CFA8AF000F15D4A /* JJControllerBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJControllerBtn.m; sourceTree = "<group>"; };
+		69AB0F931CFA8D4000F15D4A /* JJFunTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunTimeView.h; sourceTree = "<group>"; };
+		69AB0F941CFA8D4000F15D4A /* JJFunTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunTimeView.m; sourceTree = "<group>"; };
+		69AB0F961CFA901300F15D4A /* JJFunBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunBottomView.h; sourceTree = "<group>"; };
+		69AB0F971CFA901300F15D4A /* JJFunBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunBottomView.m; sourceTree = "<group>"; };
+		69AB0F991CFAB1DA00F15D4A /* UIButton+JJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+JJCommon.h"; sourceTree = "<group>"; };
+		69AB0F9A1CFAB1DA00F15D4A /* UIButton+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+JJCommon.m"; sourceTree = "<group>"; };
+		69AB0F9C1CFAB1FE00F15D4A /* UIImage+JJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JJCommon.h"; sourceTree = "<group>"; };
+		69AB0F9D1CFAB1FE00F15D4A /* UIImage+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JJCommon.m"; sourceTree = "<group>"; };
+		69AB0FA01CFAB9C800F15D4A /* JJRoundBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRoundBtn.h; sourceTree = "<group>"; };
+		69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRoundBtn.m; sourceTree = "<group>"; };
 		69F9379D1BBBE90F005F7399 /* UIView+JJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JJCommon.h"; sourceTree = "<group>"; };
 		69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JJCommon.m"; sourceTree = "<group>"; };
 		69F937A11BBBEFA4005F7399 /* KSCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCentralManager.m; sourceTree = "<group>"; };
@@ -241,10 +268,31 @@
 		69AB0F821CF97C5300F15D4A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				69AB0F8D1CFA795D00F15D4A /* JJFunSettingBtn.h */,
+				69AB0F8E1CFA795D00F15D4A /* JJFunSettingBtn.m */,
 				69AB0F831CF97C8500F15D4A /* JJFunSettingView.h */,
 				69AB0F841CF97C8500F15D4A /* JJFunSettingView.m */,
+				69AB0F861CF99C6500F15D4A /* JJFunSettingLabelView.h */,
+				69AB0F871CF99C6500F15D4A /* JJFunSettingLabelView.m */,
+				69AB0F891CF9A00C00F15D4A /* JJFunSettingBtnView.h */,
+				69AB0F8A1CF9A00C00F15D4A /* JJFunSettingBtnView.m */,
+				69AB0F901CFA8AF000F15D4A /* JJControllerBtn.h */,
+				69AB0F911CFA8AF000F15D4A /* JJControllerBtn.m */,
+				69AB0F931CFA8D4000F15D4A /* JJFunTimeView.h */,
+				69AB0F941CFA8D4000F15D4A /* JJFunTimeView.m */,
+				69AB0F961CFA901300F15D4A /* JJFunBottomView.h */,
+				69AB0F971CFA901300F15D4A /* JJFunBottomView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		69AB0F9F1CFAB99800F15D4A /* JJRoundBtn */ = {
+			isa = PBXGroup;
+			children = (
+				69AB0FA01CFAB9C800F15D4A /* JJRoundBtn.h */,
+				69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */,
+			);
+			name = JJRoundBtn;
 			sourceTree = "<group>";
 		};
 		69F937991BBBE544005F7399 /* Define */ = {
@@ -257,6 +305,7 @@
 		69F9379B1BBBE5AF005F7399 /* Third_Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				69AB0F9F1CFAB99800F15D4A /* JJRoundBtn */,
 			);
 			name = Third_Libraries;
 			sourceTree = "<group>";
@@ -268,6 +317,10 @@
 				69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */,
 				6931CE2C1BBD0F9100EF3BA9 /* UIColor+JJColor.h */,
 				6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */,
+				69AB0F991CFAB1DA00F15D4A /* UIButton+JJCommon.h */,
+				69AB0F9A1CFAB1DA00F15D4A /* UIButton+JJCommon.m */,
+				69AB0F9C1CFAB1FE00F15D4A /* UIImage+JJCommon.h */,
+				69AB0F9D1CFAB1FE00F15D4A /* UIImage+JJCommon.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -424,19 +477,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69AB0F981CFA901300F15D4A /* JJFunBottomView.m in Sources */,
+				69AB0F8B1CF9A00C00F15D4A /* JJFunSettingBtnView.m in Sources */,
 				6931CE2B1BBCDBA100EF3BA9 /* JJMainCell.m in Sources */,
 				6973F44D1BBBD1E700D7737D /* JJRootVC.m in Sources */,
+				69AB0F8F1CFA795D00F15D4A /* JJFunSettingBtn.m in Sources */,
+				69AB0F921CFA8AF000F15D4A /* JJControllerBtn.m in Sources */,
 				6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */,
 				69AB0F851CF97C8500F15D4A /* JJFunSettingView.m in Sources */,
 				6973F4511BBBD20D00D7737D /* JJMainVC.m in Sources */,
 				69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */,
 				69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */,
+				69AB0F951CFA8D4000F15D4A /* JJFunTimeView.m in Sources */,
 				6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */,
+				69AB0F881CF99C6500F15D4A /* JJFunSettingLabelView.m in Sources */,
+				69AB0F9E1CFAB1FF00F15D4A /* UIImage+JJCommon.m in Sources */,
 				69AB0F781CF9648E00F15D4A /* JJRootNC.m in Sources */,
 				69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */,
 				6931CE251BBCC5E300EF3BA9 /* JJFunctionVC.m in Sources */,
+				69AB0F9B1CFAB1DA00F15D4A /* UIButton+JJCommon.m in Sources */,
 				69AB0F801CF96CCF00F15D4A /* JJSettingGuideVC.m in Sources */,
 				6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */,
+				69AB0FA21CFAB9C800F15D4A /* JJRoundBtn.m in Sources */,
 				6973F4151BBBD00400D7737D /* main.m in Sources */,
 				69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */,
 				69AB0F7C1CF96A4A00F15D4A /* JJConnectVC.m in Sources */,

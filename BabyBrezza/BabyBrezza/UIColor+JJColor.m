@@ -3,7 +3,7 @@
 //  BabyBrezza
 //
 //  Created by Jay on 15/10/1.
-//  Copyright © 2015年 XJ. All rights reserved.
+//  Copyright © 2015年 JJ. All rights reserved.
 //
 
 #import "UIColor+JJColor.h"
@@ -11,16 +11,16 @@
 @implementation UIColor (JJColor)
 
 
-+ (UIColor *)homeBG
-{
-    return [UIColor r:204 g:204 b:204 a:1];
++ (UIColor *)homeBG {
+    return RGB(204, 204, 204);
 }
 
-
-+ (UIColor*)r:(CGFloat)red g:(CGFloat)green b:(CGFloat)blue a:(CGFloat)alpha
-{
-    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:alpha];
++ (UIColor *)funControlBtnGreenColor {
+    return RGBA(141, 196, 73, 1);
 }
 
++ (UIColor *)funControlBtnOrangeColor {
+    return RGBA(244, 141, 29, 1);
+}
 
 @end

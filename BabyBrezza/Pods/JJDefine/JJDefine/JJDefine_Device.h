@@ -29,6 +29,21 @@
 /** 主屏幕的宽度比例 */
 #define M_SCREEN_W_SCALE (M_SCREEN_W/320)
 
+//i4的屏幕宽高比例
+#define S_SCALE_W_4(w) (M_SCREEN_W*(w)/320)
+#define S_SCALE_H_4(h) (M_SCREEN_H*(h)/480)
+
+//i5的屏幕宽高比例
+#define S_SCALE_W_5(w) (M_SCREEN_W*(w)/320)
+#define S_SCALE_H_5(h) (M_SCREEN_H*(h)/568)
+
+//i6的屏幕宽高比例
+#define S_SCALE_W_6(w) (M_SCREEN_W*(w)/375)
+#define S_SCALE_H_6(h) (M_SCREEN_H*(h)/667)
+
+//i6P的屏幕宽高比例
+#define S_SCALE_W_6P(w) (M_SCREEN_W*(w)/414)
+#define S_SCALE_H_6P(h) (M_SCREEN_H*(h)/736)
 
 /** 屏幕的分辨率 当结果为1时，显示的是普通屏幕，结果为2时，显示的是Retian屏幕 */
 #define M_SCREEN_SCALE [[UIScreen mainScreen] scale]

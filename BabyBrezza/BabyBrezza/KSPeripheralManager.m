@@ -3,7 +3,7 @@
 //  BluetoothDevice
 //
 //  Created by Jay on 14-12-21.
-//  Copyright (c) 2014年 XJ. All rights reserved.
+//  Copyright (c) 2014年 JJ. All rights reserved.
 //
 
 #import "KSPeripheralManager.h"

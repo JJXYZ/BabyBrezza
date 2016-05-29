@@ -3,12 +3,14 @@
 //  BabyBrezza
 //
 //  Created by Jay on 16/5/28.
-//  Copyright © 2016年 XJ. All rights reserved.
+//  Copyright © 2016年 JJ. All rights reserved.
 //
 
 #import "JJSettingGuideVC.h"
 
 @interface JJSettingGuideVC () <UIScrollViewDelegate>
+
+@property (nonatomic, strong) UIButton *backBtn;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
@@ -28,18 +30,26 @@
 #pragma mark - Private Methods
 
 - (void)layoutSettingUI {
-    [self.bgImgView addSubview:self.scrollView];
+    self.bgImgView.hidden = YES;
+    [self.view addSubview:self.scrollView];
+    [self.view addSubview:self.backBtn];
     [self layoutSettingScrollView];
 }
 
 - (void)layoutSettingScrollView {
     for (NSUInteger i=0; i<self.dataArr.count; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((i * self.scrollView.width), 0, self.scrollView.width, self.scrollView.height)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (i * self.scrollView.height), self.scrollView.width, self.scrollView.height)];
         imageView.userInteractionEnabled = YES;
         imageView.image = [UIImage imageNamed:[self.dataArr objectAtIndex:i]];
         [self.scrollView addSubview:imageView];
     }
 }
+
+
+- (void)clickBackBtn:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark - UIScrollViewDelegate
 
@@ -69,5 +79,18 @@
     _dataArr = [[NSArray alloc] initWithObjects:@"steady_room",@"quick_room",@"quick_cold",@"steady_cold", nil];
     return _dataArr;
 }
+
+- (UIButton *)backBtn {
+    if (_backBtn) {
+        return _backBtn;
+    }
+    _backBtn = [[UIButton alloc] init];
+    _backBtn.frame = CGRectMake(5, 20, 25, 25);
+    [_backBtn setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
+    [_backBtn addTarget:self action:@selector(clickBackBtn:) forControlEvents:UIControlEventTouchUpInside];
+    return _backBtn;
+}
+
+
 
 @end

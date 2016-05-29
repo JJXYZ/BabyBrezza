@@ -3,7 +3,7 @@
 //  BabyBrezza
 //
 //  Created by Jay on 16/5/27.
-//  Copyright © 2016年 XJ. All rights reserved.
+//  Copyright © 2016年 JJ. All rights reserved.
 //
 
 #ifndef BabyBrezza_Prefix_pch
@@ -12,5 +12,8 @@
 #import "JJDefine.h"
 #import "UIView+JJCommon.h"
 #import "UIColor+JJColor.h"
+#import "Masonry.h"
+#import "UIButton+JJCommon.h"
+#import "UIImage+JJCommon.h"
 
 #endif /* BabyBrezza_Prefix_pch */

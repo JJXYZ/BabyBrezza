@@ -3,7 +3,7 @@
 //  BluetoothDevice
 //
 //  Created by Jay on 15-1-10.
-//  Copyright (c) 2015年 XJ. All rights reserved.
+//  Copyright (c) 2015年 JJ. All rights reserved.
 //
 
 #import "KSCBPeripheral.h"

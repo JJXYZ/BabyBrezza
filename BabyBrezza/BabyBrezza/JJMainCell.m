@@ -3,7 +3,7 @@
 //  BabyBrezza
 //
 //  Created by Jay on 15/10/1.
-//  Copyright © 2015年 XJ. All rights reserved.
+//  Copyright © 2015年 JJ. All rights reserved.
 //
 
 #import "JJMainCell.h"
