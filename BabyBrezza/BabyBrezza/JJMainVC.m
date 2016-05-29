@@ -17,24 +17,17 @@
 #import "JJConnectVC.h"
 #import "JJFunctionVC.h"
 
+/** 扫描定时器时间 */
+#define SCAN_TIME 30
+
 @interface JJMainVC () <KSCentralManagerDelegate, JJMainCellDelegate>
 
 @property (nonatomic, strong) UIButton *scanBtn;
 
-//是否显示Progress
-@property (nonatomic, assign) BOOL isShowProgress;
+@property (nonatomic, strong) UILabel *textLabel;
 
-//自动扫描定时器 30秒
+//扫描定时器
 @property (nonatomic, strong) NSTimer *scanTimer;
-
-//重新连接定时器
-@property (nonatomic, strong) NSTimer *retrieveTimer;
-
-//中心类
-@property (nonatomic, strong) KSCentralManager *centralManager;
-
-//设备(扫描的设备,操作系统连接的设备)
-@property (nonatomic, strong) NSMutableArray *peripheralArr;
 
 @end
 
@@ -56,150 +49,63 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.centralManager = CENTRAL_MANAGER;
-    self.centralManager.delegate = self;
+    
+    CENTRAL_MANAGER.delegate = self;
+    
     [self layoutMainUI];
 }
 
 #pragma mark - Private Methods
 - (void)layoutMainUI {
     [self.view addSubview:self.scanBtn];
+    [self.view addSubview:self.textLabel];
+}
+
+- (void)pushConnectedVC {
+    JJConnectVC *vc = [[JJConnectVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)stopScanPeripheral
 {
-    [self.centralManager stopScanForPeripherals];
-    
+    [CENTRAL_MANAGER stopScanForPeripherals];
     [SVProgressHUD dismiss];
-    
     [self removeScanTimer];
 }
 
-//断线重连
-- (void)retrieveConnectPeripheral
-{
-    NSLog(@"断线重连....");
-    [self connectLastConnectedPeripheral];
-}
-
-//获取操作系统已经连接的设备
-- (void)addConnectedPeripherals
-{
-    
-    NSArray *connectedArr = [self.centralManager getConnectedSystemPeripherals];
-    
-    for (KSCBPeripheral *addKsp in connectedArr) {
-        
-        //判断是否有重复的,当前已连接的,不需要加入
-        if ([addKsp.peripheral.name rangeOfString:@"Brezza" options:NSCaseInsensitiveSearch].location != NSNotFound) {
-            [self.peripheralArr addObject:addKsp];
-        }
-    }
-}
-
-//连接上次连接过的设备
-- (void)connectLastConnectedPeripheral
-{
-    NSString *lastUUIDString = [[NSUserDefaults standardUserDefaults] objectForKey:UD_KEY_CUR_PERIPHERAL_UUID];
-    
-    for (KSCBPeripheral *ksp in self.peripheralArr) {
-        //存在上次连接过的设备,就连接
-        if ([ksp.peripheral.identifier.UUIDString isEqualToString:lastUUIDString]) {
-            [self.centralManager connectToPeripherl:ksp];
-            break;
-        }
-    }
-}
-
-//判断是否已经在数组里面
-- (BOOL)isExistedKSPeripheral:(KSCBPeripheral *)ksp
-{
-    BOOL isExisted = NO;
-    
-    for (KSCBPeripheral *p in self.peripheralArr) {
-        if ([ksp.peripheral.identifier.UUIDString isEqualToString:p.peripheral.identifier.UUIDString]) {
-            isExisted = YES;
-            break ;
-        }
-    }
-    
-    return isExisted;
-}
-
-- (void)pushFunctionVC {
-    JJFunctionVC *vc = [[JJFunctionVC alloc] init];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nc animated:YES completion:^{}];
-}
 
 #pragma mark - Event
 
 
 - (void)clickScanBtn:(id)sender {
-    JJConnectVC *vc = [[JJConnectVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    return ;
     [self stopScanPeripheral];
-    
-    //移除所有的Peripherals
-    [self.peripheralArr removeAllObjects];
-    
-    //获取操作系统已经连接的设备
-    [self addConnectedPeripherals];
-    
-    //开始扫描
+    /** 开始扫描 */
     [self createScanTimer];
-    
     [SVProgressHUD show];
 }
 
+
 #pragma mark - NSTimer
 
-//=========================ScanTimer=======================
 - (void)createScanTimer {
     
     [self removeScanTimer];
     
-    NSLog(@"创建自动扫描定时器 30秒");
+    NSLog(@"创建扫描定时器 %lu秒", (unsigned long)SCAN_TIME);
     
-    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(stopScanPeripheral) userInfo:nil repeats:NO];
+    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:SCAN_TIME target:self selector:@selector(stopScanPeripheral) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:self.scanTimer forMode:NSDefaultRunLoopMode];
     
-    [self.centralManager scanForPeripherals];
+    [CENTRAL_MANAGER scanForPeripherals];
 }
 
 - (void)removeScanTimer {
     if (self.scanTimer) {
-        NSLog(@"移除自动扫描定时器 30秒");
+        NSLog(@"移除扫描定时器 %lu秒", (unsigned long)SCAN_TIME);
         [self.scanTimer invalidate];
         self.scanTimer = nil;
     }
 }
-//=============================================================
-
-
-//=========================RetrieveTimer=======================
-//断线重连定时器
-- (void)creatRetrieveTimer
-{
-    [self removeRetrieveTimer];
-    
-    NSLog(@"创建重连定时器");
-    self.retrieveTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(retrieveConnectPeripheral) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.retrieveTimer forMode:NSDefaultRunLoopMode];
-}
-
-- (void)removeRetrieveTimer
-{
-    if (self.retrieveTimer) {
-        NSLog(@"移除重连定时器");
-        [self.retrieveTimer invalidate];
-        self.retrieveTimer = nil;
-    }
-}
-
-//=============================================================
-
 
 #pragma mark - JJMainCellDelegate
 - (void)mainCell:(JJMainCell *)cell longTap:(UILongPressGestureRecognizer *)longRecognizer {
@@ -225,33 +131,23 @@
 /** 蓝牙不可用 */
 - (void)ksCentralManagerStatePoweredOff {
     
-    self.centralManager.curPeripheral = nil;
-    
-    [self.peripheralArr removeAllObjects];
 }
 
 /** 可以进行扫描 */
 - (void)ksCentralManager:(KSCentralManager *)central canScanForPeripherals:(BOOL)isScan {
-    
     NSLog(@"已设置为可扫描状态");
-    
-    [self creatRetrieveTimer];
 }
 
 /** 扫描到了设备 */
 - (void)ksCentralManager:(KSCentralManager *)central displayPeripheral:(KSCBPeripheral *)ksPeripheral {
     
-    [SVProgressHUD dismiss];
-    
-    if (ksPeripheral.peripheral.name) {
-        
-        NSRange range = [ksPeripheral.peripheral.name rangeOfString:@"Brezza"];
-        
-        if ((range.location != NSNotFound) && ([self isExistedKSPeripheral:ksPeripheral] == NO)) {
-            [self.peripheralArr addObject:ksPeripheral];
-        }
+    NSRange range = [ksPeripheral.peripheral.name rangeOfString:@"Brezza"];
+    if (range.location != NSNotFound) {
+        //取消当前设备的连接
+        [CENTRAL_MANAGER cancelPeripheralConnection];
+        //连接设备
+        [CENTRAL_MANAGER connectToPeripherl:ksPeripheral];
     }
-    
 }
 
 /** 已经连接了设备 */
@@ -260,17 +156,10 @@
     [SVProgressHUD dismiss];
     
     [self removeScanTimer];
-    [self removeRetrieveTimer];
-    
-    [self.peripheralArr removeAllObjects];
-    [self.peripheralArr addObject:ksPeripheral];
     
     NSLog(@"已经连接了设备 %@", ksPeripheral.peripheral.name);
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self pushFunctionVC];
-    });
-    
+    [self pushConnectedVC];
 }
 
 /** 连接失败 */
@@ -280,10 +169,7 @@
 
 /** 失去连接 */
 - (void)ksCentralManager:(KSCentralManager *)central didDisconnectPeripheral:(KSCBPeripheral *)ksPeripheral {
-    
     NSLog(@"%@ 失去连接", ksPeripheral.peripheral.name);
-    
-    [self creatRetrieveTimer];
 }
 
 /** 订阅成功 可以收发数据 */
@@ -304,29 +190,6 @@
     NSLog(@"写数据成功");
 }
 
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    KSCBPeripheral *ksp = [self.peripheralArr objectAtIndex:indexPath.row];
-    
-    if ([ksp.peripheral.identifier.UUIDString isEqualToString:self.centralManager.curPeripheral.peripheral.identifier.UUIDString]) {
-        [self pushFunctionVC];
-    }
-    else {
-        //取消当前设备的连接
-        [self.centralManager cancelPeripheralConnection];
-        
-        KSCBPeripheral *ksp = [self.peripheralArr objectAtIndex:indexPath.row];
-        
-        //连接设备
-        [self.centralManager connectToPeripherl:ksp];
-    }
-    
-}
-
-
 #pragma mark - Property
 - (UIButton *)scanBtn {
     if (_scanBtn){
@@ -339,16 +202,18 @@
     [_scanBtn addTarget:self action:@selector(clickScanBtn:) forControlEvents:UIControlEventTouchUpInside];
     return _scanBtn;
 }
-- (NSMutableArray *)peripheralArr
-{
-    if (_peripheralArr){
-        return _peripheralArr;
-    }
-    
-    _peripheralArr = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    return _peripheralArr;
-}
 
+- (UILabel *)textLabel {
+    if (_textLabel) {
+        return _textLabel;
+    }
+    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.height - 20 - 30, self.view.width, 30)];
+    _textLabel.textAlignment = NSTextAlignmentCenter;
+    _textLabel.backgroundColor = [UIColor clearColor];
+    _textLabel.textColor = [UIColor blackColor];
+    _textLabel.font = S_FONT(14);
+    _textLabel.text = @"scan for your bottle warmer";
+    return _textLabel;
+}
 
 @end

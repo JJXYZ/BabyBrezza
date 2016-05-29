@@ -44,7 +44,7 @@
     self = [super init];
     if (self)
     {
-        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:nil];
     }
     return self;
 }
@@ -310,7 +310,7 @@
         {
             NSLog(@"CoreBluetooth BLE hardware is powered off");
             
-            self.curPeripheral.peripheral = nil;
+            self.curPeripheral = nil;
             
             //代理
             if (_delegate && [_delegate respondsToSelector:@selector(ksCentralManagerStatePoweredOff)])
