@@ -141,13 +141,15 @@
 /** 扫描到了设备 */
 - (void)ksCentralManager:(KSCentralManager *)central displayPeripheral:(KSCBPeripheral *)ksPeripheral {
     
-    NSRange range = [ksPeripheral.peripheral.name rangeOfString:@"Brezza"];
-    if (range.location != NSNotFound) {
-        //取消当前设备的连接
-        [CENTRAL_MANAGER cancelPeripheralConnection];
-        //连接设备
-        [CENTRAL_MANAGER connectToPeripherl:ksPeripheral];
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSRange range = [ksPeripheral.peripheral.name rangeOfString:@"Brezza"];
+        if (range.location != NSNotFound) {
+            //取消当前设备的连接
+            [CENTRAL_MANAGER cancelPeripheralConnection];
+            //连接设备
+            [CENTRAL_MANAGER connectToPeripherl:ksPeripheral];
+        }
+    });
 }
 
 /** 已经连接了设备 */
