@@ -43,9 +43,9 @@
         return _titleLabel;
     }
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.font = S_FONT(25);
+    _titleLabel.font = S_FONT(S_SCALE_W_4(25));
     _titleLabel.numberOfLines = 0;
-    _titleLabel.frame = CGRectMake(0, 0, 250, 100);
+    _titleLabel.frame = CGRectMake(0, 0, S_SCALE_W_4(250), S_SCALE_W_4(100));
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.text = @"Bottle warmer \n connected!";
     _titleLabel.center = CGPointMake(self.view.center.x, self.view.center.y);

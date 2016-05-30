@@ -13,7 +13,7 @@
 
 #define PickerView_H 100
 
-@interface JJFunSettingView () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface JJFunSettingView () <UIPickerViewDataSource, UIPickerViewDelegate, JJFunSettingBtnViewDelegate>
 
 @property (nonatomic, strong) UIPickerView *funSettingPickView;
 
@@ -23,17 +23,6 @@
 @property (nonatomic, strong) NSArray *numberPickArr;
 @property (nonatomic, strong) NSArray *tempPickArr;
 @property (nonatomic, strong) NSArray *speedPickArr;
-
-
-@property (nonatomic, strong) JJFunSettingBtn *numberUpBtn;
-@property (nonatomic, strong) JJFunSettingBtn *numberDownBtn;
-
-@property (nonatomic, strong) JJFunSettingBtn *tempUpBtn;
-@property (nonatomic, strong) JJFunSettingBtn *tempDownBtn;
-
-@property (nonatomic, strong) JJFunSettingBtn *speedUpBtn;
-@property (nonatomic, strong) JJFunSettingBtn *speedDownBtn;
-
 
 
 @end
@@ -58,16 +47,7 @@
     [self addSubview:self.funSettingPickView];
     [self addSubview:self.funSettingBtnView];
     
-    [self.funSettingBtnView addSubview:self.numberUpBtn];
-    [self.funSettingBtnView addSubview:self.numberDownBtn];
-    [self.funSettingBtnView addSubview:self.tempUpBtn];
-    [self.funSettingBtnView addSubview:self.tempDownBtn];
-    [self.funSettingBtnView addSubview:self.speedUpBtn];
-    [self.funSettingBtnView addSubview:self.speedDownBtn];
-    
-    
     [self autolayoutFunSettingViewUI];
-    [self autolayoutFunSettingBtnViewUI];
 }
 
 - (void)autolayoutFunSettingViewUI {
@@ -93,65 +73,9 @@
     }];
 }
 
-- (void)autolayoutFunSettingBtnViewUI {
-    
-    [self.funSettingBtnView addSubview:self.numberUpBtn];
-    [self.funSettingBtnView addSubview:self.numberDownBtn];
-    [self.funSettingBtnView addSubview:self.tempUpBtn];
-    [self.funSettingBtnView addSubview:self.tempDownBtn];
-    [self.funSettingBtnView addSubview:self.speedUpBtn];
-    [self.funSettingBtnView addSubview:self.speedDownBtn];
-    
-    [self.numberUpBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.funSettingBtnView.mas_top);
-        make.bottom.equalTo(self.funSettingBtnView.mas_bottom);
-        make.left.equalTo(self.funSettingBtnView.mas_left);
-        make.width.equalTo(@((M_SCREEN_W-20)/6));
-    }];
-    
-    [self.numberDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.funSettingBtnView.mas_top);
-        make.bottom.equalTo(self.funSettingBtnView.mas_bottom);
-        make.left.equalTo(self.numberUpBtn.mas_right);
-        make.width.equalTo(self.numberUpBtn.mas_width);
-    }];
-    
-    [self.tempUpBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.funSettingBtnView.mas_top);
-        make.bottom.equalTo(self.funSettingBtnView.mas_bottom);
-        make.left.equalTo(self.numberDownBtn.mas_right);
-        make.width.equalTo(self.numberUpBtn.mas_width);
-    }];
-    
-    [self.tempDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.funSettingBtnView.mas_top);
-        make.bottom.equalTo(self.funSettingBtnView.mas_bottom);
-        make.left.equalTo(self.tempUpBtn.mas_right);
-        make.width.equalTo(self.numberUpBtn.mas_width);
-    }];
-    
-    [self.speedUpBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.funSettingBtnView.mas_top);
-        make.bottom.equalTo(self.funSettingBtnView.mas_bottom);
-        make.left.equalTo(self.tempDownBtn.mas_right);
-        make.width.equalTo(self.numberUpBtn.mas_width);
-    }];
-    
-    [self.speedDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.funSettingBtnView.mas_top);
-        make.bottom.equalTo(self.funSettingBtnView.mas_bottom);
-        make.left.equalTo(self.speedUpBtn.mas_right);
-        make.width.equalTo(self.numberUpBtn.mas_width);
-    }];
-    
-    
-    
-}
-- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
 
-}
-#pragma mark - Event
-- (void)clickFunBtn:(JJFunSettingBtn *)btn {
+#pragma mark - JJFunSettingBtnViewDelegate
+- (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn {
     JJFunBtnType type = btn.type;
     if (type == FunBtnType_NumUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
@@ -256,6 +180,7 @@
         return _funSettingBtnView;
     }
     _funSettingBtnView = [[JJFunSettingBtnView alloc] init];
+    _funSettingBtnView.delegate = self;
     _funSettingBtnView.backgroundColor = [UIColor clearColor];
     return _funSettingBtnView;
 }
@@ -287,71 +212,5 @@
     return _tempPickArr;
 }
 
-
-- (JJFunSettingBtn *)numberUpBtn {
-    if (_numberUpBtn) {
-        return _numberUpBtn;
-    }
-    _numberUpBtn = [[JJFunSettingBtn alloc] init];
-    _numberUpBtn.type = FunBtnType_NumUp;
-    [_numberUpBtn setImage:[UIImage imageNamed:@"arrow_up"] forState:UIControlStateNormal];
-    [_numberUpBtn addTarget:self action:@selector(clickFunBtn:) forControlEvents:UIControlEventTouchUpInside];
-    return _numberUpBtn;
-}
-
-- (JJFunSettingBtn *)numberDownBtn {
-    if (_numberDownBtn) {
-        return _numberDownBtn;
-    }
-    _numberDownBtn = [[JJFunSettingBtn alloc] init];
-    _numberDownBtn.type = FunBtnType_NumDown;
-    [_numberDownBtn setImage:[UIImage imageNamed:@"arrow_down"] forState:UIControlStateNormal];
-    [_numberDownBtn addTarget:self action:@selector(clickFunBtn:) forControlEvents:UIControlEventTouchUpInside];
-    return _numberUpBtn;
-}
-
-- (JJFunSettingBtn *)speedUpBtn {
-    if (_speedUpBtn) {
-        return _speedUpBtn;
-    }
-    _speedUpBtn = [[JJFunSettingBtn alloc] init];
-    _speedUpBtn.type = FunBtnType_SpeedUp;
-    [_speedUpBtn setImage:[UIImage imageNamed:@"arrow_up"] forState:UIControlStateNormal];
-    [_speedUpBtn addTarget:self action:@selector(clickFunBtn:) forControlEvents:UIControlEventTouchUpInside];
-    return _speedUpBtn;
-}
-
-- (JJFunSettingBtn *)speedDownBtn {
-    if (_speedDownBtn) {
-        return _speedDownBtn;
-    }
-    _speedDownBtn = [[JJFunSettingBtn alloc] init];
-    _speedDownBtn.type = FunBtnType_SpeedDown;
-    [_speedDownBtn setImage:[UIImage imageNamed:@"arrow_down"] forState:UIControlStateNormal];
-    [_speedDownBtn addTarget:self action:@selector(clickFunBtn:) forControlEvents:UIControlEventTouchUpInside];
-    return _speedDownBtn;
-}
-
-- (JJFunSettingBtn *)tempUpBtn {
-    if (_tempUpBtn) {
-        return _tempUpBtn;
-    }
-    _tempUpBtn = [[JJFunSettingBtn alloc] init];
-    _tempUpBtn.type = FunBtnType_TempUp;
-    [_tempUpBtn setImage:[UIImage imageNamed:@"arrow_up"] forState:UIControlStateNormal];
-    [_tempUpBtn addTarget:self action:@selector(clickFunBtn:) forControlEvents:UIControlEventTouchUpInside];
-    return _tempUpBtn;
-}
-
-- (JJFunSettingBtn *)tempDownBtn {
-    if (_tempDownBtn) {
-        return _tempDownBtn;
-    }
-    _tempDownBtn = [[JJFunSettingBtn alloc] init];
-    _tempDownBtn.type = FunBtnType_TempDown;
-    [_tempDownBtn setImage:[UIImage imageNamed:@"arrow_down"] forState:UIControlStateNormal];
-    [_tempDownBtn addTarget:self action:@selector(clickFunBtn:) forControlEvents:UIControlEventTouchUpInside];
-    return _tempDownBtn;
-}
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define F_S_View_H (140)
+#define F_S_View_H (S_SCALE_H_4(140))
 
 @interface JJFunSettingView : UIView
 

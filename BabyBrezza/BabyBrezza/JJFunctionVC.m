@@ -148,7 +148,7 @@
         return _voiceBtn;
     }
     _voiceBtn = [[UIButton alloc] init];
-    _voiceBtn.frame = CGRectMake(5, 20, 25, 25);
+    _voiceBtn.frame = CGRectMake(8, 15, 25, 25);
     [_voiceBtn setImage:[UIImage imageNamed:@"icon_soundon"] forState:UIControlStateNormal];
     [_voiceBtn setImage:[UIImage imageNamed:@"icon_soundoff"] forState:UIControlStateHighlighted];
     return _voiceBtn;
@@ -159,14 +159,16 @@
         return _settingGuideBtn;
     }
     _settingGuideBtn = [[UIButton alloc] init];
-    _settingGuideBtn.frame = CGRectMake(M_SCREEN_W - 5 - 100, 20, 100, 25);
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 75, 25)];
+    _settingGuideBtn.frame = CGRectMake(M_SCREEN_W - 5 - 110, 15, 110, 25);
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 82, 25)];
+    label.font = S_FONT(13);
+    label.textAlignment = NSTextAlignmentRight;
     label.userInteractionEnabled = NO;
     label.text = @"setting guide";
     [_settingGuideBtn addSubview:label];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(80, 0, 25, 25)];
     imageView.userInteractionEnabled = NO;
-    imageView.image = [UIImage imageNamed:@"icon_soundoff"];
+    imageView.image = [UIImage imageNamed:@"rightArrow"];
     [_settingGuideBtn addSubview:imageView];
     [_settingGuideBtn addTarget:self action:@selector(clickSettingGuideBtn:) forControlEvents:UIControlEventTouchUpInside];
     return _settingGuideBtn;
@@ -176,16 +178,7 @@
     if (_funSettingView) {
         return _funSettingView;
     }
-    CGFloat funSettingViewY = 120;
-    if (IS_IPHONE5) {
-        funSettingViewY = 140;
-    }
-    else if (IS_IPHONE6) {
-        funSettingViewY = 160;
-    }
-    else if (IS_IPHONE6_PLUS) {
-        funSettingViewY = 180;
-    }
+    CGFloat funSettingViewY = [BBUtils getFloatI4:120 i5:140 i6:160 i6p:180];
     _funSettingView = [[JJFunSettingView alloc] initWithFrame:CGRectMake(0, funSettingViewY, self.view.width, F_S_View_H)];
     return _funSettingView;
 }
@@ -194,7 +187,7 @@
     if (_funTimeView) {
         return _funTimeView;
     }
-    _funTimeView = [[JJFunTimeView alloc] initWithFrame:CGRectMake(0, self.funSettingView.bottom + 5, self.view.width, F_T_View_H)];
+    _funTimeView = [[JJFunTimeView alloc] initWithFrame:CGRectMake(0, self.funSettingView.bottom + S_SCALE_H_4(10), self.view.width, F_T_View_H)];
     return _funTimeView;
 }
 
@@ -202,7 +195,7 @@
     if (_funBottomView) {
         return _funBottomView;
     }
-    _funBottomView = [[JJFunBottomView alloc] initWithFrame:CGRectMake(0, self.view.bottom - F_B_View_H, self.view.width, F_B_View_H)];
+    _funBottomView = [[JJFunBottomView alloc] initWithFrame:CGRectMake(0, self.view.bottom - F_B_View_H - 5, self.view.width, F_B_View_H)];
     return _funBottomView;
 }
 

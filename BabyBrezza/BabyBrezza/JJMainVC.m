@@ -79,6 +79,8 @@
 
 
 - (void)clickScanBtn:(id)sender {
+    [self pushConnectedVC];
+    return ;
     [self stopScanPeripheral];
     /** 开始扫描 */
     [self createScanTimer];
@@ -179,7 +181,7 @@
         return _scanBtn;
     }
     _scanBtn = [[UIButton alloc] init];
-    _scanBtn.frame = CGRectMake(0, 0, 100, 200);
+    _scanBtn.frame = CGRectMake(0, 0, S_SCALE_W_4(100), S_SCALE_W_4(150));
     _scanBtn.center = CGPointMake(self.view.center.x, self.view.center.y);
     [_scanBtn setImage:[UIImage imageNamed:@"bluetooth_icon"] forState:UIControlStateNormal];
     [_scanBtn addTarget:self action:@selector(clickScanBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -190,11 +192,11 @@
     if (_textLabel) {
         return _textLabel;
     }
-    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.height - 20 - 30, self.view.width, 30)];
+    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.height - S_SCALE_W_4(50) - S_SCALE_W_4(30), self.view.width, S_SCALE_W_4(30))];
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
-    _textLabel.font = S_FONT(18);
+    _textLabel.font = S_FONT(S_SCALE_W_4(18));
     _textLabel.text = @"scan for your bottle warmer";
     return _textLabel;
 }

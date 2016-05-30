@@ -47,28 +47,28 @@
         make.top.equalTo(self);
         make.right.equalTo(self);
         make.left.equalTo(self);
-        make.height.equalTo(@(80));
+        make.height.equalTo(@(S_SCALE_H_4(80)));
     }];
     
     [self.startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.timeLabel.mas_bottom);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(F_T_BTN_Y);
         make.centerX.equalTo(self);
-        make.width.equalTo(@(70));
-        make.height.equalTo(@(70));
+        make.width.equalTo(@(F_T_BTN_SIZE));
+        make.height.equalTo(@(F_T_BTN_SIZE));
     }];
     
     [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.timeLabel.mas_bottom);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(F_T_BTN_Y);
         make.centerX.equalTo(self);
-        make.width.equalTo(@(70));
-        make.height.equalTo(@(70));
+        make.width.equalTo(@(F_T_BTN_SIZE));
+        make.height.equalTo(@(F_T_BTN_SIZE));
     }];
     
     [self.okBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.timeLabel.mas_bottom);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(F_T_BTN_Y);
         make.centerX.equalTo(self);
-        make.width.equalTo(@(70));
-        make.height.equalTo(@(70));
+        make.width.equalTo(@(F_T_BTN_SIZE));
+        make.height.equalTo(@(F_T_BTN_SIZE));
     }];
 }
 
@@ -111,6 +111,7 @@
     _startBtn.backgroundColor = [UIColor funControlBtnGreenColor];
     _startBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
     [_startBtn addTarget:self action:@selector(clickStartBtn:) forControlEvents:UIControlEventTouchUpInside];
+    _startBtn.hidden = NO;
     return _startBtn;
 }
 
@@ -124,6 +125,7 @@
     _cancleBtn.backgroundColor = [UIColor funControlBtnOrangeColor];
     _cancleBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
     [_cancleBtn addTarget:self action:@selector(clickCancleBtn:) forControlEvents:UIControlEventTouchUpInside];
+    _cancleBtn.hidden = YES;
     return _cancleBtn;
 }
 
@@ -138,6 +140,7 @@
     _okBtn.backgroundColor = [UIColor funControlBtnGreenColor];
     _okBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
     [_okBtn addTarget:self action:@selector(clickOKBtn:) forControlEvents:UIControlEventTouchUpInside];
+    _okBtn.hidden = YES;
     return _okBtn;
 }
 

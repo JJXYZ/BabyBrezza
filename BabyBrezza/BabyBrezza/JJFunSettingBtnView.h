@@ -7,9 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JJFunSettingBtn.h"
 
 #define F_S_BTN_View_H (45)
 
+@protocol JJFunSettingBtnViewDelegate <NSObject>
+
+@optional
+- (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn;
+
+@end
+
 @interface JJFunSettingBtnView : UIView
+
+@property (nonatomic, weak) id <JJFunSettingBtnViewDelegate> delegate;
+
+@property (nonatomic, strong) JJFunSettingBtn *numberUpBtn;
+@property (nonatomic, strong) JJFunSettingBtn *numberDownBtn;
+
+@property (nonatomic, strong) JJFunSettingBtn *tempUpBtn;
+@property (nonatomic, strong) JJFunSettingBtn *tempDownBtn;
+
+@property (nonatomic, strong) JJFunSettingBtn *speedUpBtn;
+@property (nonatomic, strong) JJFunSettingBtn *speedDownBtn;
+
 
 @end

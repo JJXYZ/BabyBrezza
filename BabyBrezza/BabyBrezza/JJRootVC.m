@@ -44,17 +44,8 @@
     }
     _bgImgView = [[UIImageView alloc] init];
     _bgImgView.frame = self.view.bounds;
-    NSString *imageString = @"app_bg_i4";
-    if (IS_IPHONE5) {
-        imageString = @"app_bg_i5";
-    }
-    else if (IS_IPHONE6) {
-        imageString = @"app_bg_i6";
-    }
-    else if (IS_IPHONE6_PLUS) {
-        imageString = @"app_bg_i6p";
-    }
-    _bgImgView.image = [UIImage imageNamed:imageString];
+    NSString *imageStr = [BBUtils getI4:@"app_bg_i4" i5:@"app_bg_i5" i6:@"app_bg_i6" i6p:@"app_bg_i6p"];
+    _bgImgView.image = [UIImage imageNamed:imageStr];
     _bgImgView.userInteractionEnabled = YES;
     return _bgImgView;
 }
