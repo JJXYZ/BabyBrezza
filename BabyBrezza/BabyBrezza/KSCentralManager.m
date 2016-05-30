@@ -129,6 +129,14 @@
     
 }
 
+
+- (void)saveCurPeripheral {
+    //记录当前的设备
+    [[NSUserDefaults standardUserDefaults] setObject:self.curPeripheral.peripheral.identifier.UUIDString forKey:UD_KEY_CUR_PERIPHERAL_UUID];
+    [[NSUserDefaults standardUserDefaults] setObject:self.curPeripheral.peripheral.name forKey:UD_KEY_CUR_PERIPHERAL_NAME];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - Public Methods
 //开始扫描
 - (void)scanForPeripherals
@@ -379,26 +387,22 @@
     self.curPeripheral.peripheral = peripheral;
     self.curPeripheral.peripheral.delegate = self;
     
+    [self saveCurPeripheral];
+    
     NSLog(@"设置%@为当前的设备", peripheral.name);
-    
-    //让外围设备找到与我们发送的UUID所匹配的服务
-    //@[SERVICE_CBUUID]
-    [self.curPeripheral.peripheral discoverServices:nil];
-    
-    //记录当前的设备
-    [[NSUserDefaults standardUserDefaults] setObject:self.curPeripheral.peripheral.identifier.UUIDString forKey:UD_KEY_CUR_PERIPHERAL_UUID];
-    [[NSUserDefaults standardUserDefaults] setObject:self.curPeripheral.peripheral.name forKey:UD_KEY_CUR_PERIPHERAL_NAME];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     //代理
     if (_delegate && [_delegate respondsToSelector:@selector(ksCentralManager:didConnectPeripheral:)])
     {
         KSCBPeripheral *ksPeripheral = [[KSCBPeripheral alloc] initWithPeripheral:peripheral];
         ksPeripheral.isAppConnected = YES;
-        
         [_delegate ksCentralManager:self didConnectPeripheral:ksPeripheral];
     }
     
+    //让外围设备找到与我们发送的UUID所匹配的服务
+    //@[SERVICE_CBUUID]
+    NSLog(@"%@ 查找服务...", peripheral.name);
+    [self.curPeripheral.peripheral discoverServices:nil];
 }
 
 //连接失败
@@ -481,7 +485,7 @@
     //遍历外围设备
     for (CBService *s in peripheral.services) {
         //找到我们想要的特性
-        [peripheral discoverCharacteristics:@[CHARACTERSITIC_CBUUID] forService:s];
+        [peripheral discoverCharacteristics:nil forService:s];
     }
     
 }
@@ -500,7 +504,8 @@
     
     //检查特性
     for (CBCharacteristic *c in service.characteristics) {
-        if ([c.UUID isEqual:CHARACTERSITIC_CBUUID]) {
+//        if ([c.UUID isEqual:CHARACTERSITIC_CBUUID])
+        {
             //有来自外围的特性，找到了，就订阅他
             // 如果第一个参数是YES的话，就是允许代理方法peripheral:didUpdateValueForCharacteristic:error: 来监听
             //第二个参数 特性值是否发生变化
@@ -624,7 +629,13 @@
     _curPeripheral.peripheral.delegate = self;
 }
 
-
+- (KSCBPeripheral *)curPeripheral {
+    if (_curPeripheral) {
+        return _curPeripheral;
+    }
+    _curPeripheral = [[KSCBPeripheral alloc] init];
+    return _curPeripheral;
+}
 
 
 @end

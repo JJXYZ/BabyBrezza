@@ -11,7 +11,6 @@
 #import "KSCentralManager.h"
 #import "KSCBPeripheral.h"
 #import "Config.h"
-#import "JJMainCell.h"
 #import "JJMessage.h"
 /** VC */
 #import "JJConnectVC.h"
@@ -20,7 +19,7 @@
 /** 扫描定时器时间 */
 #define SCAN_TIME 30
 
-@interface JJMainVC () <KSCentralManagerDelegate, JJMainCellDelegate>
+@interface JJMainVC () <KSCentralManagerDelegate>
 
 @property (nonatomic, strong) UIButton *scanBtn;
 
@@ -28,6 +27,8 @@
 
 //扫描定时器
 @property (nonatomic, strong) NSTimer *scanTimer;
+
+@property (nonatomic, strong) KSCBPeripheral *curDisplayPeripheral;
 
 @end
 
@@ -107,25 +108,6 @@
     }
 }
 
-#pragma mark - JJMainCellDelegate
-- (void)mainCell:(JJMainCell *)cell longTap:(UILongPressGestureRecognizer *)longRecognizer {
-    
-    UIAlertController *alertCtl = [UIAlertController alertControllerWithTitle:@"Notification on the connected device" message:@"Do you want to turn off the device" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"cancle" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"Cancle");
-    }];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"OK");
-        [JJMessage closeCurPeripheral];
-    }];
-    
-    [alertCtl addAction:cancleAction];
-    [alertCtl addAction:okAction];
-    [self presentViewController:alertCtl animated:YES completion:nil];
-}
-
 #pragma mark - KSCentralManagerDelegate
 
 /** 蓝牙不可用 */
@@ -141,15 +123,14 @@
 /** 扫描到了设备 */
 - (void)ksCentralManager:(KSCentralManager *)central displayPeripheral:(KSCBPeripheral *)ksPeripheral {
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSRange range = [ksPeripheral.peripheral.name rangeOfString:@"Brezza"];
-        if (range.location != NSNotFound) {
-            //取消当前设备的连接
-            [CENTRAL_MANAGER cancelPeripheralConnection];
-            //连接设备
-            [CENTRAL_MANAGER connectToPeripherl:ksPeripheral];
-        }
-    });
+    NSRange range = [ksPeripheral.peripheral.name rangeOfString:@"Brezza"];
+    if (range.location != NSNotFound) {
+        self.curDisplayPeripheral = ksPeripheral;
+        //取消当前设备的连接
+        [CENTRAL_MANAGER cancelPeripheralConnection];
+        //连接设备
+        [CENTRAL_MANAGER connectToPeripherl:ksPeripheral];
+    }
 }
 
 /** 已经连接了设备 */
@@ -213,7 +194,7 @@
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
-    _textLabel.font = S_FONT(14);
+    _textLabel.font = S_FONT(18);
     _textLabel.text = @"scan for your bottle warmer";
     return _textLabel;
 }

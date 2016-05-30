@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		28E4925C7EEF5A2CB17D61F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CDA07874C5E95588F39D5E /* libPods.a */; };
 		6931CE251BBCC5E300EF3BA9 /* JJFunctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */; };
-		6931CE2B1BBCDBA100EF3BA9 /* JJMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2A1BBCDBA100EF3BA9 /* JJMainCell.m */; };
 		6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */; };
 		6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* JJMessage.m */; };
 		6973F4151BBBD00400D7737D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4141BBBD00400D7737D /* main.m */; };
@@ -42,8 +41,6 @@
 		691D8F171CF893E700170430 /* BabyBrezza-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BabyBrezza-Prefix.pch"; sourceTree = "<group>"; };
 		6931CE221BBCC5E300EF3BA9 /* JJFunctionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunctionVC.h; sourceTree = "<group>"; };
 		6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunctionVC.m; sourceTree = "<group>"; };
-		6931CE291BBCDBA100EF3BA9 /* JJMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMainCell.h; sourceTree = "<group>"; };
-		6931CE2A1BBCDBA100EF3BA9 /* JJMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMainCell.m; sourceTree = "<group>"; };
 		6931CE2C1BBD0F9100EF3BA9 /* UIColor+JJColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JJColor.h"; sourceTree = "<group>"; };
 		6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JJColor.m"; sourceTree = "<group>"; };
 		6931CE301BBD27CC00EF3BA9 /* JJMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMessage.h; sourceTree = "<group>"; };
@@ -130,8 +127,6 @@
 		6931CE281BBCDB6700EF3BA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6931CE291BBCDBA100EF3BA9 /* JJMainCell.h */,
-				6931CE2A1BBCDBA100EF3BA9 /* JJMainCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -480,7 +475,6 @@
 			files = (
 				69AB0F981CFA901300F15D4A /* JJFunBottomView.m in Sources */,
 				69AB0F8B1CF9A00C00F15D4A /* JJFunSettingBtnView.m in Sources */,
-				6931CE2B1BBCDBA100EF3BA9 /* JJMainCell.m in Sources */,
 				6973F44D1BBBD1E700D7737D /* JJRootVC.m in Sources */,
 				69AB0F8F1CFA795D00F15D4A /* JJFunSettingBtn.m in Sources */,
 				69AB0F921CFA8AF000F15D4A /* JJControllerBtn.m in Sources */,
