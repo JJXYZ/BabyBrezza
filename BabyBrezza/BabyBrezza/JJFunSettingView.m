@@ -101,6 +101,10 @@
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
         [self.funSettingPickView selectRow:--curRow inComponent:2 animated:YES];
     }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(clickFunSettingView:)]) {
+        [_delegate clickFunSettingView:btn];
+    }
 }
 
 #pragma mark - UIPickerViewDataSource
@@ -114,10 +118,10 @@
         return self.numberPickArr.count;
     }
     else if (component == 1) {
-        return self.speedPickArr.count;
+        return self.tempPickArr.count;
     }
     else if (component == 2) {
-        return self.tempPickArr.count;
+        return self.speedPickArr.count;
     }
     
     return 0;
@@ -128,12 +132,15 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (component == 0) {
         NSString *number = [self.numberPickArr objectAtIndex:row];
+        NSLog(@"%@", number);
     }
     else if (component == 1) {
-        NSString *speed = [self.speedPickArr objectAtIndex:row];
+        NSString *speed = [self.tempPickArr objectAtIndex:row];
+        NSLog(@"%@", speed);
     }
     else if (component == 2) {
-        NSString *temp = [self.tempPickArr objectAtIndex:row];
+        NSString *temp = [self.speedPickArr objectAtIndex:row];
+        NSLog(@"%@", temp);
     }
 }
 
@@ -143,10 +150,10 @@
         return [self.numberPickArr objectAtIndex:row];
     }
     else if (component == 1) {
-        return [self.speedPickArr objectAtIndex:row];
+        return [self.tempPickArr objectAtIndex:row];
     }
     else if (component == 2) {
-        return [self.tempPickArr objectAtIndex:row];
+        return [self.speedPickArr objectAtIndex:row];
     }
     
     return nil;
@@ -191,7 +198,7 @@
     if (_numberPickArr) {
         return _numberPickArr;
     }
-    _numberPickArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
+    _numberPickArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"Bottle oz", nil];
     return _numberPickArr;
 }
 
@@ -199,7 +206,7 @@
     if (_speedPickArr) {
         return _speedPickArr;
     }
-    _speedPickArr = [NSArray arrayWithObjects:@"fast",@"slow", nil];
+    _speedPickArr = [NSArray arrayWithObjects:@"quick",@"steady", nil];
     return _speedPickArr;
 }
 

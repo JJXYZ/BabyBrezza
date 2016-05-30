@@ -74,16 +74,31 @@
 
 #pragma mark - Event
 
-- (void)clickStartBtn:(id)sender {
-    NSLog(@"clickStartBtn");
+- (void)clickStartBtn:(JJControllerBtn *)btn {
+    self.startBtn.hidden = YES;
+    self.cancleBtn.hidden = NO;
+    self.okBtn.hidden = YES;
+    if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeStartBtn:)]) {
+        [_delegate clickFunTimeStartBtn:btn];
+    }
 }
 
-- (void)clickCancleBtn:(id)sender {
-    NSLog(@"clickCancleBtn");
+- (void)clickCancleBtn:(JJControllerBtn *)btn {
+    self.startBtn.hidden = YES;
+    self.cancleBtn.hidden = YES;
+    self.okBtn.hidden = NO;
+    if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeCancleBtn:)]) {
+        [_delegate clickFunTimeCancleBtn:btn];
+    }
 }
 
-- (void)clickOKBtn:(id)sender {
-    NSLog(@"clickOKBtn");
+- (void)clickOKBtn:(JJControllerBtn *)btn {
+    self.startBtn.hidden = NO;
+    self.cancleBtn.hidden = YES;
+    self.okBtn.hidden = YES;
+    if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeOKBtn:)]) {
+        [_delegate clickFunTimeOKBtn:btn];
+    }
 }
 
 #pragma mark - Property

@@ -12,6 +12,7 @@
 		6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */; };
 		6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* JJMessage.m */; };
 		6944A8EF1CFC929C00E1089B /* BBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944A8EE1CFC929C00E1089B /* BBUtils.m */; };
+		6944A8F21CFCAF4F00E1089B /* JJFunAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944A8F11CFCAF4F00E1089B /* JJFunAlertView.m */; };
 		6973F4151BBBD00400D7737D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4141BBBD00400D7737D /* main.m */; };
 		6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4171BBBD00400D7737D /* AppDelegate.m */; };
 		6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6973F41F1BBBD00400D7737D /* Assets.xcassets */; };
@@ -48,6 +49,8 @@
 		6931CE311BBD27CC00EF3BA9 /* JJMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMessage.m; sourceTree = "<group>"; };
 		6944A8ED1CFC929C00E1089B /* BBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUtils.h; sourceTree = "<group>"; };
 		6944A8EE1CFC929C00E1089B /* BBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUtils.m; sourceTree = "<group>"; };
+		6944A8F01CFCAF4F00E1089B /* JJFunAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunAlertView.h; sourceTree = "<group>"; };
+		6944A8F11CFCAF4F00E1089B /* JJFunAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunAlertView.m; sourceTree = "<group>"; };
 		6973F4101BBBD00400D7737D /* BabyBrezza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyBrezza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6973F4141BBBD00400D7737D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6973F4161BBBD00400D7737D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 			children = (
 				69AB0F8D1CFA795D00F15D4A /* JJFunSettingBtn.h */,
 				69AB0F8E1CFA795D00F15D4A /* JJFunSettingBtn.m */,
+				6944A8F01CFCAF4F00E1089B /* JJFunAlertView.h */,
+				6944A8F11CFCAF4F00E1089B /* JJFunAlertView.m */,
 				69AB0F831CF97C8500F15D4A /* JJFunSettingView.h */,
 				69AB0F841CF97C8500F15D4A /* JJFunSettingView.m */,
 				69AB0F861CF99C6500F15D4A /* JJFunSettingLabelView.h */,
@@ -509,6 +514,7 @@
 				6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */,
 				69AB0FA21CFAB9C800F15D4A /* JJRoundBtn.m in Sources */,
 				6973F4151BBBD00400D7737D /* main.m in Sources */,
+				6944A8F21CFCAF4F00E1089B /* JJFunAlertView.m in Sources */,
 				69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */,
 				69AB0F7C1CF96A4A00F15D4A /* JJConnectVC.m in Sources */,
 			);

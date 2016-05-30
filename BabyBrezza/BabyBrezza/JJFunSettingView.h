@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JJFunSettingBtn.h"
 
 #define F_S_View_H (S_SCALE_H_4(140))
 
+@protocol JJFunSettingViewDelegate <NSObject>
+
+@optional
+- (void)clickFunSettingView:(JJFunSettingBtn *)btn;
+
+@end
+
 @interface JJFunSettingView : UIView
+
+@property (nonatomic, weak) id <JJFunSettingViewDelegate> delegate;
+
 
 @end

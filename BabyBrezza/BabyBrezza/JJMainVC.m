@@ -79,8 +79,10 @@
 
 
 - (void)clickScanBtn:(id)sender {
+#if 1
     [self pushConnectedVC];
     return ;
+#endif
     [self stopScanPeripheral];
     /** 开始扫描 */
     [self createScanTimer];

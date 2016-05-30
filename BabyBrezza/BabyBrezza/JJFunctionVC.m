@@ -11,13 +11,16 @@
 #import "JJFunTimeView.h"
 #import "JJFunBottomView.h"
 #import "JJSettingGuideVC.h"
+#import "JJFunAlertView.h"
 
-@interface JJFunctionVC ()
+@interface JJFunctionVC () <JJFunSettingViewDelegate, JJFunTimeViewDelegate>
 
 @property (nonatomic, strong) UIButton *voiceBtn;
 @property (nonatomic, strong) UIButton *settingGuideBtn;
 
 @property (nonatomic, strong) JJFunSettingView *funSettingView;
+
+@property (nonatomic, strong) JJFunAlertView *funAlertView;
 
 @property (nonatomic, strong) JJFunTimeView *funTimeView;
 
@@ -66,8 +69,8 @@
 - (void)layoutFuncionUI {
     [self.view addSubview:self.voiceBtn];
     [self.view addSubview:self.settingGuideBtn];
-    [self.view addSubview:self.settingGuideBtn];
     [self.view addSubview:self.funSettingView];
+    [self.view addSubview:self.funAlertView];
     [self.view addSubview:self.funTimeView];
     [self.view addSubview:self.funBottomView];
 }
@@ -140,7 +143,27 @@
     }
 }
 
+#pragma mark - JJFunSettingViewDelegate
 
+- (void)clickFunSettingView:(JJFunSettingBtn *)btn {
+    
+}
+
+#pragma mark - JJFunTimeViewDelegate
+
+- (void)clickFunTimeStartBtn:(JJControllerBtn *)btn {
+    
+}
+
+- (void)clickFunTimeCancleBtn:(JJControllerBtn *)btn {
+    self.funSettingView.hidden = YES;
+    self.funAlertView.hidden = NO;
+}
+
+- (void)clickFunTimeOKBtn:(JJControllerBtn *)btn {
+    self.funSettingView.hidden = NO;
+    self.funAlertView.hidden = YES;
+}
 
 #pragma mark - Property
 - (UIButton *)voiceBtn {
@@ -180,7 +203,18 @@
     }
     CGFloat funSettingViewY = [BBUtils getFloatI4:120 i5:140 i6:160 i6p:180];
     _funSettingView = [[JJFunSettingView alloc] initWithFrame:CGRectMake(0, funSettingViewY, self.view.width, F_S_View_H)];
+    _funSettingView.delegate = self;
     return _funSettingView;
+}
+
+- (JJFunAlertView *)funAlertView {
+    if (_funAlertView) {
+        return _funAlertView;
+    }
+    CGFloat funSettingViewY = [BBUtils getFloatI4:120 i5:140 i6:160 i6p:180];
+    _funAlertView = [[JJFunAlertView alloc] initWithFrame:CGRectMake(0, funSettingViewY, self.view.width, F_A_View_H)];
+    _funAlertView.hidden = YES;
+    return _funAlertView;
 }
 
 - (JJFunTimeView *)funTimeView {
@@ -188,6 +222,7 @@
         return _funTimeView;
     }
     _funTimeView = [[JJFunTimeView alloc] initWithFrame:CGRectMake(0, self.funSettingView.bottom + S_SCALE_H_4(10), self.view.width, F_T_View_H)];
+    _funTimeView.delegate = self;
     return _funTimeView;
 }
 
