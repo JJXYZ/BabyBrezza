@@ -1,12 +1,13 @@
 //
-//  config.h
-//  BluetoothTest
+//  JJBLEConfig.h
+//  BabyBrezza
 //
-//  Copyright (c) 2014年 Pro. All rights reserved.
+//  Created by Jay on 16/6/4.
+//  Copyright © 2016年 XJ. All rights reserved.
 //
 
-#ifndef BluetoothTest_config_h
-#define BluetoothTest_config_h
+#ifndef JJBLEConfig_h
+#define JJBLEConfig_h
 
 
 #define DEVICE_NAME_UUID 0x2A00
@@ -63,36 +64,12 @@ static NSInteger command_id;
 
 
 //枚举 连接的状态
-typedef NS_ENUM(NSInteger, ConnectType)
+typedef NS_ENUM(NSInteger, JJBLEConnectType)
 {
-    ConnectTypeDisConnected = 0,    //失去连接/未连接
-    ConnectTypeConnecting,          //正在连接
-    ConnectTypeConnected,           //已经连接
-    ConnectTypeDisConnecting,       //正在失去连接/正在停止连接
+    BLEConnectTypeDisConnected = 0,    //失去连接/未连接
+    BLEConnectTypeConnecting,          //正在连接
+    BLEConnectTypeConnected,           //已经连接
+    BLEConnectTypeDisConnecting,       //正在失去连接/正在停止连接
 };
 
-
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif /* JJBLEConfig_h */

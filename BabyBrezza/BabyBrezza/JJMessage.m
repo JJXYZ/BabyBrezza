@@ -7,15 +7,13 @@
 //
 
 #import "JJMessage.h"
-#import "Config.h"
-#import "KSCentralManager.h"
+#import "JJBLEConfig.h"
+#import "JJCBCentralManager.h"
 
 @implementation JJMessage
 
 
 + (void)sendData {
-    
-    NSLog(@"写数据");
     
     NSDate *_phoneDate = [NSDate date];
     
@@ -58,66 +56,17 @@
     
     send_bytes[GATT_FLAGL] = sum;
 
-    
-    NSLog(@"<GET DATA>");
-
     NSData *data = [NSData dataWithBytes:&send_bytes length:16];
-    
-    [CENTRAL_MANAGER writeCharacterisitic:CENTRAL_MANAGER.curPeripheral sUUID:SERVICE_UUID_STR cUUID:CHARACTERSITIC_UUID_STR data:data];
-    
+        
+    [CENTRAL_MANAGER writeData:data];
 }
 
 
-+ (void)receiveData:(NSData *)data
-{
-    NSLog(@"接收/读取数据成功:data = %@",data);
++ (void)receiveData:(NSData *)data {    
     
-    if (data != nil)
-    {
-        int EventID = 0x00;
-        int CategoryID = 0x00;
-        
-        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-        
-        switch (EventID) {
-            case 0x90:
-                switch (CategoryID - 0x80) {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    default:
-                        break;
-                }
-                
-                break;
-            case 0x91:
-                if ( CategoryID == 0x01) {
-                    
-                }
-                break;
-            case 0x92:
-            {
-                [self replyBattLevel];
-                
-                int Battery_Vol = CategoryID * 20;
-                if (Battery_Vol < 3500) {
-                    [self closeCurPeripheral];
-                }
-                else if ( Battery_Vol <= 3600 && Battery_Vol >=3500) {
-                    NSLog(@"BATTERY LOW");
-                }
-
-            }
-            default:
-                break;
-        }
-        [standardUserDefaults synchronize];
-    }
+    NSString *hexStr = [BBUtils convertDataToHexStr:data];
+    
+//    NSLog(@"收到数据 十六进制 %@", hexStr);
 }
 
 

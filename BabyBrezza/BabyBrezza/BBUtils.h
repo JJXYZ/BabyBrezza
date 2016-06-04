@@ -14,4 +14,6 @@
 
 + (CGFloat)getFloatI4:(CGFloat)i4 i5:(CGFloat)i5 i6:(CGFloat)i6 i6p:(CGFloat)i6p;
 
++ (NSString *)convertDataToHexStr:(NSData *)data;
+
 @end

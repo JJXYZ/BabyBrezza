@@ -16,5 +16,6 @@
 #import "UIButton+JJCommon.h"
 #import "UIImage+JJCommon.h"
 #import "BBUtils.h"
+#import "JJBLENotifyName.h"
 
 #endif /* BabyBrezza_Prefix_pch */

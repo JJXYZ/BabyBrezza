@@ -16,17 +16,20 @@
 
 @implementation AppDelegate
 
+#pragma mark - Lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [self appDidFinishLaunchingUI];
+    return YES;
+}
+
+#pragma mark - Private Methods
+- (void)appDidFinishLaunchingUI {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     self.window.rootViewController = [[JJRootNC alloc] initWithRootViewController:MAIN_VC];
-    
-    return YES;
 }
-
 
 @end

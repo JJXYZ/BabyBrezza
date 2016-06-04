@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28E4925C7EEF5A2CB17D61F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CDA07874C5E95588F39D5E /* libPods.a */; };
+		690057941D02B8AB005CE5BB /* JJBLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 690057931D02B8AB005CE5BB /* JJBLEManager.m */; };
+		690492E81D0285BD0094ADDA /* JJCBCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 690492E71D0285BD0094ADDA /* JJCBCentralManager.m */; };
 		6931CE251BBCC5E300EF3BA9 /* JJFunctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */; };
 		6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE2D1BBD0F9100EF3BA9 /* UIColor+JJColor.m */; };
 		6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* JJMessage.m */; };
@@ -32,14 +34,19 @@
 		69AB0F9E1CFAB1FF00F15D4A /* UIImage+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F9D1CFAB1FE00F15D4A /* UIImage+JJCommon.m */; };
 		69AB0FA21CFAB9C800F15D4A /* JJRoundBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */; };
 		69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */; };
-		69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A11BBBEFA4005F7399 /* KSCentralManager.m */; };
-		69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */; };
-		69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A51BBBEFA4005F7399 /* KSPeripheralManager.m */; };
+		69F937AA1BBBEFA4005F7399 /* JJPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A51BBBEFA4005F7399 /* JJPeripheralManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B65778A7BAD62BE9629EC9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4D57FE29A601413A6DBD4C3E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		690057921D02B8AB005CE5BB /* JJBLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJBLEManager.h; sourceTree = "<group>"; };
+		690057931D02B8AB005CE5BB /* JJBLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJBLEManager.m; sourceTree = "<group>"; };
+		690057951D02BD14005CE5BB /* JJBLENotifyName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJBLENotifyName.h; sourceTree = "<group>"; };
+		690492E61D0285BD0094ADDA /* JJCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCBCentralManager.h; sourceTree = "<group>"; };
+		690492E71D0285BD0094ADDA /* JJCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCBCentralManager.m; sourceTree = "<group>"; };
+		690492E91D0286540094ADDA /* JJCBCentralManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJCBCentralManagerDelegate.h; sourceTree = "<group>"; };
+		690492EE1D028B080094ADDA /* JJBLEConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJBLEConfig.h; sourceTree = "<group>"; };
 		691D8F171CF893E700170430 /* BabyBrezza-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BabyBrezza-Prefix.pch"; sourceTree = "<group>"; };
 		6931CE221BBCC5E300EF3BA9 /* JJFunctionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunctionVC.h; sourceTree = "<group>"; };
 		6931CE231BBCC5E300EF3BA9 /* JJFunctionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunctionVC.m; sourceTree = "<group>"; };
@@ -89,14 +96,8 @@
 		69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRoundBtn.m; sourceTree = "<group>"; };
 		69F9379D1BBBE90F005F7399 /* UIView+JJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JJCommon.h"; sourceTree = "<group>"; };
 		69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JJCommon.m"; sourceTree = "<group>"; };
-		69F937A11BBBEFA4005F7399 /* KSCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCentralManager.m; sourceTree = "<group>"; };
-		69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCBPeripheral.m; sourceTree = "<group>"; };
-		69F937A31BBBEFA4005F7399 /* KSCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCentralManager.h; sourceTree = "<group>"; };
-		69F937A41BBBEFA4005F7399 /* KSPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPeripheralManager.h; sourceTree = "<group>"; };
-		69F937A51BBBEFA4005F7399 /* KSPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPeripheralManager.m; sourceTree = "<group>"; };
-		69F937A61BBBEFA4005F7399 /* KSCentralManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCentralManagerDelegate.h; sourceTree = "<group>"; };
-		69F937A71BBBEFA4005F7399 /* KSCBPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCBPeripheral.h; sourceTree = "<group>"; };
-		69F937AB1BBBEFE5005F7399 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		69F937A41BBBEFA4005F7399 /* JJPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPeripheralManager.h; sourceTree = "<group>"; };
+		69F937A51BBBEFA4005F7399 /* JJPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPeripheralManager.m; sourceTree = "<group>"; };
 		A6CDA07874C5E95588F39D5E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -341,14 +342,15 @@
 		69F937A01BBBEF96005F7399 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
-				69F937AB1BBBEFE5005F7399 /* Config.h */,
-				69F937A71BBBEFA4005F7399 /* KSCBPeripheral.h */,
-				69F937A21BBBEFA4005F7399 /* KSCBPeripheral.m */,
-				69F937A61BBBEFA4005F7399 /* KSCentralManagerDelegate.h */,
-				69F937A31BBBEFA4005F7399 /* KSCentralManager.h */,
-				69F937A11BBBEFA4005F7399 /* KSCentralManager.m */,
-				69F937A41BBBEFA4005F7399 /* KSPeripheralManager.h */,
-				69F937A51BBBEFA4005F7399 /* KSPeripheralManager.m */,
+				690057951D02BD14005CE5BB /* JJBLENotifyName.h */,
+				690057921D02B8AB005CE5BB /* JJBLEManager.h */,
+				690057931D02B8AB005CE5BB /* JJBLEManager.m */,
+				690492EE1D028B080094ADDA /* JJBLEConfig.h */,
+				69F937A41BBBEFA4005F7399 /* JJPeripheralManager.h */,
+				69F937A51BBBEFA4005F7399 /* JJPeripheralManager.m */,
+				690492E91D0286540094ADDA /* JJCBCentralManagerDelegate.h */,
+				690492E61D0285BD0094ADDA /* JJCBCentralManager.h */,
+				690492E71D0285BD0094ADDA /* JJCBCentralManager.m */,
 			);
 			name = BLE;
 			sourceTree = "<group>";
@@ -499,15 +501,16 @@
 				69AB0F921CFA8AF000F15D4A /* JJControllerBtn.m in Sources */,
 				6931CE2E1BBD0F9100EF3BA9 /* UIColor+JJColor.m in Sources */,
 				69AB0F851CF97C8500F15D4A /* JJFunSettingView.m in Sources */,
+				690492E81D0285BD0094ADDA /* JJCBCentralManager.m in Sources */,
 				6973F4511BBBD20D00D7737D /* JJMainVC.m in Sources */,
 				69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */,
-				69F937A81BBBEFA4005F7399 /* KSCentralManager.m in Sources */,
 				69AB0F951CFA8D4000F15D4A /* JJFunTimeView.m in Sources */,
 				6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */,
+				690057941D02B8AB005CE5BB /* JJBLEManager.m in Sources */,
 				69AB0F881CF99C6500F15D4A /* JJFunSettingLabelView.m in Sources */,
 				69AB0F9E1CFAB1FF00F15D4A /* UIImage+JJCommon.m in Sources */,
 				69AB0F781CF9648E00F15D4A /* JJRootNC.m in Sources */,
-				69F937AA1BBBEFA4005F7399 /* KSPeripheralManager.m in Sources */,
+				69F937AA1BBBEFA4005F7399 /* JJPeripheralManager.m in Sources */,
 				6931CE251BBCC5E300EF3BA9 /* JJFunctionVC.m in Sources */,
 				69AB0F9B1CFAB1DA00F15D4A /* UIButton+JJCommon.m in Sources */,
 				69AB0F801CF96CCF00F15D4A /* JJSettingGuideVC.m in Sources */,
@@ -515,7 +518,6 @@
 				69AB0FA21CFAB9C800F15D4A /* JJRoundBtn.m in Sources */,
 				6973F4151BBBD00400D7737D /* main.m in Sources */,
 				6944A8F21CFCAF4F00E1089B /* JJFunAlertView.m in Sources */,
-				69F937A91BBBEFA4005F7399 /* KSCBPeripheral.m in Sources */,
 				69AB0F7C1CF96A4A00F15D4A /* JJConnectVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

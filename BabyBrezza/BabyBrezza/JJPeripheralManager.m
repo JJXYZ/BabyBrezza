@@ -1,26 +1,26 @@
 //
-//  KSPeripheralManager.m
+//  JJPeripheralManager.m
 //  BluetoothDevice
 //
 //  Created by Jay on 14-12-21.
 //  Copyright (c) 2014年 JJ. All rights reserved.
 //
 
-#import "KSPeripheralManager.h"
-#import "Config.h"
+#import "JJPeripheralManager.h"
+#import "JJBLEConfig.h"
 
-@interface KSPeripheralManager () <CBPeripheralManagerDelegate>
+@interface JJPeripheralManager () <CBPeripheralManagerDelegate>
 
 @end
 
-@implementation KSPeripheralManager
+@implementation JJPeripheralManager
 
 #pragma mark - Init
 
 - (instancetype)init
 {
-    if (self=[super init]) {
-        self.pManager=[[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+    if (self = [super init]) {
+        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     }
     return self;
 }
@@ -117,10 +117,10 @@
     service.characteristics=@[self.mutableCharacteristic];
     
     //把服务加到管理上
-    [self.pManager addService:service];
+    [self.peripheralManager addService:service];
     
     //发送广播，标示是SERVICE_CBUUID为对方观察接收的值，2边要对应上
-    [self.pManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[SERVICE_CBUUID]}];
+    [self.peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[SERVICE_CBUUID]}];
 }
 
 //当发现我们的人订阅了我们的特性后，我们要发送数据给他
