@@ -73,6 +73,29 @@
     }];
 }
 
+#pragma mark - Public Methods
+
+- (void)setNumber:(NSString *)number {
+    NSInteger row = number.integerValue - 1;
+    if ((row >= 0) && (row < 10)) {
+        [self.funSettingPickView selectRow:row inComponent:0 animated:YES];
+    }
+}
+
+- (void)setTemp:(NSString *)temp {
+    NSInteger row = temp.integerValue - 1;
+    if ((row >= 0) && (row < 2)) {
+        [self.funSettingPickView selectRow:row inComponent:1 animated:YES];
+    }
+}
+
+- (void)setSpeed:(NSString *)speed {
+    NSInteger row = speed.integerValue - 1;
+    if ((row >= 0) && (row < 2)) {
+        [self.funSettingPickView selectRow:row inComponent:2 animated:YES];
+    }
+}
+
 
 #pragma mark - JJFunSettingBtnViewDelegate
 - (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn {

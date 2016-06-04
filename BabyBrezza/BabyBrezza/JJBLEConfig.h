@@ -18,16 +18,18 @@
 #define ALERT_VALUE_OFF 0x00
 
 
+/** 服务 */
+#define S_UUID @"FFF0"
+#define S_Battery_UUID @"Battery"
 
-#define SERVICE_UUID_STR @"0100530F-0000-0041-4C50-574953450000"
-#define CHARACTERSITIC_UUID_STR @"010043B1-0000-0041-4C50-574953450000"
+/** 特性 */
+#define C_NOTIFY_UUID @"FFF1"
+#define C_WRITE_UUID @"FFF2"
 
 #define BYTE_CHANGE      @"bytechange"
 
-
-#define SERVICE_CBUUID [CBUUID UUIDWithString:@"0100530F-0000-0041-4C50-574953450000"]
-
-#define CHARACTERSITIC_CBUUID [CBUUID UUIDWithString:@"010043B1-0000-0041-4C50-574953450000"]
+#define S_CBUUID [CBUUID UUIDWithString:S_UUID]
+#define C_CBUUID [CBUUID UUIDWithString:C_NOTIFY_UUID]
 
 //上次连接的设备
 #define UD_KEY_CUR_PERIPHERAL_UUID @"curPeripheral_uuid"
@@ -47,14 +49,14 @@ static NSInteger command_id;
 
 #define GATT_OZ				6   //容量:2-10
 #define GATT_SPEED			7   //速度模式:1-2
-#define GATT_WORK			8		//工作模式:1-2
-
+#define GATT_WORK			8	//工作模式:1-2
 #define GATT_TEMP			9   //温度
+
 #define GATT_VAR			10  //协议版本
 
 #define GATT_RESERVE_1		11		//保留
 #define GATT_RESERVE_2      12		//保留
-#define GATT_SYSTEM		13		//系统状态
+#define GATT_SYSTEM         13		//系统状态
 
 #define GATT_FLAGL			14      //校验和
 

@@ -7,17 +7,17 @@
 //
 
 #import "JJFunTimeView.h"
-#import "JJControllerBtn.h"
+#import "JJFunSettingControlBtn.h"
 
 @interface JJFunTimeView ()
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
-@property (nonatomic, strong) JJControllerBtn *startBtn;
+@property (nonatomic, strong) JJFunSettingControlBtn *startBtn;
 
-@property (nonatomic, strong) JJControllerBtn *cancleBtn;
+@property (nonatomic, strong) JJFunSettingControlBtn *cancleBtn;
 
-@property (nonatomic, strong) JJControllerBtn *okBtn;
+@property (nonatomic, strong) JJFunSettingControlBtn *okBtn;
 
 @end
 
@@ -72,9 +72,15 @@
     }];
 }
 
+
+- (void)setTimeText:(NSString *)time {
+    self.timeLabel.text = time;
+}
+
+
 #pragma mark - Event
 
-- (void)clickStartBtn:(JJControllerBtn *)btn {
+- (void)clickStartBtn:(JJFunSettingControlBtn *)btn {
     self.startBtn.hidden = YES;
     self.cancleBtn.hidden = NO;
     self.okBtn.hidden = YES;
@@ -83,7 +89,7 @@
     }
 }
 
-- (void)clickCancleBtn:(JJControllerBtn *)btn {
+- (void)clickCancleBtn:(JJFunSettingControlBtn *)btn {
     self.startBtn.hidden = YES;
     self.cancleBtn.hidden = YES;
     self.okBtn.hidden = NO;
@@ -92,7 +98,7 @@
     }
 }
 
-- (void)clickOKBtn:(JJControllerBtn *)btn {
+- (void)clickOKBtn:(JJFunSettingControlBtn *)btn {
     self.startBtn.hidden = NO;
     self.cancleBtn.hidden = YES;
     self.okBtn.hidden = YES;
@@ -116,11 +122,11 @@
     return _timeLabel;
 }
 
-- (JJControllerBtn *)startBtn {
+- (JJFunSettingControlBtn *)startBtn {
     if (_startBtn) {
         return _startBtn;
     }
-    _startBtn = [[JJControllerBtn alloc] init];
+    _startBtn = [[JJFunSettingControlBtn alloc] init];
     [_startBtn setTitle:@"start" forState:UIControlStateNormal];
     _startBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _startBtn.backgroundColor = [UIColor funControlBtnGreenColor];
@@ -130,11 +136,11 @@
     return _startBtn;
 }
 
-- (JJControllerBtn *)cancleBtn {
+- (JJFunSettingControlBtn *)cancleBtn {
     if (_cancleBtn) {
         return _cancleBtn;
     }
-    _cancleBtn = [[JJControllerBtn alloc] init];
+    _cancleBtn = [[JJFunSettingControlBtn alloc] init];
     [_cancleBtn setTitle:@"cancle" forState:UIControlStateNormal];
     _cancleBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _cancleBtn.backgroundColor = [UIColor funControlBtnOrangeColor];
@@ -145,11 +151,11 @@
 }
 
 
-- (JJControllerBtn *)okBtn {
+- (JJFunSettingControlBtn *)okBtn {
     if (_okBtn) {
         return _okBtn;
     }
-    _okBtn = [[JJControllerBtn alloc] init];
+    _okBtn = [[JJFunSettingControlBtn alloc] init];
     [_okBtn setTitle:@"ok" forState:UIControlStateNormal];
     _okBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _okBtn.backgroundColor = [UIColor funControlBtnGreenColor];

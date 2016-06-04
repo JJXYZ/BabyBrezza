@@ -69,7 +69,7 @@
     
     for (CBService *s in self.curPeripheral.services) {
         for (CBCharacteristic *c in s.characteristics) {
-            if ([c.UUID isEqual:CHARACTERSITIC_UUID_STR]) {
+            if ([c.UUID.UUIDString isEqualToString:C_NOTIFY_UUID]) {
                 if (c.isNotifying) {
                     /** 如果订阅了,取消订阅 */
                     [self.curPeripheral setNotifyValue:NO forCharacteristic:c];
@@ -164,24 +164,36 @@
 
 /** 获取被操作系统连上的设备 元素为:CBPeripheral */
 - (NSArray *)getConnectedSystemPeripherals {
-    NSArray *serviceUUIDs = [[NSArray alloc] initWithObjects:SERVICE_CBUUID, nil];
+    NSArray *serviceUUIDs = [[NSArray alloc] initWithObjects:S_UUID, nil];
     NSArray *peripheralArr = [self.centralManager retrieveConnectedPeripheralsWithServices:serviceUUIDs];
     return peripheralArr;
 }
 
 /** 写数据调用方法 */
 - (void)writeData:(NSData *)data {
-    [self writeCharacterisitic:CENTRAL_MANAGER.curPeripheral sUUID:SERVICE_UUID_STR cUUID:CHARACTERSITIC_UUID_STR data:data];
+    
+    NSLog(@"发送 %@ 到 %@", data, self.curPeripheral.name);
+    for (CBService *s in self.curPeripheral.services) {
+//        if ([s.UUID isEqual:[CBUUID UUIDWithString:S_UUID]])
+        {
+            for (CBCharacteristic *c in s.characteristics) {
+                if ([c.UUID.UUIDString isEqualToString:C_WRITE_UUID]) {
+                    NSLog(@"找到服务中的特征 开始写数据 %@", c);
+                    [self.curPeripheral writeValue:data forCharacteristic:c type:CBCharacteristicWriteWithResponse];
+                }
+            }
+        }
+    }
 }
 
 - (void)writeCharacterisitic:(CBPeripheral *)peripheral sUUID:(NSString *)sUUID cUUID:(NSString *)cUUID data:(NSData *)data {
     
-    NSLog(@"发送 %@ 到 %@",data, peripheral.name);
+    NSLog(@"发送 %@ 到 %@", data, peripheral.name);
     for (CBService *s in peripheral.services) {
         if ([s.UUID isEqual:[CBUUID UUIDWithString:sUUID]]) {
             for (CBCharacteristic *c in s.characteristics) {
                 if ([c.UUID isEqual:[CBUUID UUIDWithString:cUUID]]) {
-                    NSLog(@"找到服务中的特征 开始写数据 %@", c.UUID);
+                    NSLog(@"找到服务中的特征 开始写数据 %@", c);
                     [peripheral writeValue:data forCharacteristic:c type:CBCharacteristicWriteWithResponse];
                 }
             }
@@ -197,7 +209,7 @@
         if ([s.UUID isEqual:[CBUUID UUIDWithString:sUUID]]) {
             for (CBCharacteristic *characteristic  in s.characteristics) {
                 if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:cUUID]]) {
-                    NSLog(@"找到服务中的特征 开始读数据 %@", characteristic.UUID);
+                    NSLog(@"找到服务中的特征 开始读数据 %@", characteristic);
                     [peripheral readValueForCharacteristic:characteristic];
                 }
             }
@@ -214,7 +226,7 @@
         if ([s.UUID isEqual:[CBUUID UUIDWithString:sUUID]]) {
             for (CBCharacteristic *c in s.characteristics) {
                 if ([c.UUID isEqual:[CBUUID UUIDWithString:cUUID]]) {
-                    NSLog(@"找到服务中的特征 设置监听特征值 %@ %d", c.UUID, enable);
+                    NSLog(@"找到服务中的特征 设置监听特征值 %@ %d", c, enable);
                     [peripheral setNotifyValue:enable forCharacteristic:c];
                 }
             }
@@ -276,8 +288,10 @@
     }
 }
 
-/** 已经连上了设备
-    连接上外围设备后我们就要找到外围设备的服务特性 
+
+/**
+ *  已经连上了设备
+    连接上外围设备后我们就要找到外围设备的服务特性
  */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
@@ -336,7 +350,7 @@
     
     /** 遍历外围设备 */
     for (CBService *s in peripheral.services) {
-        NSLog(@"查找服务中的特性...");
+        NSLog(@"查找服务中的特性... %@", s);
         /** @[CHARACTERSITIC_CBUUID] */
         [peripheral discoverCharacteristics:nil forService:s];
     }
@@ -350,7 +364,7 @@
         return;
     }
     
-    NSLog(@"发现了特性");
+    NSLog(@"发现了服务中的特性");
     
     /** 遍历特性 */
     for (CBCharacteristic *c in service.characteristics) {
@@ -363,12 +377,18 @@
          
             获取特征对应的描述
             [peripheral discoverDescriptorsForCharacteristic:c];
+         
+             NSLog(@"读取特性的值 %@", c);
+             [peripheral readValueForCharacteristic:c];
          */
-        NSLog(@"读取特性的值 %@", c.UUID.UUIDString);
-        [peripheral readValueForCharacteristic:c];
-        
-        if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:readyToSendDataForService:withCharacteristic:)]) {
-            [_delegate JJCBCentralManager:self readyToSendDataForService:service withCharacteristic:c];
+
+        if ([c.UUID.UUIDString isEqualToString:C_NOTIFY_UUID]) {
+            NSLog(@"订阅特性... %@ %@", service, c);
+            [peripheral setNotifyValue:YES forCharacteristic:c];
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:readyToSendDataForService:withCharacteristic:)]) {
+                [_delegate JJCBCentralManager:self readyToSendDataForService:service withCharacteristic:c];
+            }
         }
     }
 }
@@ -388,7 +408,7 @@
         return;
     }
     
-    NSLog(@"特征 接收到了数据 %@ %@", characteristic.UUID.UUIDString, characteristic.value);
+    NSLog(@"特征 接收到了数据 %@", characteristic);
 
     if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:didReceiveData:)]) {
         /** characteristic.value 是特性中所包含的数据 */
@@ -409,7 +429,7 @@
         return;
     }
     
-    NSLog(@"特征 写数据成功!!");
+    NSLog(@"特征 写数据成功!! %@", characteristic);
     if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:didWriteDataWithCharacteristic:)]) {
         [_delegate JJCBCentralManager:self didWriteDataWithCharacteristic:characteristic];
     }
@@ -429,7 +449,7 @@
 /** 外围设备让我们知道，我们订阅和取消订阅是否发生 */
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     if (error) {
-        NSLog(@"外围特性通知 = %@",error.localizedDescription);
+        NSLog(@"外围特性通知 %@ %@", characteristic, error.localizedDescription);
         return;
     }
     
@@ -438,7 +458,7 @@
      */
     
     if (characteristic.isNotifying) {
-        NSLog(@"外围特性通知开始");
+        NSLog(@"外围特性通知开始 %@", characteristic);
     }else{
         NSLog(@"外围设备特性通知结束，也就是用户要下线或者离开 %@",characteristic);
         /** 断开连接 */

@@ -6,13 +6,13 @@
 //  Copyright © 2016年 JJ. All rights reserved.
 //
 
-#import "JJControllerBtn.h"
+#import "JJFunSettingControlBtn.h"
 
-@implementation JJControllerBtn
+@implementation JJFunSettingControlBtn
 
 
-+ (JJControllerBtn *)createTitle:(NSString *)title frame:(CGRect)frame color:(UIColor *)color {
-    JJControllerBtn *btn = [[JJControllerBtn alloc] initWithFrame:frame];
++ (JJFunSettingControlBtn *)createTitle:(NSString *)title frame:(CGRect)frame color:(UIColor *)color {
+    JJFunSettingControlBtn *btn = [[JJFunSettingControlBtn alloc] initWithFrame:frame];
     btn.backgroundColor = color;
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

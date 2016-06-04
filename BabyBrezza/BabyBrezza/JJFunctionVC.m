@@ -12,6 +12,8 @@
 #import "JJFunBottomView.h"
 #import "JJSettingGuideVC.h"
 #import "JJFunAlertView.h"
+#import "JJBLEValue.h"
+#import "JJMessage.h"
 
 @interface JJFunctionVC () <JJFunSettingViewDelegate, JJFunTimeViewDelegate>
 
@@ -26,7 +28,6 @@
 
 @property (nonatomic, strong) JJFunBottomView *funBottomView;
 
-@property (nonatomic, strong) UILabel *timeLabel;
 @property (assign, nonatomic) NSUInteger timeout;
 ;
 //倒计时
@@ -58,6 +59,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     [self layoutFuncionUI];
+    
+    [self addFunNotification];
 }
 
 - (void)dealloc {
@@ -75,15 +78,31 @@
     [self.view addSubview:self.funBottomView];
 }
 
+- (void)addFunNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidReceiveData) name:NOTIFY_DidReceiveData object:nil];
+}
+
+
 - (void)timeCountDown {
     self.timeout--;
     NSUInteger minutes = self.timeout / 60;
     NSUInteger seconds = self.timeout % 60;
-    self.timeLabel.text = [NSString stringWithFormat:@"%.2lu:%.2lu",(long)minutes, (long)seconds];
+    
+    [self.funTimeView setTimeText:[NSString stringWithFormat:@"%.2lu:%.2lu",(long)minutes, (long)seconds]];
     
     if (!minutes && !seconds) {
         [self removeCountDownTimer];
     }
+}
+
+#pragma mark - Notification
+- (void)nDidReceiveData {
+    NSString *timeText = [NSString stringWithFormat:@"%@:%@", BLE_VALUE.minute, BLE_VALUE.second];
+    [self.funTimeView setTimeText:timeText];
+    
+    [self.funSettingView setNumber:BLE_VALUE.number];
+    [self.funSettingView setTemp:BLE_VALUE.temp];
+    [self.funSettingView setSpeed:BLE_VALUE.speed];
 }
 
 #pragma mark - NSTimer
@@ -130,7 +149,7 @@
     
 //    NSString *time = [self.numberPickArr objectAtIndex:[self.numberPickView selectedRowInComponent:0]];
     NSString *time = nil;
-    self.timeLabel.text = [NSString stringWithFormat:@"%.2ld:00", (long)time.integerValue];
+    [self.funTimeView setTimeText:[NSString stringWithFormat:@"%.2ld:00", (long)time.integerValue]];
     self.timeout = time.integerValue * 60;
     
     if (self.countDownTimer) {
@@ -146,21 +165,21 @@
 #pragma mark - JJFunSettingViewDelegate
 
 - (void)clickFunSettingView:(JJFunSettingBtn *)btn {
-    
+    [JJMessage sendData];
 }
 
 #pragma mark - JJFunTimeViewDelegate
 
-- (void)clickFunTimeStartBtn:(JJControllerBtn *)btn {
+- (void)clickFunTimeStartBtn:(JJFunSettingControlBtn *)btn {
     
 }
 
-- (void)clickFunTimeCancleBtn:(JJControllerBtn *)btn {
+- (void)clickFunTimeCancleBtn:(JJFunSettingControlBtn *)btn {
     self.funSettingView.hidden = YES;
     self.funAlertView.hidden = NO;
 }
 
-- (void)clickFunTimeOKBtn:(JJControllerBtn *)btn {
+- (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn {
     self.funSettingView.hidden = NO;
     self.funAlertView.hidden = YES;
 }

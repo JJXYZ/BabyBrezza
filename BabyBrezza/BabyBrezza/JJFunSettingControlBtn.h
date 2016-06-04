@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JJRoundBtn.h"
 
-@interface JJControllerBtn : UIButton
+@interface JJFunSettingControlBtn : UIButton
 
-+ (JJControllerBtn *)createTitle:(NSString *)title frame:(CGRect)frame color:(UIColor *)color;
++ (JJFunSettingControlBtn *)createTitle:(NSString *)title frame:(CGRect)frame color:(UIColor *)color;
 
 @end

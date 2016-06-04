@@ -108,10 +108,10 @@
     
     //启动service
     //启动可变服务特性properties：Notify允许没有回答的服务特性，向中心设备发送数据，permissions：read通讯属性为只读
-    self.mutableCharacteristic = [[CBMutableCharacteristic alloc] initWithType:CHARACTERSITIC_CBUUID properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
+    self.mutableCharacteristic = [[CBMutableCharacteristic alloc] initWithType:C_CBUUID properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
     
     //创建服务 primary 是首次还是第二次
-    CBMutableService *service = [[CBMutableService alloc]initWithType:SERVICE_CBUUID primary:YES];
+    CBMutableService *service = [[CBMutableService alloc]initWithType:S_CBUUID primary:YES];
     
     //把特性加到服务上
     service.characteristics=@[self.mutableCharacteristic];
@@ -120,7 +120,7 @@
     [self.peripheralManager addService:service];
     
     //发送广播，标示是SERVICE_CBUUID为对方观察接收的值，2边要对应上
-    [self.peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[SERVICE_CBUUID]}];
+    [self.peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[S_UUID]}];
 }
 
 //当发现我们的人订阅了我们的特性后，我们要发送数据给他
