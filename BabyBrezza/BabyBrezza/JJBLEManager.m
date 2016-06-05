@@ -134,7 +134,6 @@
 
 /** 发送/写数据成功 */
 - (void)JJCBCentralManager:(JJCBCentralManager *)central didWriteDataWithCharacteristic:(CBCharacteristic *)characteristic {
-    NSLog(@"写数据成功");
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DidWriteData object:nil];
 }
 

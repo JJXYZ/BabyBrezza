@@ -44,8 +44,8 @@
     
     self.number = nil;
     self.speed = nil;
-    self.work = nil;
     self.temp = nil;
+    self.temperature = nil;
     
     self.var = nil;
     
@@ -55,6 +55,39 @@
     self.system = nil;
     
     self.flagl = nil;
+}
+
+
+- (NSString *)number {
+    if (_number) {
+        return _number;
+    }
+    _number = @"1";
+    return _number;
+}
+
+- (NSString *)speed {
+    if (_speed) {
+        return _speed;
+    }
+    _speed = @"1";
+    return _speed;
+}
+
+- (NSString *)temp {
+    if (_temp) {
+        return _temp;
+    }
+    _temp = @"1";
+    return _temp;
+}
+
+- (NSString *)startFlagl {
+    if (_startFlagl) {
+        return _startFlagl;
+    }
+    _startFlagl = @"-1";
+    return _startFlagl;
 }
 
 

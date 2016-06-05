@@ -47,6 +47,16 @@
     }];
 }
 
+#pragma mark - Public Methods
+
+- (void)setConnectText {
+    self.stateLabel.text = @"connected";
+}
+
+- (void)setDisconnectText {
+    self.stateLabel.text = @"disconnected";
+}
+
 #pragma mark - Property
 
 - (UILabel *)stateLabel {

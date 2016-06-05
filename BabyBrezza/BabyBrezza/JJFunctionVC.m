@@ -29,13 +29,9 @@
 @property (nonatomic, strong) JJFunBottomView *funBottomView;
 
 @property (assign, nonatomic) NSUInteger timeout;
-;
-//倒计时
-@property (nonatomic, strong) NSTimer *countDownTimer;
-@property (nonatomic, strong) UIButton *startBtn;
 
-- (void)clickBackBtn:(id)sender;
-- (void)clickStartBtn:(id)sender;
+/** 倒计时 */
+@property (nonatomic, strong) NSTimer *countDownTimer;
 
 @end
 
@@ -80,8 +76,22 @@
 
 - (void)addFunNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidReceiveData) name:NOTIFY_DidReceiveData object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidWriteData) name:NOTIFY_DidWriteData object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nStatePoweredOff) name:NOTIFY_StatePoweredOff object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidFailToConnectPeripheral) name:NOTIFY_DidFailToConnectPeripheral object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidDisconnectPeripheral) name:NOTIFY_DidDisconnectPeripheral object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidConnectPeripheral) name:NOTIFY_DidConnectPeripheral object:nil];
 }
 
+- (void)showFunSettingView {
+    self.funSettingView.hidden = NO;
+    self.funAlertView.hidden = YES;
+}
+
+- (void)showFunAlertView {
+    self.funSettingView.hidden = YES;
+    self.funAlertView.hidden = NO;
+}
 
 - (void)timeCountDown {
     self.timeout--;
@@ -96,13 +106,61 @@
 }
 
 #pragma mark - Notification
-- (void)nDidReceiveData {
-    NSString *timeText = [NSString stringWithFormat:@"%@:%@", BLE_VALUE.minute, BLE_VALUE.second];
-    [self.funTimeView setTimeText:timeText];
+- (void)nDidConnectPeripheral {
+    [self.funBottomView setConnectText];
+}
+
+- (void)nStatePoweredOff {
+    [self.funBottomView setDisconnectText];
+}
+
+- (void)nDidFailToConnectPeripheral{
+    [self.funBottomView setDisconnectText];
+}
+
+- (void)nDidDisconnectPeripheral{
+    [self.funBottomView setDisconnectText];
+}
+
+- (void)nDidWriteData {
     
-    [self.funSettingView setNumber:BLE_VALUE.number];
-    [self.funSettingView setTemp:BLE_VALUE.temp];
-    [self.funSettingView setSpeed:BLE_VALUE.speed];
+}
+
+- (void)nDidReceiveData {
+    if (BLE_VALUE.command.intValue == 1) {
+        if (BLE_VALUE.system.intValue == 1) {
+            NSLog(@"设备关机");
+        }
+    }
+    else if (BLE_VALUE.command.intValue == 2) {
+        if (BLE_VALUE.system.intValue == 2) {
+            NSLog(@"设备待机待操作");
+            [self.funTimeView showStartBtn];
+        }
+    }
+    else if (BLE_VALUE.command.intValue == 5) {
+        if (BLE_VALUE.system.intValue == 2) {
+            NSLog(@"设备待机待操作");
+            [self.funTimeView showStartBtn];
+        }
+        else if (BLE_VALUE.system.intValue == 3) {
+            
+            if (BLE_VALUE.minute.intValue == 0 &&
+                BLE_VALUE.second.intValue == 0) {
+                [self.funTimeView showOKBtn];
+                [self showFunAlertView];
+            }
+            else {
+                [self.funTimeView showCancleBtn];
+                [self showFunSettingView];
+            }
+            NSString *timeText = [NSString stringWithFormat:@"%@:%@", BLE_VALUE.minute, BLE_VALUE.second];
+            [self.funTimeView setTimeText:timeText];
+            [self.funSettingView setPickViewNumber:BLE_VALUE.number];
+            [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
+            [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
+        }
+    }
 }
 
 #pragma mark - NSTimer
@@ -129,11 +187,6 @@
     }
 }
 
-
-
-
-
-
 #pragma mark - Event
 
 - (void)clickSettingGuideBtn:(id)sender {
@@ -145,6 +198,7 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
+#if 0
 - (void)clickStartBtn:(id)sender {
     
 //    NSString *time = [self.numberPickArr objectAtIndex:[self.numberPickView selectedRowInComponent:0]];
@@ -161,28 +215,28 @@
         [self.startBtn setTitle:@"Cancel" forState:UIControlStateNormal];
     }
 }
+#endif
 
 #pragma mark - JJFunSettingViewDelegate
 
 - (void)clickFunSettingView:(JJFunSettingBtn *)btn {
-    [JJMessage sendData];
+    [JJMessage sendSettingData];
 }
 
 #pragma mark - JJFunTimeViewDelegate
 
 - (void)clickFunTimeStartBtn:(JJFunSettingControlBtn *)btn {
-    
+    [JJMessage sendStartData];
 }
 
 - (void)clickFunTimeCancleBtn:(JJFunSettingControlBtn *)btn {
-    self.funSettingView.hidden = YES;
-    self.funAlertView.hidden = NO;
+    [JJMessage sendCancleData];
 }
 
 - (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn {
-    self.funSettingView.hidden = NO;
-    self.funAlertView.hidden = YES;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 
 #pragma mark - Property
 - (UIButton *)voiceBtn {

@@ -23,6 +23,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.hidden = YES;
+    self.interactivePopGestureRecognizer.enabled = NO;
 }
 
 @end

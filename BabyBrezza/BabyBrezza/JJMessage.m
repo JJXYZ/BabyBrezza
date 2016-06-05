@@ -13,14 +13,26 @@
 
 @implementation JJMessage
 
++ (void)sendSettingData {
+    [self sendDataCommand:0x03 system:0x02];
+}
 
-+ (void)sendData {
++ (void)sendStartData {
+    [self sendDataCommand:0x03 system:0x03];
+}
+
++ (void)sendCancleData {
+    [self sendDataCommand:0x02 system:0x02];
+}
+
+
++ (void)sendDataCommand:(int)command system:(int)system {
     
     unsigned char send_bytes[15];
     send_bytes[GATT_HEAD_1] = 0xA5;
     send_bytes[GATT_HEAD_2] = 0xFF;
     
-    send_bytes[GATT_COMMAND] = 0x05;
+    send_bytes[GATT_COMMAND] = command;
     
     send_bytes[GATT_HOUR] = 0x00;
     send_bytes[GATT_MINUTE] = BLE_VALUE.minute.intValue;
@@ -31,10 +43,10 @@
     send_bytes[GATT_WORK] = BLE_VALUE.temp.intValue;
     send_bytes[GATT_TEMP] = 0x00;
     
-    send_bytes[GATT_VAR] = 0x12;
+    send_bytes[GATT_VAR] = 0x02;
     send_bytes[GATT_RESERVE_1] = 0x00;
     send_bytes[GATT_RESERVE_2] = 0x00;
-    send_bytes[GATT_SYSTEM] = 0x03;
+    send_bytes[GATT_SYSTEM] = system;
     
     int sum = 0;
     for (NSUInteger i = 0; i < 14; i++) {
@@ -54,11 +66,14 @@
         unsigned char *dataBytes = (unsigned char*)bytes;
         for (NSInteger i = 0; i < byteRange.length; i++) {
             NSString *hexStr = [NSString stringWithFormat:@"%02d", (dataBytes[i]) & 0xff];
+            if (i == 0  || i == 1) {
+                hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
+            }
+            
             [self setValueIndex:i String:hexStr];
         }
     }];
 }
-
 
 + (void)setValueIndex:(NSInteger)index String:(NSString *)hexStr {
     switch (index) {
@@ -87,10 +102,10 @@
             BLE_VALUE.speed = hexStr;
             break;
         case 8:
-            BLE_VALUE.work = hexStr;
+            BLE_VALUE.temp = hexStr;
             break;
         case 9:
-            BLE_VALUE.temp = hexStr;
+            BLE_VALUE.temperature = hexStr;
             break;
         case 10:
             BLE_VALUE.var = hexStr;

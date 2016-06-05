@@ -10,14 +10,6 @@
 #define JJBLEConfig_h
 
 
-#define DEVICE_NAME_UUID 0x2A00
-#define BATTERT_LEVEL_UUID 0x2A19
-#define ALERT_LEVEL_UUID 0x2a06
-
-#define ALERT_VALUE_ON 0x01
-#define ALERT_VALUE_OFF 0x00
-
-
 /** 服务 */
 #define S_UUID @"FFF0"
 #define S_Battery_UUID @"Battery"
@@ -26,16 +18,12 @@
 #define C_NOTIFY_UUID @"FFF1"
 #define C_WRITE_UUID @"FFF2"
 
-#define BYTE_CHANGE      @"bytechange"
-
 #define S_CBUUID [CBUUID UUIDWithString:S_UUID]
 #define C_CBUUID [CBUUID UUIDWithString:C_NOTIFY_UUID]
 
 //上次连接的设备
 #define UD_KEY_CUR_PERIPHERAL_UUID @"curPeripheral_uuid"
 #define UD_KEY_CUR_PERIPHERAL_NAME @"curPeripheral_name"
-
-static NSInteger command_id;
 
 //头1	头2	命令	时	分	秒	容量
 //(OZ)	速度模式	工作模式	温度	协议版本	保留	保留	系统状态	校验和

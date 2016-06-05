@@ -174,13 +174,10 @@
     
     NSLog(@"发送 %@ 到 %@", data, self.curPeripheral.name);
     for (CBService *s in self.curPeripheral.services) {
-//        if ([s.UUID isEqual:[CBUUID UUIDWithString:S_UUID]])
-        {
-            for (CBCharacteristic *c in s.characteristics) {
-                if ([c.UUID.UUIDString isEqualToString:C_WRITE_UUID]) {
-                    NSLog(@"找到服务中的特征 开始写数据 %@", c);
-                    [self.curPeripheral writeValue:data forCharacteristic:c type:CBCharacteristicWriteWithResponse];
-                }
+        for (CBCharacteristic *c in s.characteristics) {
+            if ([c.UUID.UUIDString isEqualToString:C_WRITE_UUID]) {
+                NSLog(@"找到服务中的特征 开始写数据 %@", c);
+                [self.curPeripheral writeValue:data forCharacteristic:c type:CBCharacteristicWriteWithResponse];
             }
         }
     }
@@ -364,7 +361,7 @@
         return;
     }
     
-    NSLog(@"发现了服务中的特性");
+    NSLog(@"发现了服务中的特性 %@", service);
     
     /** 遍历特性 */
     for (CBCharacteristic *c in service.characteristics) {

@@ -29,4 +29,10 @@
 
 - (void)setTimeText:(NSString *)time;
 
+- (void)showStartBtn;
+
+- (void)showCancleBtn;
+
+- (void)showOKBtn;
+
 @end

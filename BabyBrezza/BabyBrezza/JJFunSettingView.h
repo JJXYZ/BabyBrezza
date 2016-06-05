@@ -22,12 +22,12 @@
 
 @property (nonatomic, weak) id <JJFunSettingViewDelegate> delegate;
 
-- (void)setNumber:(NSString *)number;
+- (void)setPickViewNumber:(NSString *)number;
 
-- (void)setTemp:(NSString *)temp;
+- (void)setPickViewTemp:(NSString *)temp;
 
-- (void)setSpeed:(NSString *)speed;
+- (void)setPickViewSpeed:(NSString *)speed;
 
-
+- (void)showStartBtn;
 
 @end

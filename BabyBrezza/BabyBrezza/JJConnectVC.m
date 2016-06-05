@@ -22,11 +22,16 @@
     [super viewDidLoad];
     [self layoutConnectUI];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self performSelector:@selector(pushFunctionVC) withObject:nil afterDelay:1];
+}
+
 #pragma mark - Inherit
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    JJFunctionVC *vc = [[JJFunctionVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark - Private Methods
@@ -35,6 +40,10 @@
     [self.view addSubview:self.titleLabel];
 }
 
+- (void)pushFunctionVC {
+    JJFunctionVC *vc = [[JJFunctionVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark - Property
 

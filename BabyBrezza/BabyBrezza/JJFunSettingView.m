@@ -10,6 +10,7 @@
 #import "JJFunSettingLabelView.h"
 #import "JJFunSettingBtnView.h"
 #import "JJFunSettingBtn.h"
+#import "JJBLEValue.h"
 
 #define PickerView_H 100
 
@@ -74,28 +75,44 @@
 }
 
 #pragma mark - Public Methods
-
-- (void)setNumber:(NSString *)number {
+- (void)setPickViewNumber:(NSString *)number {
     NSInteger row = number.integerValue - 1;
-    if ((row >= 0) && (row < 10)) {
+    NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
+    if (row != curRow) {
         [self.funSettingPickView selectRow:row inComponent:0 animated:YES];
     }
 }
 
-- (void)setTemp:(NSString *)temp {
+- (void)setPickViewTemp:(NSString *)temp {
     NSInteger row = temp.integerValue - 1;
-    if ((row >= 0) && (row < 2)) {
+    NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
+    if (row != curRow) {
         [self.funSettingPickView selectRow:row inComponent:1 animated:YES];
     }
 }
 
-- (void)setSpeed:(NSString *)speed {
+- (void)setPickViewSpeed:(NSString *)speed {
     NSInteger row = speed.integerValue - 1;
-    if ((row >= 0) && (row < 2)) {
+    NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
+    if (row != curRow) {
         [self.funSettingPickView selectRow:row inComponent:2 animated:YES];
     }
 }
 
+- (void)setValueNumberRow:(NSUInteger)row {
+    NSUInteger number = row + 1;
+    BLE_VALUE.number = [NSString stringWithFormat:@"%lu", (unsigned long)number];
+}
+
+- (void)setValueTempRow:(NSUInteger)row {
+    NSUInteger temp = row + 1;
+    BLE_VALUE.temp = [NSString stringWithFormat:@"%lu", (unsigned long)temp];
+}
+
+- (void)setValueSpeedRow:(NSUInteger)row {
+    NSUInteger speed = row + 1;
+    BLE_VALUE.speed = [NSString stringWithFormat:@"%lu", (unsigned long)speed];
+}
 
 #pragma mark - JJFunSettingBtnViewDelegate
 - (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn {
@@ -103,26 +120,32 @@
     if (type == FunBtnType_NumUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
         [self.funSettingPickView selectRow:++curRow inComponent:0 animated:YES];
+        [self setValueNumberRow:curRow];
     }
     else if (type == FunBtnType_NumDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
         [self.funSettingPickView selectRow:--curRow inComponent:0 animated:YES];
+        [self setValueNumberRow:curRow];
     }
     else if (type == FunBtnType_TempUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
         [self.funSettingPickView selectRow:++curRow inComponent:1 animated:YES];
+        [self setValueTempRow:curRow];
     }
     else if (type == FunBtnType_TempDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
         [self.funSettingPickView selectRow:--curRow inComponent:1 animated:YES];
+        [self setValueTempRow:curRow];
     }
     else if (type == FunBtnType_SpeedUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
         [self.funSettingPickView selectRow:++curRow inComponent:2 animated:YES];
+        [self setValueSpeedRow:curRow];
     }
     else if (type == FunBtnType_SpeedDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
         [self.funSettingPickView selectRow:--curRow inComponent:2 animated:YES];
+        [self setValueSpeedRow:curRow];
     }
     
     if (_delegate && [_delegate respondsToSelector:@selector(clickFunSettingView:)]) {

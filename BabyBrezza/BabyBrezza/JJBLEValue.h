@@ -27,8 +27,8 @@
 
 @property (nonatomic, strong) NSString *number;
 @property (nonatomic, strong) NSString *speed;
-@property (nonatomic, strong) NSString *work;
 @property (nonatomic, strong) NSString *temp;
+@property (nonatomic, strong) NSString *temperature;
 
 @property (nonatomic, strong) NSString *var;
 
@@ -39,6 +39,11 @@
 
 /** 校验和 */
 @property (nonatomic, strong) NSString *flagl;
+
+
+
+/** 发送的校验和 */
+@property (nonatomic, strong) NSString *startFlagl;
 
 @end
 

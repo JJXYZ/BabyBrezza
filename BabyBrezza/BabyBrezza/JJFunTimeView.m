@@ -81,30 +81,42 @@
 #pragma mark - Event
 
 - (void)clickStartBtn:(JJFunSettingControlBtn *)btn {
-    self.startBtn.hidden = YES;
-    self.cancleBtn.hidden = NO;
-    self.okBtn.hidden = YES;
     if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeStartBtn:)]) {
         [_delegate clickFunTimeStartBtn:btn];
     }
 }
 
 - (void)clickCancleBtn:(JJFunSettingControlBtn *)btn {
-    self.startBtn.hidden = YES;
-    self.cancleBtn.hidden = YES;
-    self.okBtn.hidden = NO;
+    
     if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeCancleBtn:)]) {
         [_delegate clickFunTimeCancleBtn:btn];
     }
 }
 
 - (void)clickOKBtn:(JJFunSettingControlBtn *)btn {
-    self.startBtn.hidden = NO;
-    self.cancleBtn.hidden = YES;
-    self.okBtn.hidden = YES;
+    
     if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeOKBtn:)]) {
         [_delegate clickFunTimeOKBtn:btn];
     }
+}
+
+#pragma mark - Public Methods
+- (void)showStartBtn {
+    self.startBtn.hidden = NO;
+    self.cancleBtn.hidden = YES;
+    self.okBtn.hidden = YES;
+}
+
+- (void)showCancleBtn {
+    self.startBtn.hidden = YES;
+    self.cancleBtn.hidden = NO;
+    self.okBtn.hidden = YES;
+}
+
+- (void)showOKBtn {
+    self.startBtn.hidden = YES;
+    self.cancleBtn.hidden = YES;
+    self.okBtn.hidden = NO;
 }
 
 #pragma mark - Property

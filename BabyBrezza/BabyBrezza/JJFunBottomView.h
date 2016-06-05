@@ -12,4 +12,9 @@
 
 @interface JJFunBottomView : UIView
 
+
+- (void)setConnectText;
+
+- (void)setDisconnectText;
+
 @end

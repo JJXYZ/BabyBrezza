@@ -10,7 +10,11 @@
 
 @interface JJMessage : NSObject
 
-+ (void)sendData;
++ (void)sendSettingData;
+
++ (void)sendStartData;
+
++ (void)sendCancleData;
 
 + (void)receiveData:(NSData *)data;
 
