@@ -36,14 +36,14 @@
 }
 
 #pragma mark - NSTimer
-
+/** 创建重连定时器 */
 - (void)creatRetrieveTimer {
     [self removeRetrieveTimer];
     NSLog(@"创建重连定时器");
-    _retrieveTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(retrieveConnect) userInfo:nil repeats:YES];
+    _retrieveTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(scan) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_retrieveTimer forMode:NSDefaultRunLoopMode];
 }
-
+/** 移除重连定时器 */
 - (void)removeRetrieveTimer {
     if (_retrieveTimer) {
         NSLog(@"移除重连定时器");
@@ -240,6 +240,8 @@
         {
             NSLog(@"CoreBluetooth BLE hardware is powered off");
             self.curPeripheral = nil;
+            /** 创建重连定时器 */
+            [self creatRetrieveTimer];
             if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManagerStatePoweredOff)]) {
                 [_delegate JJCBCentralManagerStatePoweredOff];
             }
@@ -295,6 +297,8 @@
     NSLog(@"已经连上了设备 %@",peripheral.name);
     /** 连接完成后，就停止检测 */
     [self.centralManager stopScan];
+    /** 创建重连定时器 */
+    [self removeRetrieveTimer];
     /** 设置为当前的设备 */
     self.curPeripheral = peripheral;
     self.curPeripheral.delegate = self;
@@ -314,6 +318,10 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
     NSLog(@"连接失败: peripheral:%@", peripheral.name);
+    
+    /** 创建重连定时器 */
+    [self creatRetrieveTimer];
+    
     if ([self.curPeripheral.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
         self.curPeripheral = nil;
     }
@@ -322,15 +330,18 @@
 /** 设备失去连接 */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
-    NSLog(@"失去连接: peripheral:%@", peripheral.name);
+    NSLog(@"失去连接: %@", peripheral);
     
     if ([self.curPeripheral.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
         self.curPeripheral = nil;
     }
     
+    /** 创建重连定时器 */
+    [self creatRetrieveTimer];
+    
     if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:didDisconnectPeripheral:)]) {
         [_delegate JJCBCentralManager:self didDisconnectPeripheral:peripheral];
-    }
+    }    
 }
 
 #pragma mark - CBPeripheralDelegate

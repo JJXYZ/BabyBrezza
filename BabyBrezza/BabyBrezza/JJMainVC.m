@@ -43,7 +43,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self layoutMainUI];
-    [self addtMainNotification];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addMainNotification];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self removeMainNotification];
 }
 
 #pragma mark - Private Methods
@@ -55,10 +64,13 @@
     [JJBLEManager sharedInstance];
 }
 
-- (void)addtMainNotification {
+- (void)addMainNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidConnectPeripheral) name:NOTIFY_DidConnectPeripheral object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nTimerStopScan) name:NOTIFY_TimerStopScan object:nil];
-    
+}
+
+- (void)removeMainNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFY_DidConnectPeripheral object:nil];
 }
 
 - (void)pushConnectedVC {

@@ -45,5 +45,8 @@
 /** 发送的校验和 */
 @property (nonatomic, strong) NSString *startFlagl;
 
+
+- (void)playNotiSound;
+
 @end
 

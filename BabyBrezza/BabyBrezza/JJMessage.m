@@ -11,6 +11,7 @@
 #import "JJCBCentralManager.h"
 #import "JJBLEValue.h"
 
+
 @implementation JJMessage
 
 + (void)sendSettingData {
@@ -143,6 +144,8 @@
     
     [CENTRAL_MANAGER writeCharacterisitic:CENTRAL_MANAGER.curPeripheral sUUID:S_UUID cUUID:C_WRITE_UUID data:[NSData dataWithBytes:&send_bytes length:16]];
 }
+
+
 
 
 @end

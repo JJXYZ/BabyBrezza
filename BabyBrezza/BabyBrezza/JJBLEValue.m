@@ -8,7 +8,12 @@
 
 #import "JJBLEValue.h"
 #import "JJBLEConfig.h"
+#import <AVFoundation/AVFoundation.h>
+@interface JJBLEValue ()
 
+@property (nonatomic, strong) AVAudioPlayer *player;
+
+@end
 @implementation JJBLEValue
 
 #pragma mark - Lifecycle
@@ -57,6 +62,14 @@
     self.flagl = nil;
 }
 
+- (void)playNotiSound {
+    if (!self.player.isPlaying) {
+        [self.player prepareToPlay];
+        [self.player play];
+    }
+}
+
+#pragma mark - Property
 
 - (NSString *)number {
     if (_number) {
@@ -90,6 +103,12 @@
     return _startFlagl;
 }
 
-
+- (AVAudioPlayer *)player {
+    if (_player) {
+        return _player;
+    }
+    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"noti_sound" ofType:@"mp3"]] error:nil];
+    return _player;
+}
 
 @end

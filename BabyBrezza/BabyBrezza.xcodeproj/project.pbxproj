@@ -16,6 +16,8 @@
 		6931CE321BBD27CC00EF3BA9 /* JJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931CE311BBD27CC00EF3BA9 /* JJMessage.m */; };
 		6944A8EF1CFC929C00E1089B /* BBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944A8EE1CFC929C00E1089B /* BBUtils.m */; };
 		6944A8F21CFCAF4F00E1089B /* JJFunAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944A8F11CFCAF4F00E1089B /* JJFunAlertView.m */; };
+		696AF8E01D05DF4B00E89E9B /* noti_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 696AF8DF1D05DF4B00E89E9B /* noti_sound.mp3 */; };
+		696AF8E41D05E36100E89E9B /* JJSelectBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 696AF8E31D05E36100E89E9B /* JJSelectBtn.m */; };
 		6973F4151BBBD00400D7737D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4141BBBD00400D7737D /* main.m */; };
 		6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6973F4171BBBD00400D7737D /* AppDelegate.m */; };
 		6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6973F41F1BBBD00400D7737D /* Assets.xcassets */; };
@@ -61,6 +63,9 @@
 		6944A8EE1CFC929C00E1089B /* BBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUtils.m; sourceTree = "<group>"; };
 		6944A8F01CFCAF4F00E1089B /* JJFunAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFunAlertView.h; sourceTree = "<group>"; };
 		6944A8F11CFCAF4F00E1089B /* JJFunAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFunAlertView.m; sourceTree = "<group>"; };
+		696AF8DF1D05DF4B00E89E9B /* noti_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noti_sound.mp3; sourceTree = "<group>"; };
+		696AF8E21D05E36100E89E9B /* JJSelectBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJSelectBtn.h; sourceTree = "<group>"; };
+		696AF8E31D05E36100E89E9B /* JJSelectBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSelectBtn.m; sourceTree = "<group>"; };
 		6973F4101BBBD00400D7737D /* BabyBrezza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyBrezza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6973F4141BBBD00400D7737D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6973F4161BBBD00400D7737D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -159,6 +164,23 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		696AF8DD1D05DF0C00E89E9B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				696AF8DF1D05DF4B00E89E9B /* noti_sound.mp3 */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		696AF8E11D05E34800E89E9B /* RootView */ = {
+			isa = PBXGroup;
+			children = (
+				696AF8E21D05E36100E89E9B /* JJSelectBtn.h */,
+				696AF8E31D05E36100E89E9B /* JJSelectBtn.m */,
+			);
+			name = RootView;
+			sourceTree = "<group>";
+		};
 		6973F4071BBBD00400D7737D = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +253,7 @@
 		6973F4491BBBD1A600D7737D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				696AF8DD1D05DF0C00E89E9B /* Resource */,
 				6944A8E91CFC923200E1089B /* Utils */,
 				69F9379B1BBBE5AF005F7399 /* Third_Libraries */,
 				6931CE2F1BBD26DF00EF3BA9 /* Message */,
@@ -244,6 +267,7 @@
 		6973F44A1BBBD1B800D7737D /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				696AF8E11D05E34800E89E9B /* RootView */,
 				6973F4481BBBD19700D7737D /* RootVC */,
 				69AB0F7D1CF96CB800F15D4A /* SettingGuideVC */,
 				69AB0F791CF969A600F15D4A /* ConnectVC */,
@@ -439,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				696AF8E01D05DF4B00E89E9B /* noti_sound.mp3 in Resources */,
 				6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +535,7 @@
 				6973F4511BBBD20D00D7737D /* JJMainVC.m in Sources */,
 				69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */,
 				69AB0F951CFA8D4000F15D4A /* JJFunTimeView.m in Sources */,
+				696AF8E41D05E36100E89E9B /* JJSelectBtn.m in Sources */,
 				6973F4181BBBD00400D7737D /* AppDelegate.m in Sources */,
 				690057941D02B8AB005CE5BB /* JJBLEManager.m in Sources */,
 				69AB0F881CF99C6500F15D4A /* JJFunSettingLabelView.m in Sources */,

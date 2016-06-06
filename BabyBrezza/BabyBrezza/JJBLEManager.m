@@ -113,7 +113,6 @@
 
 /** 失去连接 */
 - (void)JJCBCentralManager:(JJCBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral {
-    NSLog(@"%@ 失去连接", peripheral.name);
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DidDisconnectPeripheral object:nil];
 }
 

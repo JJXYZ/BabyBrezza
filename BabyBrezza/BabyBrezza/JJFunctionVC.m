@@ -14,10 +14,12 @@
 #import "JJFunAlertView.h"
 #import "JJBLEValue.h"
 #import "JJMessage.h"
+#import "JJCBCentralManager.h"
+#import "JJSelectBtn.h"
 
 @interface JJFunctionVC () <JJFunSettingViewDelegate, JJFunTimeViewDelegate>
 
-@property (nonatomic, strong) UIButton *voiceBtn;
+@property (nonatomic, strong) JJSelectBtn *voiceBtn;
 @property (nonatomic, strong) UIButton *settingGuideBtn;
 
 @property (nonatomic, strong) JJFunSettingView *funSettingView;
@@ -55,12 +57,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     [self layoutFuncionUI];
-    
     [self addFunNotification];
 }
 
 - (void)dealloc {
     [self removeCountDownTimer];
+    [self removeFunctionNotification];
 }
 
 #pragma mark - Private Methods
@@ -83,6 +85,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nDidConnectPeripheral) name:NOTIFY_DidConnectPeripheral object:nil];
 }
 
+- (void)removeFunctionNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)showFunSettingView {
     self.funSettingView.hidden = NO;
     self.funAlertView.hidden = YES;
@@ -94,14 +100,18 @@
 }
 
 - (void)timeCountDown {
-    self.timeout--;
+    
     NSUInteger minutes = self.timeout / 60;
     NSUInteger seconds = self.timeout % 60;
     
     [self.funTimeView setTimeText:[NSString stringWithFormat:@"%.2lu:%.2lu",(long)minutes, (long)seconds]];
+    self.timeout--;
     
     if (!minutes && !seconds) {
         [self removeCountDownTimer];
+        [self.funTimeView showOKBtn];
+        [self showFunAlertView];
+        [BLE_VALUE playNotiSound];
     }
 }
 
@@ -130,35 +140,52 @@
     if (BLE_VALUE.command.intValue == 1) {
         if (BLE_VALUE.system.intValue == 1) {
             NSLog(@"设备关机");
+            [self.funTimeView showTimeLabel];
         }
     }
     else if (BLE_VALUE.command.intValue == 2) {
         if (BLE_VALUE.system.intValue == 2) {
             NSLog(@"设备待机待操作");
             [self.funTimeView showStartBtn];
+            [self.funTimeView showTimeLabel];
         }
     }
     else if (BLE_VALUE.command.intValue == 5) {
-        if (BLE_VALUE.system.intValue == 2) {
+        if (BLE_VALUE.system.intValue == 1) {
+            NSLog(@"设备关机");
+            [self.funTimeView showTimeLabel];
+        }
+        else if (BLE_VALUE.system.intValue == 2) {
             NSLog(@"设备待机待操作");
             [self.funTimeView showStartBtn];
+            [self.funTimeView showTimeLabel];
         }
         else if (BLE_VALUE.system.intValue == 3) {
             
             if (BLE_VALUE.minute.intValue == 0 &&
                 BLE_VALUE.second.intValue == 0) {
+                [self removeCountDownTimer];
                 [self.funTimeView showOKBtn];
                 [self showFunAlertView];
+                [BLE_VALUE playNotiSound];
             }
             else {
+                [self createCountDownTimer];
                 [self.funTimeView showCancleBtn];
                 [self showFunSettingView];
             }
+            
+            self.timeout = BLE_VALUE.minute.intValue * 60 + BLE_VALUE.second.intValue;
             NSString *timeText = [NSString stringWithFormat:@"%@:%@", BLE_VALUE.minute, BLE_VALUE.second];
             [self.funTimeView setTimeText:timeText];
+            [self.funTimeView showTimeLabel];
             [self.funSettingView setPickViewNumber:BLE_VALUE.number];
             [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
             [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
+        }
+        else {
+            NSLog(@"设备故障");
+            [self.funTimeView showTextLabel];
         }
     }
 }
@@ -167,27 +194,27 @@
 
 
 - (void)createCountDownTimer {
-    
-    [self removeCountDownTimer];
-    
-    NSLog(@"创建倒计时");
-    
-    self.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeCountDown) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.countDownTimer forMode:NSDefaultRunLoopMode];
-    
-    [self.countDownTimer fire];
-    
+    if (!_countDownTimer) {
+        NSLog(@"创建倒计时");
+        
+        _countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeCountDown) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.countDownTimer forMode:NSDefaultRunLoopMode];
+        [_countDownTimer fire];
+    }
 }
 
 - (void)removeCountDownTimer {
-    if (self.countDownTimer) {
+    if (_countDownTimer) {
         NSLog(@"移除倒计时");
-        [self.countDownTimer invalidate];
-        self.countDownTimer = nil;
+        [_countDownTimer invalidate];
+        _countDownTimer = nil;
     }
 }
 
 #pragma mark - Event
+- (void)clickVoiceBtn:(id)sender {
+    self.voiceBtn.isHigh = !self.voiceBtn.isHigh;
+}
 
 - (void)clickSettingGuideBtn:(id)sender {
     JJSettingGuideVC *vc = [[JJSettingGuideVC alloc] init];
@@ -197,25 +224,6 @@
 - (void)clickBackBtn:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
-
-#if 0
-- (void)clickStartBtn:(id)sender {
-    
-//    NSString *time = [self.numberPickArr objectAtIndex:[self.numberPickView selectedRowInComponent:0]];
-    NSString *time = nil;
-    [self.funTimeView setTimeText:[NSString stringWithFormat:@"%.2ld:00", (long)time.integerValue]];
-    self.timeout = time.integerValue * 60;
-    
-    if (self.countDownTimer) {
-        [self removeCountDownTimer];
-        [self.startBtn setTitle:@"Start" forState:UIControlStateNormal];
-    }
-    else {
-        [self createCountDownTimer];
-        [self.startBtn setTitle:@"Cancel" forState:UIControlStateNormal];
-    }
-}
-#endif
 
 #pragma mark - JJFunSettingViewDelegate
 
@@ -231,22 +239,27 @@
 
 - (void)clickFunTimeCancleBtn:(JJFunSettingControlBtn *)btn {
     [JJMessage sendCancleData];
+    [self removeCountDownTimer];
+    [self.funTimeView showStartBtn];
 }
 
 - (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn {
+    [CENTRAL_MANAGER cancelPeripheralConnection];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
 #pragma mark - Property
-- (UIButton *)voiceBtn {
+- (JJSelectBtn *)voiceBtn {
     if (_voiceBtn) {
         return _voiceBtn;
     }
-    _voiceBtn = [[UIButton alloc] init];
-    _voiceBtn.frame = CGRectMake(8, 15, 25, 25);
-    [_voiceBtn setImage:[UIImage imageNamed:@"icon_soundon"] forState:UIControlStateNormal];
-    [_voiceBtn setImage:[UIImage imageNamed:@"icon_soundoff"] forState:UIControlStateHighlighted];
+    _voiceBtn = [[JJSelectBtn alloc] init];
+    _voiceBtn.frame = CGRectMake(8, 15, 35, 35);
+    _voiceBtn.normalImage = @"icon_soundon";
+    _voiceBtn.highImage = @"icon_soundoff";
+    _voiceBtn.isHigh = NO;
+    [_voiceBtn addTarget:self action:@selector(clickVoiceBtn:) forControlEvents:UIControlEventTouchUpInside];
     return _voiceBtn;
 }
 

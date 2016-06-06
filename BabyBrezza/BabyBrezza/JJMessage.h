@@ -24,4 +24,6 @@
 //关闭蓝牙设备
 + (void)closeCurPeripheral;
 
+
+
 @end

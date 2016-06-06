@@ -27,6 +27,10 @@
 
 @property (nonatomic, weak) id <JJFunTimeViewDelegate> delegate;
 
+- (void)showTimeLabel;
+
+- (void)showTextLabel;
+
 - (void)setTimeText:(NSString *)time;
 
 - (void)showStartBtn;

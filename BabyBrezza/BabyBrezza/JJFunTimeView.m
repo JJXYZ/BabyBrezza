@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
+@property (nonatomic, strong) UILabel *textLabel;
+
 @property (nonatomic, strong) JJFunSettingControlBtn *startBtn;
 
 @property (nonatomic, strong) JJFunSettingControlBtn *cancleBtn;
@@ -39,11 +41,19 @@
 - (void)layoutFunTimeViewUI {
     self.backgroundColor = [UIColor clearColor];
     [self addSubview:self.timeLabel];
+    [self addSubview:self.textLabel];
     [self addSubview:self.startBtn];
     [self addSubview:self.cancleBtn];
     [self addSubview:self.okBtn];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self);
+        make.right.equalTo(self);
+        make.left.equalTo(self);
+        make.height.equalTo(@(S_SCALE_H_4(80)));
+    }];
+    
+    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.right.equalTo(self);
         make.left.equalTo(self);
@@ -101,6 +111,18 @@
 }
 
 #pragma mark - Public Methods
+
+- (void)showTimeLabel {
+    self.timeLabel.hidden = NO;
+    self.textLabel.hidden = YES;
+}
+
+- (void)showTextLabel {
+    self.timeLabel.hidden = YES;
+    self.textLabel.hidden = NO;
+}
+
+
 - (void)showStartBtn {
     self.startBtn.hidden = NO;
     self.cancleBtn.hidden = YES;
@@ -133,6 +155,22 @@
     _timeLabel.text = @"00:00";
     return _timeLabel;
 }
+
+- (UILabel *)textLabel {
+    if (_textLabel) {
+        return _textLabel;
+    }
+    _textLabel = [[UILabel alloc] init];
+    _textLabel.hidden = YES;
+    _textLabel.numberOfLines = 0;
+    _textLabel.textAlignment = NSTextAlignmentCenter;
+    _textLabel.backgroundColor = [UIColor clearColor];
+    _textLabel.textColor = [UIColor blackColor];
+    _textLabel.font = S_FONT(20);
+    _textLabel.text = @"Please see troubleshooting section\n in the instruction manual";
+    return _textLabel;
+}
+
 
 - (JJFunSettingControlBtn *)startBtn {
     if (_startBtn) {
