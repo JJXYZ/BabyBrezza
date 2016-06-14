@@ -10,6 +10,8 @@
 
 @interface JJMessage : NSObject
 
++ (NSString *)getTimeWithNumber:(NSUInteger)number temp:(NSUInteger)temp speed:(NSUInteger)speed;
+
 + (void)sendSettingData;
 
 + (void)sendStartData;

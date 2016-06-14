@@ -75,6 +75,12 @@
 }
 
 #pragma mark - Public Methods
+
+- (NSUInteger)getPickViewNumber {
+    NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
+    return curRow + 1;
+}
+
 - (void)setPickViewNumber:(NSString *)number {
     NSInteger row = number.integerValue - 1;
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
@@ -83,12 +89,22 @@
     }
 }
 
+- (NSUInteger)getPickViewTemp {
+    NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
+    return curRow + 1;
+}
+
 - (void)setPickViewTemp:(NSString *)temp {
     NSInteger row = temp.integerValue - 1;
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
     if (row != curRow) {
         [self.funSettingPickView selectRow:row inComponent:1 animated:YES];
     }
+}
+
+- (NSUInteger)getPickViewSpeed {
+    NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
+    return curRow + 1;
 }
 
 - (void)setPickViewSpeed:(NSString *)speed {

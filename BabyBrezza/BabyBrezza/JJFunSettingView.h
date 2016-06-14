@@ -22,9 +22,15 @@
 
 @property (nonatomic, weak) id <JJFunSettingViewDelegate> delegate;
 
+- (NSUInteger)getPickViewNumber;
+
 - (void)setPickViewNumber:(NSString *)number;
 
+- (NSUInteger)getPickViewTemp;
+
 - (void)setPickViewTemp:(NSString *)temp;
+
+- (NSUInteger)getPickViewSpeed;
 
 - (void)setPickViewSpeed:(NSString *)speed;
 

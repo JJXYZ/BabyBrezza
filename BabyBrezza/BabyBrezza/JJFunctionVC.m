@@ -229,6 +229,8 @@
 
 - (void)clickFunSettingView:(JJFunSettingBtn *)btn {
     [JJMessage sendSettingData];
+    
+    
 }
 
 #pragma mark - JJFunTimeViewDelegate
