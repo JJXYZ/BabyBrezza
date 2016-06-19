@@ -36,6 +36,4 @@
 
 - (void)setPickViewSpeed:(NSString *)speed;
 
-- (void)showStartBtn;
-
 @end

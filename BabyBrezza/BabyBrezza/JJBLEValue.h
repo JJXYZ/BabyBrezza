@@ -46,7 +46,7 @@
 @property (nonatomic, strong) NSString *startFlagl;
 
 
-- (void)playNotiSound;
+- (void)playNotiSound:(BOOL)isSound;
 
 - (NSString *)getTime;
 - (NSString *)getTimeWithNumber:(NSUInteger)number temp:(NSUInteger)temp speed:(NSUInteger)speed;

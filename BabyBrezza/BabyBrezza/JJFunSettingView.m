@@ -14,6 +14,8 @@
 
 #define PickerView_H 100
 
+#define NumberPickerViewNum 1000
+
 @interface JJFunSettingView () <UIPickerViewDataSource, UIPickerViewDelegate, JJFunSettingBtnViewDelegate>
 
 @property (nonatomic, strong) UIPickerView *funSettingPickView;
@@ -85,7 +87,7 @@
     NSInteger row = number.integerValue - 1;
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
     if (row != curRow) {
-        [self.funSettingPickView selectRow:row inComponent:0 animated:YES];
+        [self.funSettingPickView selectRow:row + self.numberPickArr.count * NumberPickerViewNum/2 inComponent:0 animated:YES];
     }
 }
 
@@ -130,18 +132,19 @@
     BLE_VALUE.speed = [NSString stringWithFormat:@"%lu", (unsigned long)speed];
 }
 
+
 #pragma mark - JJFunSettingBtnViewDelegate
 - (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn {
     JJFunBtnType type = btn.type;
     if (type == FunBtnType_NumUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
         [self.funSettingPickView selectRow:++curRow inComponent:0 animated:YES];
-        [self setValueNumberRow:curRow];
+        [self setValueNumberRow:curRow % self.numberPickArr.count];
     }
     else if (type == FunBtnType_NumDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
         [self.funSettingPickView selectRow:--curRow inComponent:0 animated:YES];
-        [self setValueNumberRow:curRow];
+        [self setValueNumberRow:curRow % self.numberPickArr.count];
     }
     else if (type == FunBtnType_TempUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
@@ -177,7 +180,7 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
     if (component == 0) {
-        return self.numberPickArr.count;
+        return self.numberPickArr.count * NumberPickerViewNum;
     }
     else if (component == 1) {
         return self.tempPickArr.count;
@@ -190,11 +193,14 @@
 }
 
 #pragma mark - UIPickerViewDelegate
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return (S_SCALE_H_4(27));
+}
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     NSUInteger numberRow = [self.funSettingPickView selectedRowInComponent:0];
-    [self setValueNumberRow:numberRow];
+    [self setValueNumberRow:numberRow % self.numberPickArr.count];
     
     NSUInteger tempRow = [self.funSettingPickView selectedRowInComponent:1];
     [self setValueTempRow:tempRow];
@@ -205,12 +211,17 @@
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectRowNumber:temp:speed:)]) {
         [_delegate didSelectRowNumber:nil temp:nil speed:nil];
     }
+    
+    if (component == 0) {
+        NSLog(@"row = %ld", (long)row);
+        [self.funSettingPickView selectRow:row % self.numberPickArr.count + self.numberPickArr.count * NumberPickerViewNum/2 inComponent:0 animated:NO];
+    }
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
     if (component == 0) {
-        return [self.numberPickArr objectAtIndex:row];
+        return [self.numberPickArr objectAtIndex:row % self.numberPickArr.count];
     }
     else if (component == 1) {
         return [self.tempPickArr objectAtIndex:row];

@@ -16,6 +16,7 @@
 #import "JJMessage.h"
 #import "JJCBCentralManager.h"
 #import "JJSelectBtn.h"
+#import "JJLocalNotificationManager.h"
 
 @interface JJFunctionVC () <JJFunSettingViewDelegate, JJFunTimeViewDelegate>
 
@@ -148,8 +149,13 @@
         [self removeCountDownTimer];
         [self.funTimeView showOKBtn];
         [self showFunAlertView];
-        [BLE_VALUE playNotiSound];
+        [BLE_VALUE playNotiSound:!self.voiceBtn.isHigh];
         [self.funTimeView animationTimeLabel];
+        
+        UIApplication *application = [UIApplication sharedApplication];
+        if (application.applicationState != UIApplicationStateActive) {
+            [[JJLocalNotificationManager sharedInstance] addLocalNotification];
+        }
     }
 }
 
@@ -272,6 +278,8 @@
 #pragma mark - Event
 - (void)clickVoiceBtn:(id)sender {
     self.voiceBtn.isHigh = !self.voiceBtn.isHigh;
+    
+    [BLE_VALUE playNotiSound:!self.voiceBtn.isHigh];
 }
 
 - (void)clickSettingGuideBtn:(id)sender {

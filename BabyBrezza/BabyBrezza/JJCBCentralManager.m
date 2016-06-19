@@ -30,7 +30,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:nil];
+        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:@{CBCentralManagerOptionRestoreIdentifierKey: @"restoreIdentifier"}];
         _isAutoConnect = YES;
     }
     return self;
@@ -290,6 +290,11 @@
 /** 后台完成一些蓝牙相关的任务，同步你的应用程序的状态 */
 - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict {
     NSLog(@"centralManager:willRestoreState:");
+    
+    /** 获取Central管理器已连接的或尝试连接的所有Peripheral设备的列表 
+        NSArray *peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey];
+     */
+    
 }
 
 /** 当外围设备广播同样的UUID信号被发现时，这个代理函数被调用。这时我们要监测RSSI即Received Signal Strength Indication接收的信号强度指示，确保足够近，我们才连接它 */

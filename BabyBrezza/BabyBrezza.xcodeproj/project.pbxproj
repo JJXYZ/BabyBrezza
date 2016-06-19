@@ -36,6 +36,7 @@
 		69AB0F9B1CFAB1DA00F15D4A /* UIButton+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F9A1CFAB1DA00F15D4A /* UIButton+JJCommon.m */; };
 		69AB0F9E1CFAB1FF00F15D4A /* UIImage+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0F9D1CFAB1FE00F15D4A /* UIImage+JJCommon.m */; };
 		69AB0FA21CFAB9C800F15D4A /* JJRoundBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */; };
+		69ABAFE41D169F2B008D9BC3 /* JJLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ABAFE31D169F2B008D9BC3 /* JJLocalNotificationManager.m */; };
 		69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */; };
 		69F937AA1BBBEFA4005F7399 /* JJPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A51BBBEFA4005F7399 /* JJPeripheralManager.m */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,8 @@
 		69AB0F9D1CFAB1FE00F15D4A /* UIImage+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JJCommon.m"; sourceTree = "<group>"; };
 		69AB0FA01CFAB9C800F15D4A /* JJRoundBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRoundBtn.h; sourceTree = "<group>"; };
 		69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRoundBtn.m; sourceTree = "<group>"; };
+		69ABAFE21D169F2B008D9BC3 /* JJLocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJLocalNotificationManager.h; sourceTree = "<group>"; };
+		69ABAFE31D169F2B008D9BC3 /* JJLocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJLocalNotificationManager.m; sourceTree = "<group>"; };
 		69F9379D1BBBE90F005F7399 /* UIView+JJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JJCommon.h"; sourceTree = "<group>"; };
 		69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JJCommon.m"; sourceTree = "<group>"; };
 		69F937A41BBBEFA4005F7399 /* JJPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPeripheralManager.h; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 		6973F4491BBBD1A600D7737D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				69ABAFE11D169F03008D9BC3 /* LocalNotification */,
 				696AF8DD1D05DF0C00E89E9B /* Resource */,
 				6944A8E91CFC923200E1089B /* Utils */,
 				69F9379B1BBBE5AF005F7399 /* Third_Libraries */,
@@ -334,6 +338,15 @@
 				69AB0FA11CFAB9C800F15D4A /* JJRoundBtn.m */,
 			);
 			name = JJRoundBtn;
+			sourceTree = "<group>";
+		};
+		69ABAFE11D169F03008D9BC3 /* LocalNotification */ = {
+			isa = PBXGroup;
+			children = (
+				69ABAFE21D169F2B008D9BC3 /* JJLocalNotificationManager.h */,
+				69ABAFE31D169F2B008D9BC3 /* JJLocalNotificationManager.m */,
+			);
+			name = LocalNotification;
 			sourceTree = "<group>";
 		};
 		69F937991BBBE544005F7399 /* Define */ = {
@@ -526,6 +539,7 @@
 				69AB0F981CFA901300F15D4A /* JJFunBottomView.m in Sources */,
 				69AB0F8B1CF9A00C00F15D4A /* JJFunSettingBtnView.m in Sources */,
 				6973F44D1BBBD1E700D7737D /* JJRootVC.m in Sources */,
+				69ABAFE41D169F2B008D9BC3 /* JJLocalNotificationManager.m in Sources */,
 				6944A8EF1CFC929C00E1089B /* BBUtils.m in Sources */,
 				69AB0F8F1CFA795D00F15D4A /* JJFunSettingBtn.m in Sources */,
 				69AB0F921CFA8AF000F15D4A /* JJFunSettingControlBtn.m in Sources */,

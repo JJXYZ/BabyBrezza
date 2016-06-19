@@ -71,13 +71,21 @@
     self.flagl = nil;
 }
 
-- (void)playNotiSound {
-    if (!self.player.isPlaying) {
-        [self.player prepareToPlay];
-        [self.player play];
+- (void)playNotiSound:(BOOL)isSound {
+    if (isSound) {
+        if (!self.player.isPlaying) {
+            [self.player prepareToPlay];
+            [self.player play];
+        }
+    }
+    else {
+        [self playVibrate];
     }
 }
 
+- (void)playVibrate {
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
 
 - (NSString *)getTime {
     return [self getTimeWithNumber:self.number.integerValue temp:self.temp.integerValue speed:self.speed.integerValue];

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "JJMainVC.h"
 #import "JJRootNC.h"
+#import "JJLocalNotificationManager.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self appDidFinishLaunchingUI];
+    
+    /** 获取所有Central管理器对象的恢复标识: 
+     NSArray *centralManagerIdentifiers = launchOptions[UIApplicationLaunchOptionsBluetoothCentralsKey];
+     */
+    
+    [[JJLocalNotificationManager sharedInstance] registerLocalNotication];
+    
     return YES;
 }
 

@@ -11,6 +11,7 @@
 #import "JJCBCentralManager.h"
 #import "JJBLEManager.h"
 #import "JJMessage.h"
+#import "JJBLEValue.h"
 /** VC */
 #import "JJConnectVC.h"
 #import "JJFunctionVC.h"
@@ -100,9 +101,15 @@
 
 - (void)clickScanBtn:(id)sender {
 #if 0
+    [BLE_VALUE playNotiSound:NO];
+    return ;
+#endif
+    
+#if 0
     [self pushConnectedVC];
     return ;
 #endif
+    
     self.scanBtn.hidden = YES;
     [BLE_MANAGER stopScan];
     [BLE_MANAGER createScanTimer];
