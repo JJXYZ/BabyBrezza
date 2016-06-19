@@ -341,14 +341,14 @@
         return _settingGuideBtn;
     }
     _settingGuideBtn = [[UIButton alloc] init];
-    _settingGuideBtn.frame = CGRectMake(M_SCREEN_W - 5 - 110, 15, 110, 25);
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 82, 25)];
-    label.font = S_FONT(13);
+    _settingGuideBtn.frame = CGRectMake(M_SCREEN_W - 5 - 130, 20, 130, 25);
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
+    label.font = S_FONT(16);
     label.textAlignment = NSTextAlignmentRight;
     label.userInteractionEnabled = NO;
     label.text = @"setting guide";
     [_settingGuideBtn addSubview:label];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(80, 0, 25, 25)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 0, 25, 25)];
     imageView.userInteractionEnabled = NO;
     imageView.image = [UIImage imageNamed:@"rightArrow"];
     [_settingGuideBtn addSubview:imageView];

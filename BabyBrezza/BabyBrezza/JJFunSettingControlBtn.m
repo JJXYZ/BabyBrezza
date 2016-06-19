@@ -34,7 +34,7 @@
 #pragma mark - Private Methods
 
 - (void)layoutControllerBtnUI {
-    
+    self.titleLabel.font = S_FONT(25);
 }
 
 @end

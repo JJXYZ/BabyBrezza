@@ -60,8 +60,8 @@
         return _scrollView;
     }
     _scrollView = [[UIScrollView alloc] init];
-    _scrollView.frame = self.view.bounds;
-    _scrollView.contentSize = CGSizeMake(self.view.width, self.dataArr.count * self.view.height);
+    _scrollView.frame = CGRectMake(0, 55, M_SCREEN_W, M_SCREEN_H - 55);
+    _scrollView.contentSize = CGSizeMake(self.view.width, self.dataArr.count * _scrollView.height);
     _scrollView.backgroundColor = [UIColor clearColor];
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = YES;
@@ -85,7 +85,7 @@
         return _backBtn;
     }
     _backBtn = [[UIButton alloc] init];
-    _backBtn.frame = CGRectMake(5, 20, 25, 25);
+    _backBtn.frame = CGRectMake(5, 20, 35, 35);
     [_backBtn setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(clickBackBtn:) forControlEvents:UIControlEventTouchUpInside];
     return _backBtn;
