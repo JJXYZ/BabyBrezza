@@ -27,6 +27,9 @@
 /** 记录当前已经连上的设备 */
 @property (nonatomic, strong) CBPeripheral *curPeripheral;
 
+/** 是否允许自动重连 */
+@property (nonatomic, assign) BOOL isAutoConnect;
+
 /** 开始扫描 */
 - (void)scan;
 
@@ -35,6 +38,9 @@
 
 /** 连接设备 */
 - (void)connectToPeripherl:(CBPeripheral *)peripheral;
+
+/** 移除重连定时器 */
+- (void)removeRetrieveTimer;
 
 /** 取消当前设备的连接 */
 - (void)cancelPeripheralConnection;

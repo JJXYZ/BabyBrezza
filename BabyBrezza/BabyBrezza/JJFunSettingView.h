@@ -14,7 +14,9 @@
 @protocol JJFunSettingViewDelegate <NSObject>
 
 @optional
+
 - (void)clickFunSettingView:(JJFunSettingBtn *)btn;
+- (void)didSelectRowNumber:(NSString *)number temp:(NSString *)temp speed:(NSString *)speed;
 
 @end
 

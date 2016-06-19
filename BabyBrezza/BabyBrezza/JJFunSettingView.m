@@ -192,17 +192,18 @@
 #pragma mark - UIPickerViewDelegate
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (component == 0) {
-        NSString *number = [self.numberPickArr objectAtIndex:row];
-        NSLog(@"%@", number);
-    }
-    else if (component == 1) {
-        NSString *speed = [self.tempPickArr objectAtIndex:row];
-        NSLog(@"%@", speed);
-    }
-    else if (component == 2) {
-        NSString *temp = [self.speedPickArr objectAtIndex:row];
-        NSLog(@"%@", temp);
+    
+    NSUInteger numberRow = [self.funSettingPickView selectedRowInComponent:0];
+    [self setValueNumberRow:numberRow];
+    
+    NSUInteger tempRow = [self.funSettingPickView selectedRowInComponent:1];
+    [self setValueTempRow:tempRow];
+    
+    NSUInteger speedRow = [self.funSettingPickView selectedRowInComponent:2];
+    [self setValueSpeedRow:speedRow];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(didSelectRowNumber:temp:speed:)]) {
+        [_delegate didSelectRowNumber:nil temp:nil speed:nil];
     }
 }
 
@@ -238,6 +239,7 @@
         return _funSettingPickView;
     }
     _funSettingPickView = [[UIPickerView alloc] init];
+    
     _funSettingPickView.backgroundColor = [UIColor clearColor];
     _funSettingPickView.delegate = self;
     _funSettingPickView.dataSource = self;
@@ -260,7 +262,7 @@
     if (_numberPickArr) {
         return _numberPickArr;
     }
-    _numberPickArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"Bottle oz", nil];
+    _numberPickArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"defrost", nil];
     return _numberPickArr;
 }
 

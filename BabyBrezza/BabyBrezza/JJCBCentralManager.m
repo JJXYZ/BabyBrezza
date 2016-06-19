@@ -31,6 +31,7 @@
     self = [super init];
     if (self) {
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:nil];
+        _isAutoConnect = YES;
     }
     return self;
 }
@@ -38,6 +39,9 @@
 #pragma mark - NSTimer
 /** 创建重连定时器 */
 - (void)creatRetrieveTimer {
+    if (!self.isAutoConnect) {
+        return ;
+    }
     [self removeRetrieveTimer];
     NSLog(@"创建重连定时器");
     _retrieveTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(scan) userInfo:nil repeats:YES];
@@ -118,6 +122,12 @@
 }
 
 #pragma mark - Public Methods
+
+- (void)showAlertView {
+    UIAlertView  *alert = [[UIAlertView alloc]initWithTitle:@"Turn on Bluetooth" message:@"An app wants to turn on Bluetooth" delegate:self cancelButtonTitle:@"Allow" otherButtonTitles: nil];
+    [alert show];
+}
+
 /** 开始扫描 */
 - (void)scan
 {
@@ -240,8 +250,9 @@
         {
             NSLog(@"CoreBluetooth BLE hardware is powered off");
             self.curPeripheral = nil;
-            /** 创建重连定时器 */
-            [self creatRetrieveTimer];
+            
+            [self showAlertView];
+            
             if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManagerStatePoweredOff)]) {
                 [_delegate JJCBCentralManagerStatePoweredOff];
             }
@@ -249,6 +260,9 @@
             break;
         case CBCentralManagerStatePoweredOn:
         {
+            /** 创建重连定时器 */
+            [self creatRetrieveTimer];
+            
             /** 这里表示蓝牙已经开启 可以进行扫描 */
             NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
             if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:canScanForPeripherals:)]) {

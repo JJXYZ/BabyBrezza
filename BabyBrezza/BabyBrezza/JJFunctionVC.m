@@ -35,6 +35,13 @@
 /** 倒计时 */
 @property (nonatomic, strong) NSTimer *countDownTimer;
 
+/** 闪烁5s */
+@property (nonatomic, strong) NSTimer *showTimer;
+
+@property (assign, nonatomic) NSUInteger showTimerCount;
+
+@property (nonatomic, assign) FunStatusType funStausType;
+
 @end
 
 @implementation JJFunctionVC
@@ -58,6 +65,11 @@
     [super viewDidLoad];    
     [self layoutFuncionUI];
     [self addFunNotification];
+    [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)dealloc {
@@ -66,6 +78,14 @@
 }
 
 #pragma mark - Private Methods
+- (void)loadData {
+    self.funStausType = FunStatusType_Normal;
+    [JJMessage sendSettingData];
+    [self.funSettingView setPickViewNumber:BLE_VALUE.number];
+    [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
+    [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
+    [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
+}
 
 - (void)layoutFuncionUI {
     [self.view addSubview:self.voiceBtn];
@@ -99,6 +119,13 @@
     self.funAlertView.hidden = NO;
 }
 
+- (void)setFunTimeViewText:(NSUInteger)time {
+    NSUInteger minutes = time / 60;
+    NSUInteger seconds = time % 60;
+    
+    [self.funTimeView setTimeText:[NSString stringWithFormat:@"%.2lu:%.2lu",(long)minutes, (long)seconds]];
+}
+
 - (void)timeCountDown {
     
     NSUInteger minutes = self.timeout / 60;
@@ -107,11 +134,22 @@
     [self.funTimeView setTimeText:[NSString stringWithFormat:@"%.2lu:%.2lu",(long)minutes, (long)seconds]];
     self.timeout--;
     
-    if (!minutes && !seconds) {
+    [self funSuccessMinutes:minutes seconds:seconds];
+    
+}
+
+- (void)timeShow {
+    
+}
+
+- (void)funSuccessMinutes:(NSUInteger)minutes seconds:(NSUInteger)seconds {
+    if (!minutes && !seconds && self.funStausType == FunStatusType_Start) {
+        self.funStausType = FunStatusType_Finish;
         [self removeCountDownTimer];
         [self.funTimeView showOKBtn];
         [self showFunAlertView];
         [BLE_VALUE playNotiSound];
+        [self.funTimeView animationTimeLabel];
     }
 }
 
@@ -140,12 +178,14 @@
     if (BLE_VALUE.command.intValue == 1) {
         if (BLE_VALUE.system.intValue == 1) {
             NSLog(@"设备关机");
+            self.funStausType = FunStatusType_Normal;
             [self.funTimeView showTimeLabel];
         }
     }
     else if (BLE_VALUE.command.intValue == 2) {
         if (BLE_VALUE.system.intValue == 2) {
             NSLog(@"设备待机待操作");
+            self.funStausType = FunStatusType_Normal;
             [self.funTimeView showStartBtn];
             [self.funTimeView showTimeLabel];
         }
@@ -153,38 +193,40 @@
     else if (BLE_VALUE.command.intValue == 5) {
         if (BLE_VALUE.system.intValue == 1) {
             NSLog(@"设备关机");
+            self.funStausType = FunStatusType_Normal;
             [self.funTimeView showTimeLabel];
         }
         else if (BLE_VALUE.system.intValue == 2) {
             NSLog(@"设备待机待操作");
+            self.funStausType = FunStatusType_Normal;
             [self.funTimeView showStartBtn];
             [self.funTimeView showTimeLabel];
         }
         else if (BLE_VALUE.system.intValue == 3) {
             
-            if (BLE_VALUE.minute.intValue == 0 &&
-                BLE_VALUE.second.intValue == 0) {
-                [self removeCountDownTimer];
-                [self.funTimeView showOKBtn];
-                [self showFunAlertView];
-                [BLE_VALUE playNotiSound];
-            }
-            else {
-                [self createCountDownTimer];
-                [self.funTimeView showCancleBtn];
-                [self showFunSettingView];
-            }
-            
             self.timeout = BLE_VALUE.minute.intValue * 60 + BLE_VALUE.second.intValue;
             NSString *timeText = [NSString stringWithFormat:@"%@:%@", BLE_VALUE.minute, BLE_VALUE.second];
             [self.funTimeView setTimeText:timeText];
-            [self.funTimeView showTimeLabel];
+            
             [self.funSettingView setPickViewNumber:BLE_VALUE.number];
             [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
             [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
+            
+            if (BLE_VALUE.minute.integerValue == 0 &&
+                BLE_VALUE.second.integerValue == 0) {
+                [self funSuccessMinutes:BLE_VALUE.minute.integerValue seconds:BLE_VALUE.second.integerValue];
+            }
+            else {
+                self.funStausType = FunStatusType_Start;
+                [self createCountDownTimer];
+                [self.funTimeView showcancelBtn];
+                [self showFunSettingView];
+                [self.funTimeView showTimeLabel];
+            }
         }
         else {
             NSLog(@"设备故障");
+            self.funStausType = FunStatusType_Normal;
             [self.funTimeView showTextLabel];
         }
     }
@@ -211,6 +253,22 @@
     }
 }
 
+- (void)createShowTimer {
+    if (!_showTimer) {
+        self.showTimerCount = 0;
+        _showTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeShow) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.countDownTimer forMode:NSDefaultRunLoopMode];
+        [_showTimer fire];
+    }
+}
+
+- (void)removeShowTimer {
+    if (_showTimer) {
+        [_showTimer invalidate];
+        _showTimer = nil;
+    }
+}
+
 #pragma mark - Event
 - (void)clickVoiceBtn:(id)sender {
     self.voiceBtn.isHigh = !self.voiceBtn.isHigh;
@@ -229,8 +287,12 @@
 
 - (void)clickFunSettingView:(JJFunSettingBtn *)btn {
     [JJMessage sendSettingData];
-    
-    
+    [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
+}
+
+- (void)didSelectRowNumber:(NSString *)number temp:(NSString *)temp speed:(NSString *)speed {
+    [JJMessage sendSettingData];
+    [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
 }
 
 #pragma mark - JJFunTimeViewDelegate
@@ -239,14 +301,15 @@
     [JJMessage sendStartData];
 }
 
-- (void)clickFunTimeCancleBtn:(JJFunSettingControlBtn *)btn {
-    [JJMessage sendCancleData];
+- (void)clickFunTimecancelBtn:(JJFunSettingControlBtn *)btn {
+    [JJMessage sendcancelData];
     [self removeCountDownTimer];
     [self.funTimeView showStartBtn];
 }
 
 - (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn {
     [CENTRAL_MANAGER cancelPeripheralConnection];
+    [CENTRAL_MANAGER removeRetrieveTimer];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

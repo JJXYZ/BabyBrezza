@@ -13,11 +13,18 @@
 #define F_T_BTN_SIZE (S_SCALE_H_4(70))
 #define F_T_BTN_Y (S_SCALE_H_4(10))
 
+
+typedef NS_ENUM(NSUInteger, FunStatusType) {
+    FunStatusType_Normal = 0,
+    FunStatusType_Start,
+    FunStatusType_Finish,
+};
+
 @protocol JJFunTimeViewDelegate <NSObject>
 
 @optional
 - (void)clickFunTimeStartBtn:(JJFunSettingControlBtn *)btn;
-- (void)clickFunTimeCancleBtn:(JJFunSettingControlBtn *)btn;
+- (void)clickFunTimecancelBtn:(JJFunSettingControlBtn *)btn;
 - (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn;
 
 @end
@@ -29,13 +36,17 @@
 
 - (void)showTimeLabel;
 
+- (void)hideTimeLabel;
+
+- (void)animationTimeLabel;
+
 - (void)showTextLabel;
 
 - (void)setTimeText:(NSString *)time;
 
 - (void)showStartBtn;
 
-- (void)showCancleBtn;
+- (void)showcancelBtn;
 
 - (void)showOKBtn;
 

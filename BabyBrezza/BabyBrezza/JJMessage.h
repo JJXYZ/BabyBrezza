@@ -10,13 +10,13 @@
 
 @interface JJMessage : NSObject
 
-+ (NSString *)getTimeWithNumber:(NSUInteger)number temp:(NSUInteger)temp speed:(NSUInteger)speed;
+
 
 + (void)sendSettingData;
 
 + (void)sendStartData;
 
-+ (void)sendCancleData;
++ (void)sendcancelData;
 
 + (void)receiveData:(NSData *)data;
 
@@ -25,7 +25,6 @@
 
 //关闭蓝牙设备
 + (void)closeCurPeripheral;
-
 
 
 @end

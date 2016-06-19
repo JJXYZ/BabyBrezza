@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) JJFunSettingControlBtn *startBtn;
 
-@property (nonatomic, strong) JJFunSettingControlBtn *cancleBtn;
+@property (nonatomic, strong) JJFunSettingControlBtn *cancelBtn;
 
 @property (nonatomic, strong) JJFunSettingControlBtn *okBtn;
 
@@ -43,7 +43,7 @@
     [self addSubview:self.timeLabel];
     [self addSubview:self.textLabel];
     [self addSubview:self.startBtn];
-    [self addSubview:self.cancleBtn];
+    [self addSubview:self.cancelBtn];
     [self addSubview:self.okBtn];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -67,7 +67,7 @@
         make.height.equalTo(@(F_T_BTN_SIZE));
     }];
     
-    [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.timeLabel.mas_bottom).offset(F_T_BTN_Y);
         make.centerX.equalTo(self);
         make.width.equalTo(@(F_T_BTN_SIZE));
@@ -87,6 +87,21 @@
     self.timeLabel.text = time;
 }
 
+- (CABasicAnimation *)opacityForever_Animation:(float)time
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];//必须写opacity才行。
+    animation.fromValue = [NSNumber numberWithFloat:1.0f];
+    animation.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度。
+    animation.autoreverses = YES;
+    animation.duration = time;
+    animation.repeatCount = 5;
+    animation.removedOnCompletion = YES;
+    animation.fillMode = kCAFillModeForwards;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];///没有的话是均匀的动画。
+    return animation;
+}
+
+
 
 #pragma mark - Event
 
@@ -96,10 +111,10 @@
     }
 }
 
-- (void)clickCancleBtn:(JJFunSettingControlBtn *)btn {
+- (void)clickcancelBtn:(JJFunSettingControlBtn *)btn {
     
-    if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeCancleBtn:)]) {
-        [_delegate clickFunTimeCancleBtn:btn];
+    if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimecancelBtn:)]) {
+        [_delegate clickFunTimecancelBtn:btn];
     }
 }
 
@@ -117,6 +132,16 @@
     self.textLabel.hidden = YES;
 }
 
+- (void)hideTimeLabel {
+    self.timeLabel.hidden = YES;
+    self.textLabel.hidden = YES;
+}
+
+- (void)animationTimeLabel {
+    [self.timeLabel.layer addAnimation:[self opacityForever_Animation:1] forKey:nil];
+}
+
+
 - (void)showTextLabel {
     self.timeLabel.hidden = YES;
     self.textLabel.hidden = NO;
@@ -125,19 +150,19 @@
 
 - (void)showStartBtn {
     self.startBtn.hidden = NO;
-    self.cancleBtn.hidden = YES;
+    self.cancelBtn.hidden = YES;
     self.okBtn.hidden = YES;
 }
 
-- (void)showCancleBtn {
+- (void)showcancelBtn {
     self.startBtn.hidden = YES;
-    self.cancleBtn.hidden = NO;
+    self.cancelBtn.hidden = NO;
     self.okBtn.hidden = YES;
 }
 
 - (void)showOKBtn {
     self.startBtn.hidden = YES;
-    self.cancleBtn.hidden = YES;
+    self.cancelBtn.hidden = YES;
     self.okBtn.hidden = NO;
 }
 
@@ -186,18 +211,18 @@
     return _startBtn;
 }
 
-- (JJFunSettingControlBtn *)cancleBtn {
-    if (_cancleBtn) {
-        return _cancleBtn;
+- (JJFunSettingControlBtn *)cancelBtn {
+    if (_cancelBtn) {
+        return _cancelBtn;
     }
-    _cancleBtn = [[JJFunSettingControlBtn alloc] init];
-    [_cancleBtn setTitle:@"cancle" forState:UIControlStateNormal];
-    _cancleBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
-    _cancleBtn.backgroundColor = [UIColor funControlBtnOrangeColor];
-    _cancleBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
-    [_cancleBtn addTarget:self action:@selector(clickCancleBtn:) forControlEvents:UIControlEventTouchUpInside];
-    _cancleBtn.hidden = YES;
-    return _cancleBtn;
+    _cancelBtn = [[JJFunSettingControlBtn alloc] init];
+    [_cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
+    _cancelBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
+    _cancelBtn.backgroundColor = [UIColor funControlBtnOrangeColor];
+    _cancelBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
+    [_cancelBtn addTarget:self action:@selector(clickcancelBtn:) forControlEvents:UIControlEventTouchUpInside];
+    _cancelBtn.hidden = YES;
+    return _cancelBtn;
 }
 
 

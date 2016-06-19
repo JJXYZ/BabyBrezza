@@ -18,11 +18,6 @@
 
 #pragma mark - Public Methods
 
-+ (NSString *)getTimeWithNumber:(NSUInteger)number temp:(NSUInteger)temp speed:(NSUInteger)speed {
-    
-    return nil;
-}
-
 
 + (void)sendSettingData {
     [self sendDataCommand:0x03 system:0x02];
@@ -32,7 +27,7 @@
     [self sendDataCommand:0x03 system:0x03];
 }
 
-+ (void)sendCancleData {
++ (void)sendcancelData {
     [self sendDataCommand:0x02 system:0x02];
 }
 

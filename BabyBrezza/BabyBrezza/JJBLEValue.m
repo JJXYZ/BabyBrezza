@@ -13,6 +13,13 @@
 
 @property (nonatomic, strong) AVAudioPlayer *player;
 
+@property (nonatomic, strong) NSArray *tQuickRoomArr;
+@property (nonatomic, strong) NSArray *tQuickColdArr;
+@property (nonatomic, strong) NSArray *tSteadyRoomArr;
+@property (nonatomic, strong) NSArray *tSteadyColdArr;
+@property (nonatomic, strong) NSArray *tDeforstArr;
+
+
 @end
 @implementation JJBLEValue
 
@@ -30,7 +37,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
+        _number = @"4";
+        _speed = @"1";
+        _temp = @"1";
     }
     return self;
 }
@@ -68,6 +77,44 @@
         [self.player play];
     }
 }
+
+
+- (NSString *)getTime {
+    return [self getTimeWithNumber:self.number.integerValue temp:self.temp.integerValue speed:self.speed.integerValue];
+}
+
+
+- (NSString *)getTimeWithNumber:(NSUInteger)number temp:(NSUInteger)temp speed:(NSUInteger)speed {
+    
+    NSArray *tArr = nil;
+    NSString *timeStr = nil;
+    
+    if (number == 10) {
+        tArr = self.tDeforstArr;
+    }
+    else if (temp == 1 && speed == 1) {
+        tArr = self.tQuickRoomArr;
+    }
+    else if (temp == 2 && speed == 1) {
+        tArr = self.tQuickColdArr;
+    }
+    else if (temp == 1 && speed == 2) {
+        tArr = self.tSteadyRoomArr;
+    }
+    else if (temp == 2 && speed == 2) {
+        tArr = self.tSteadyColdArr;
+    }
+    
+    if (number == 10) {
+        timeStr = [self.tDeforstArr firstObject];
+    }
+    else {
+        timeStr = [tArr objectAtIndex:number - 1];
+    }
+    
+    return timeStr;
+}
+
 
 #pragma mark - Property
 
@@ -108,7 +155,49 @@
         return _player;
     }
     _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"noti_sound" ofType:@"mp3"]] error:nil];
+    _player.numberOfLoops = 0;
     return _player;
+}
+
+- (NSArray *)tQuickRoomArr {
+    if (_tQuickRoomArr) {
+        return _tQuickRoomArr;
+    }
+    _tQuickRoomArr = [NSArray arrayWithObjects:@"115",@"135",@"140",@"155",@"170",@"180",@"190",@"205",@"220", nil];
+    return _tQuickRoomArr;
+}
+
+- (NSArray *)tQuickColdArr {
+    if (_tQuickColdArr) {
+        return _tQuickColdArr;
+    }
+    _tQuickColdArr = [NSArray arrayWithObjects:@"140",@"160",@"180",@"205",@"240",@"240",@"260",@"285",@"290", nil];
+    return _tQuickColdArr;
+}
+
+- (NSArray *)tSteadyRoomArr {
+    if (_tSteadyRoomArr) {
+        return _tSteadyRoomArr;
+    }
+    _tSteadyRoomArr = [NSArray arrayWithObjects:@"225",@"260",@"270",@"330",@"335",@"390",@"410",@"490",@"540", nil];
+    return _tSteadyRoomArr;
+}
+
+
+- (NSArray *)tSteadyColdArr {
+    if (_tSteadyColdArr) {
+        return _tSteadyColdArr;
+    }
+    _tSteadyColdArr = [NSArray arrayWithObjects:@"225",@"260",@"295",@"320",@"355",@"390",@"410",@"490",@"540", nil];
+    return _tSteadyColdArr;
+}
+
+- (NSArray *)tDeforstArr {
+    if (_tDeforstArr) {
+        return _tDeforstArr;
+    }
+    _tDeforstArr = [NSArray arrayWithObjects:@"600", nil];
+    return _tDeforstArr;
 }
 
 @end

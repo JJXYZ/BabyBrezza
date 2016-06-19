@@ -48,5 +48,8 @@
 
 - (void)playNotiSound;
 
+- (NSString *)getTime;
+- (NSString *)getTimeWithNumber:(NSUInteger)number temp:(NSUInteger)temp speed:(NSUInteger)speed;
+
 @end
 

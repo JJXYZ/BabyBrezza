@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) UILabel *textLabel;
 
+@property (nonatomic, strong) UILabel *versionLabel;
+
 @end
 
 @implementation JJMainVC
@@ -48,18 +50,20 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self addMainNotification];
+    CENTRAL_MANAGER.isAutoConnect = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self removeMainNotification];
+    CENTRAL_MANAGER.isAutoConnect = YES;
 }
 
 #pragma mark - Private Methods
 - (void)layoutMainUI {
     [self.view addSubview:self.scanBtn];
     [self.view addSubview:self.textLabel];
-    
+    [self.view addSubview:self.versionLabel];
     [JJCBCentralManager sharedInstance];
     [JJBLEManager sharedInstance];
 }
@@ -81,11 +85,13 @@
 
 #pragma mark - Notification
 - (void)nDidConnectPeripheral {
+    self.scanBtn.hidden = NO;
     [SVProgressHUD dismiss];
     [self pushConnectedVC];
 }
 
 - (void)nTimerStopScan {
+    self.scanBtn.hidden = NO;
     [SVProgressHUD dismiss];
 }
 
@@ -97,9 +103,10 @@
     [self pushConnectedVC];
     return ;
 #endif
+    self.scanBtn.hidden = YES;
     [BLE_MANAGER stopScan];
     [BLE_MANAGER createScanTimer];
-    [SVProgressHUD show];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
 }
 
 
@@ -122,7 +129,7 @@
     if (_textLabel) {
         return _textLabel;
     }
-    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.height - S_SCALE_W_4(50) - S_SCALE_W_4(30), self.view.width, S_SCALE_W_4(30))];
+    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.scanBtn.bottom + S_SCALE_W_4(20), self.view.width, S_SCALE_W_4(30))];
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
@@ -130,5 +137,19 @@
     _textLabel.text = @"scan for your bottle warmer";
     return _textLabel;
 }
+
+- (UILabel *)versionLabel {
+    if (_versionLabel) {
+        return _versionLabel;
+    }
+    _versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.height - S_SCALE_W_4(50) - S_SCALE_W_4(30), self.view.width, S_SCALE_W_4(30))];
+    _versionLabel.textAlignment = NSTextAlignmentCenter;
+    _versionLabel.backgroundColor = [UIColor clearColor];
+    _versionLabel.textColor = [UIColor blackColor];
+    _versionLabel.font = S_FONT(S_SCALE_W_4(18));
+    _versionLabel.text = @"Brezza v0.1.0";
+    return _versionLabel;
+}
+
 
 @end
