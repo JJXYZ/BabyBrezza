@@ -9,6 +9,8 @@
 #import "JJBLEValue.h"
 #import "JJBLEConfig.h"
 #import <AVFoundation/AVFoundation.h>
+#import "JJSafeDefine.h"
+
 @interface JJBLEValue ()
 
 @property (nonatomic, strong) AVAudioPlayer *player;
@@ -117,7 +119,7 @@
         timeStr = [self.tDeforstArr firstObject];
     }
     else {
-        timeStr = [tArr objectAtIndex:number - 1];
+        timeStr = [tArr safeObjectAtIndex:number - 1];
     }
     
     return timeStr;

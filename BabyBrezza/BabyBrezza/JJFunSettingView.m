@@ -76,17 +76,26 @@
     }];
 }
 
+- (NSUInteger)pNumberRow:(NSUInteger)row {
+    return row % self.numberPickArr.count;
+}
+
+- (NSUInteger)pSetNumberRow:(NSUInteger)row {
+    return row + self.numberPickArr.count * NumberPickerViewNum / 2;
+}
+
 #pragma mark - Public Methods
 
 - (NSUInteger)getPickViewNumber {
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
-    return curRow + 1;
+    NSUInteger number = curRow + 1;
+    return number;
 }
 
 - (void)setPickViewNumber:(NSString *)number {
     NSInteger row = number.integerValue - 1;
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
-    if (row != curRow) {
+    if (row != [self pNumberRow:curRow]) {
         [self.funSettingPickView selectRow:row + self.numberPickArr.count * NumberPickerViewNum/2 inComponent:0 animated:YES];
     }
 }
@@ -139,32 +148,42 @@
     if (type == FunBtnType_NumUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
         [self.funSettingPickView selectRow:++curRow inComponent:0 animated:YES];
-        [self setValueNumberRow:curRow % self.numberPickArr.count];
+        [self setValueNumberRow:[self pNumberRow:curRow]];
     }
     else if (type == FunBtnType_NumDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
         [self.funSettingPickView selectRow:--curRow inComponent:0 animated:YES];
-        [self setValueNumberRow:curRow % self.numberPickArr.count];
+        [self setValueNumberRow:[self pNumberRow:curRow]];
     }
     else if (type == FunBtnType_TempUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
-        [self.funSettingPickView selectRow:++curRow inComponent:1 animated:YES];
-        [self setValueTempRow:curRow];
+        if (curRow == 0) {
+            [self.funSettingPickView selectRow:++curRow inComponent:1 animated:YES];
+            [self setValueTempRow:curRow];
+        }
     }
     else if (type == FunBtnType_TempDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
-        [self.funSettingPickView selectRow:--curRow inComponent:1 animated:YES];
-        [self setValueTempRow:curRow];
+        if (curRow == 1) {
+            [self.funSettingPickView selectRow:--curRow inComponent:1 animated:YES];
+            [self setValueTempRow:curRow];
+        }
+        
     }
     else if (type == FunBtnType_SpeedUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
-        [self.funSettingPickView selectRow:++curRow inComponent:2 animated:YES];
-        [self setValueSpeedRow:curRow];
+        if (curRow == 0) {
+            [self.funSettingPickView selectRow:++curRow inComponent:2 animated:YES];
+            [self setValueSpeedRow:curRow];
+        }
+        
     }
     else if (type == FunBtnType_SpeedDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
-        [self.funSettingPickView selectRow:--curRow inComponent:2 animated:YES];
-        [self setValueSpeedRow:curRow];
+        if (curRow == 1) {
+            [self.funSettingPickView selectRow:--curRow inComponent:2 animated:YES];
+            [self setValueSpeedRow:curRow];
+        }
     }
     
     if (_delegate && [_delegate respondsToSelector:@selector(clickFunSettingView:)]) {
@@ -200,7 +219,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     NSUInteger numberRow = [self.funSettingPickView selectedRowInComponent:0];
-    [self setValueNumberRow:numberRow % self.numberPickArr.count];
+    [self setValueNumberRow:[self pNumberRow:numberRow]];
     
     NSUInteger tempRow = [self.funSettingPickView selectedRowInComponent:1];
     [self setValueTempRow:tempRow];
@@ -213,15 +232,14 @@
     }
     
     if (component == 0) {
-        NSLog(@"row = %ld", (long)row);
-        [self.funSettingPickView selectRow:row % self.numberPickArr.count + self.numberPickArr.count * NumberPickerViewNum/2 inComponent:0 animated:NO];
+        [self.funSettingPickView selectRow:[self pSetNumberRow:[self pNumberRow:row]] inComponent:0 animated:NO];
     }
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
     if (component == 0) {
-        return [self.numberPickArr objectAtIndex:row % self.numberPickArr.count];
+        return [self.numberPickArr objectAtIndex:[self pNumberRow:row]];
     }
     else if (component == 1) {
         return [self.tempPickArr objectAtIndex:row];
