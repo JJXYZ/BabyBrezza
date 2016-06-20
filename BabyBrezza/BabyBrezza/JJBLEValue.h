@@ -45,8 +45,12 @@
 /** 发送的校验和 */
 @property (nonatomic, strong) NSString *startFlagl;
 
+/** 声音开关 */
+@property (nonatomic, assign) BOOL isSoundOpen;
 
 - (void)playNotiSound:(BOOL)isSound;
+
+- (void)setTimeValue;
 
 - (NSString *)getTime;
 - (NSString *)getTimeWithNumber:(NSUInteger)number temp:(NSUInteger)temp speed:(NSUInteger)speed;

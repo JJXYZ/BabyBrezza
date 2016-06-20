@@ -141,9 +141,19 @@
     BLE_VALUE.speed = [NSString stringWithFormat:@"%lu", (unsigned long)speed];
 }
 
+- (void)disable {
+    self.funSettingPickView.userInteractionEnabled = NO;
+    self.funSettingBtnView.userInteractionEnabled = NO;
+}
+
+- (void)enable {
+    self.funSettingPickView.userInteractionEnabled = YES;
+    self.funSettingBtnView.userInteractionEnabled = YES;
+}
 
 #pragma mark - JJFunSettingBtnViewDelegate
 - (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn {
+    BOOL isValidClick = YES;
     JJFunBtnType type = btn.type;
     if (type == FunBtnType_NumUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
@@ -161,6 +171,9 @@
             [self.funSettingPickView selectRow:++curRow inComponent:1 animated:YES];
             [self setValueTempRow:curRow];
         }
+        else {
+            isValidClick = NO;
+        }
     }
     else if (type == FunBtnType_TempDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
@@ -168,7 +181,9 @@
             [self.funSettingPickView selectRow:--curRow inComponent:1 animated:YES];
             [self setValueTempRow:curRow];
         }
-        
+        else {
+            isValidClick = NO;
+        }
     }
     else if (type == FunBtnType_SpeedUp) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
@@ -176,7 +191,9 @@
             [self.funSettingPickView selectRow:++curRow inComponent:2 animated:YES];
             [self setValueSpeedRow:curRow];
         }
-        
+        else {
+            isValidClick = NO;
+        }
     }
     else if (type == FunBtnType_SpeedDown) {
         NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
@@ -184,10 +201,16 @@
             [self.funSettingPickView selectRow:--curRow inComponent:2 animated:YES];
             [self setValueSpeedRow:curRow];
         }
+        else {
+            isValidClick = NO;
+        }
     }
     
-    if (_delegate && [_delegate respondsToSelector:@selector(clickFunSettingView:)]) {
-        [_delegate clickFunSettingView:btn];
+    if (isValidClick) {
+        [BLE_VALUE setTimeValue];
+        if (_delegate && [_delegate respondsToSelector:@selector(clickFunSettingView:)]) {
+            [_delegate clickFunSettingView:btn];
+        }
     }
 }
 
@@ -226,6 +249,8 @@
     
     NSUInteger speedRow = [self.funSettingPickView selectedRowInComponent:2];
     [self setValueSpeedRow:speedRow];
+    
+    [BLE_VALUE setTimeValue];
     
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectRowNumber:temp:speed:)]) {
         [_delegate didSelectRowNumber:nil temp:nil speed:nil];

@@ -36,4 +36,8 @@
 
 - (void)setPickViewSpeed:(NSString *)speed;
 
+- (void)enable;
+
+- (void)disable;
+
 @end

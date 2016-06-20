@@ -80,7 +80,7 @@
 
 #pragma mark - Private Methods
 - (void)loadData {
-    self.funStausType = FunStatusType_Normal;
+    _funStausType = FunStatusType_Normal;
     [JJMessage sendSettingData];
     [self.funSettingView setPickViewNumber:BLE_VALUE.number];
     [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
@@ -123,8 +123,17 @@
 - (void)setFunTimeViewText:(NSUInteger)time {
     NSUInteger minutes = time / 60;
     NSUInteger seconds = time % 60;
-    
     [self.funTimeView setTimeText:[NSString stringWithFormat:@"%.2lu:%.2lu",(long)minutes, (long)seconds]];
+}
+
+- (void)setValueFunUI {
+    self.timeout = BLE_VALUE.minute.intValue * 60 + BLE_VALUE.second.intValue;
+    NSString *timeText = [NSString stringWithFormat:@"%@:%@", BLE_VALUE.minute, BLE_VALUE.second];
+    [self.funTimeView setTimeText:timeText];
+    
+    [self.funSettingView setPickViewNumber:BLE_VALUE.number];
+    [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
+    [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
 }
 
 - (void)timeCountDown {
@@ -143,15 +152,37 @@
     
 }
 
-- (void)funSuccessMinutes:(NSUInteger)minutes seconds:(NSUInteger)seconds {
-    if (!minutes && !seconds && self.funStausType == FunStatusType_Start) {
-        self.funStausType = FunStatusType_Finish;
+- (void)setFunStausType:(FunStatusType)funStausType {
+    _funStausType = funStausType;
+    if (_funStausType == FunStatusType_Start) {
+        [self createCountDownTimer];
+        [self showFunSettingView];
+        [self.funTimeView showTimeLabel];
+        [self.funTimeView showcancelBtn];
+        [self.funSettingView disable];
+    }
+    else if (_funStausType == FunStatusType_Normal) {
         [self removeCountDownTimer];
-        [self.funTimeView showOKBtn];
+        [self showFunSettingView];
+        [self.funTimeView showTimeLabel];
+        [self.funTimeView showStartBtn];
+        [self.funSettingView enable];
+    }
+    else if (_funStausType == FunStatusType_Error) {
+        [self removeCountDownTimer];
+        [self showFunSettingView];
+        [self.funTimeView showTextLabel];
+        [self.funTimeView showStartBtn];
+        [self.funSettingView enable];
+    }
+    else if (_funStausType == FunStatusType_Finish) {
+        [self removeCountDownTimer];
         [self showFunAlertView];
+        [self.funTimeView showTimeLabel];
+        [self.funTimeView showOKBtn];
+        [self.funSettingView enable];
         [BLE_VALUE playNotiSound:!self.voiceBtn.isHigh];
         [self.funTimeView animationTimeLabel];
-        
         UIApplication *application = [UIApplication sharedApplication];
         if (application.applicationState != UIApplicationStateActive) {
             [[JJLocalNotificationManager sharedInstance] addLocalNotification];
@@ -159,9 +190,17 @@
     }
 }
 
+
+- (void)funSuccessMinutes:(NSUInteger)minutes seconds:(NSUInteger)seconds {
+    if (!minutes && !seconds && self.funStausType == FunStatusType_Start) {
+        self.funStausType = FunStatusType_Finish;
+    }
+}
+
 #pragma mark - Notification
 - (void)nDidConnectPeripheral {
     [self.funBottomView setConnectText];
+    [JJMessage sendSettingData];
 }
 
 - (void)nStatePoweredOff {
@@ -185,58 +224,44 @@
         if (BLE_VALUE.system.intValue == 1) {
             NSLog(@"设备关机");
             self.funStausType = FunStatusType_Normal;
-            [self.funTimeView showTimeLabel];
+            [self setValueFunUI];
         }
     }
     else if (BLE_VALUE.command.intValue == 2) {
         if (BLE_VALUE.system.intValue == 2) {
             NSLog(@"设备待机待操作");
             self.funStausType = FunStatusType_Normal;
-            [self.funTimeView showStartBtn];
-            [self.funTimeView showTimeLabel];
+            [self setValueFunUI];
         }
     }
     else if (BLE_VALUE.command.intValue == 5) {
         if (BLE_VALUE.system.intValue == 1) {
             NSLog(@"设备关机");
             self.funStausType = FunStatusType_Normal;
-            [self.funTimeView showTimeLabel];
+            [self setValueFunUI];
         }
         else if (BLE_VALUE.system.intValue == 2) {
             NSLog(@"设备待机待操作");
             self.funStausType = FunStatusType_Normal;
-            [self.funTimeView showStartBtn];
-            [self.funTimeView showTimeLabel];
+            [self setValueFunUI];
         }
         else if (BLE_VALUE.system.intValue == 3) {
-            
-            self.timeout = BLE_VALUE.minute.intValue * 60 + BLE_VALUE.second.intValue;
-            NSString *timeText = [NSString stringWithFormat:@"%@:%@", BLE_VALUE.minute, BLE_VALUE.second];
-            [self.funTimeView setTimeText:timeText];
-            
-            [self.funSettingView setPickViewNumber:BLE_VALUE.number];
-            [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
-            [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
-            
+            [self setValueFunUI];
             if (BLE_VALUE.minute.integerValue == 0 &&
                 BLE_VALUE.second.integerValue == 0) {
                 [self funSuccessMinutes:BLE_VALUE.minute.integerValue seconds:BLE_VALUE.second.integerValue];
             }
             else {
                 self.funStausType = FunStatusType_Start;
-                [self createCountDownTimer];
-                [self.funTimeView showcancelBtn];
-                [self showFunSettingView];
-                [self.funTimeView showTimeLabel];
             }
         }
         else {
             NSLog(@"设备故障");
-            self.funStausType = FunStatusType_Normal;
-            [self.funTimeView showTextLabel];
+            self.funStausType = FunStatusType_Error;
         }
     }
 }
+
 
 #pragma mark - NSTimer
 
@@ -278,7 +303,7 @@
 #pragma mark - Event
 - (void)clickVoiceBtn:(id)sender {
     self.voiceBtn.isHigh = !self.voiceBtn.isHigh;
-    
+    BLE_VALUE.isSoundOpen = !self.voiceBtn.isHigh;
     [BLE_VALUE playNotiSound:!self.voiceBtn.isHigh];
 }
 
@@ -331,7 +356,7 @@
     _voiceBtn.frame = CGRectMake(8, 15, 35, 35);
     _voiceBtn.normalImage = @"icon_soundon";
     _voiceBtn.highImage = @"icon_soundoff";
-    _voiceBtn.isHigh = NO;
+    _voiceBtn.isHigh = !BLE_VALUE.isSoundOpen;
     [_voiceBtn addTarget:self action:@selector(clickVoiceBtn:) forControlEvents:UIControlEventTouchUpInside];
     return _voiceBtn;
 }

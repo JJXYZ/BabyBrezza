@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, FunStatusType) {
     FunStatusType_Normal = 0,
     FunStatusType_Start,
     FunStatusType_Finish,
+    FunStatusType_Error
 };
 
 @protocol JJFunTimeViewDelegate <NSObject>

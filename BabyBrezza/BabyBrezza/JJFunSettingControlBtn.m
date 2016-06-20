@@ -34,7 +34,13 @@
 #pragma mark - Private Methods
 
 - (void)layoutControllerBtnUI {
-    self.titleLabel.font = S_FONT(25);
+    if (IS_IPHONE4) {
+        self.titleLabel.font = S_FONT(22);
+    }
+    else {
+        self.titleLabel.font = S_FONT(24);
+    }
+    
 }
 
 @end

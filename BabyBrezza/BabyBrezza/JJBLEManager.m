@@ -120,7 +120,7 @@
 - (void)JJCBCentralManager:(JJCBCentralManager *)central readyToSendDataForService:(CBService *)service withCharacteristic:(CBCharacteristic *)characteristic {
     
     //订阅成功 会写一次数据   确保手机和设备数据同步
-//    [JJMessage sendData];
+    [JJMessage sendSettingData];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_ReadyToSendData object:nil];
 }

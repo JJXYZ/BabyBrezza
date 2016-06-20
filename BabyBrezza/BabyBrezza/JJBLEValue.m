@@ -42,9 +42,11 @@
         _number = @"4";
         _speed = @"1";
         _temp = @"1";
+        _isSoundOpen = YES;
     }
     return self;
 }
+
 
 #pragma mark - Public Methods
 
@@ -89,8 +91,15 @@
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
+- (void)setTimeValue {
+    NSUInteger timeInt = [self getTime].integerValue;
+    _minute = [NSString stringWithFormat:@"%02lu", timeInt/60];
+    _second = [NSString stringWithFormat:@"%02lu", timeInt%60];
+}
+
 - (NSString *)getTime {
-    return [self getTimeWithNumber:self.number.integerValue temp:self.temp.integerValue speed:self.speed.integerValue];
+    NSString *time = [self getTimeWithNumber:_number.integerValue temp:_temp.integerValue speed:_speed.integerValue];
+    return time;
 }
 
 

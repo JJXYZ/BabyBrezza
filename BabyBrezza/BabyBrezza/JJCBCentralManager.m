@@ -412,10 +412,6 @@
         if ([c.UUID.UUIDString isEqualToString:C_NOTIFY_UUID]) {
             NSLog(@"订阅特性... %@ %@", service, c);
             [peripheral setNotifyValue:YES forCharacteristic:c];
-            
-            if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:readyToSendDataForService:withCharacteristic:)]) {
-                [_delegate JJCBCentralManager:self readyToSendDataForService:service withCharacteristic:c];
-            }
         }
     }
 }
@@ -486,11 +482,18 @@
     
     if (characteristic.isNotifying) {
         NSLog(@"外围特性通知开始 %@", characteristic);
-    }else{
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:readyToSendDataForService:withCharacteristic:)]) {
+            [_delegate JJCBCentralManager:self readyToSendDataForService:nil withCharacteristic:characteristic];
+        }
+    }
+    else{
         NSLog(@"外围设备特性通知结束，也就是用户要下线或者离开 %@",characteristic);
         /** 断开连接 */
         [self.centralManager cancelPeripheralConnection:peripheral];
     }
+    
+    
 }
 
 @end
