@@ -11,7 +11,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "JJSafeDefine.h"
 
-@interface JJBLEValue ()
+@interface JJBLEValue () {
+    NSString *_speed;
+}
 
 @property (nonatomic, strong) AVAudioPlayer *player;
 
@@ -24,6 +26,7 @@
 
 @end
 @implementation JJBLEValue
+@synthesize speed = _speed;
 
 #pragma mark - Lifecycle
 
@@ -39,9 +42,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _number = @"4";
-        _speed = @"1";
-        _temp = @"1";
         _isSoundOpen = YES;
     }
     return self;
@@ -141,7 +141,7 @@
     if (_number) {
         return _number;
     }
-    _number = @"1";
+    _number = @"4";
     return _number;
 }
 
@@ -149,8 +149,12 @@
     if (_speed) {
         return _speed;
     }
-    _speed = @"1";
+    _speed = @"2";
     return _speed;
+}
+
+- (void)setSpeed:(NSString *)speed {
+    _speed = speed;
 }
 
 - (NSString *)temp {

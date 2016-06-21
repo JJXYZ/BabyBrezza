@@ -72,11 +72,12 @@
         unsigned char *dataBytes = (unsigned char*)bytes;
         for (NSInteger i = 0; i < byteRange.length; i++) {
             NSString *hexStr = [NSString stringWithFormat:@"%02d", (dataBytes[i]) & 0xff];
+            
             if (i == 0  || i == 1) {
                 hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
-                if (![hexStr isEqualToString:@"a5"] ||
+                if (![hexStr isEqualToString:@"a5"] &&
                     ![hexStr isEqualToString:@"ff"]) {
-                    *stop = NO;
+                    *stop = YES;
                 }
             }
             

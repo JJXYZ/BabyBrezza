@@ -121,6 +121,15 @@
     }
 }
 
+- (void)setIsAutoConnect:(BOOL)isAutoConnect {
+    _isAutoConnect = isAutoConnect;
+    if (!isAutoConnect) {
+        [self removeRetrieveTimer];
+        [self stopScan];
+    }
+}
+
+
 #pragma mark - Public Methods
 
 - (void)showAlertView {

@@ -84,12 +84,34 @@
     return row + self.numberPickArr.count * NumberPickerViewNum / 2;
 }
 
+- (void)updatePickViewRow:(NSInteger)row inComponent:(NSInteger)component {
+    if (row == 9) {
+        [self reloadPickViewType:1];
+    }
+    else {
+        [self reloadPickViewType:0];
+    }
+}
+
+- (void)reloadPickViewType:(NSUInteger)type {
+    [self setTempPickArrType:type];
+    [self setSpeedPickArrType:type];
+    [self.funSettingPickView reloadComponent:1];
+    [self.funSettingPickView reloadComponent:2];
+}
+
+
 #pragma mark - Public Methods
 
 - (NSUInteger)getPickViewNumber {
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
-    NSUInteger number = curRow + 1;
+    NSUInteger number = [self pNumberRow:curRow] + 1;
     return number;
+}
+
+- (void)setStartPickViewNumber:(NSString *)number {
+    NSInteger row = number.integerValue - 1;
+    [self.funSettingPickView selectRow:[self pSetNumberRow:row] inComponent:0 animated:YES];
 }
 
 - (void)setPickViewNumber:(NSString *)number {
@@ -151,59 +173,87 @@
     self.funSettingBtnView.userInteractionEnabled = YES;
 }
 
+- (void)setCurState {
+    NSUInteger numberRow = [self.funSettingPickView selectedRowInComponent:0];
+    NSUInteger tempRow = [self.funSettingPickView selectedRowInComponent:1];
+    NSUInteger speedRow = [self.funSettingPickView selectedRowInComponent:2];
+    
+    [self setValueNumberRow:[self pNumberRow:numberRow]];
+    [self setValueTempRow:tempRow];
+    [self setValueSpeedRow:speedRow];
+    
+    [BLE_VALUE setTimeValue];
+}
+
+#pragma mark - Event
+
+- (void)clickNumberBtnType:(JJFunBtnType)type {
+    NSUInteger row = [self.funSettingPickView selectedRowInComponent:0];
+    if (type == FunBtnType_NumUp) {
+        ++row;
+    }
+    else if (type == FunBtnType_NumDown) {
+        --row;
+    }
+    [self.funSettingPickView selectRow:row inComponent:0 animated:YES];
+    row = [self pNumberRow:row];
+    [self setValueNumberRow:row];
+    [self updatePickViewRow:row inComponent:0];
+}
+
+- (BOOL)clickTempBtnType:(JJFunBtnType)type {
+    BOOL isValidClick = NO;
+    NSUInteger row = [self.funSettingPickView selectedRowInComponent:1];
+    if (type == FunBtnType_TempUp) {
+        if (row == 0) {
+            isValidClick = YES;
+            ++row;
+        }
+    }
+    else if (type == FunBtnType_TempDown) {
+        if (row == 1) {
+            isValidClick = YES;
+            --row;
+        }
+    }
+    [self.funSettingPickView selectRow:row inComponent:1 animated:YES];
+    [self setValueTempRow:row];
+    return isValidClick;
+}
+
+- (BOOL)clickSpeedBtnType:(JJFunBtnType)type {
+    BOOL isValidClick = NO;
+    NSUInteger row = [self.funSettingPickView selectedRowInComponent:2];
+    if (type == FunBtnType_SpeedUp) {
+        if (row == 0) {
+            isValidClick = YES;
+            ++row;
+        }
+    }
+    else if (type == FunBtnType_SpeedDown) {
+        if (row == 1) {
+            isValidClick = YES;
+            --row;
+        }
+    }
+    [self.funSettingPickView selectRow:row inComponent:2 animated:YES];
+    [self setValueSpeedRow:row];
+    return isValidClick;
+}
+
+
 #pragma mark - JJFunSettingBtnViewDelegate
 - (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn {
     BOOL isValidClick = YES;
     JJFunBtnType type = btn.type;
-    if (type == FunBtnType_NumUp) {
-        NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
-        [self.funSettingPickView selectRow:++curRow inComponent:0 animated:YES];
-        [self setValueNumberRow:[self pNumberRow:curRow]];
+    if (type == FunBtnType_NumUp || type == FunBtnType_NumDown) {
+        [self clickNumberBtnType:type];
     }
-    else if (type == FunBtnType_NumDown) {
-        NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
-        [self.funSettingPickView selectRow:--curRow inComponent:0 animated:YES];
-        [self setValueNumberRow:[self pNumberRow:curRow]];
+    else if (type == FunBtnType_TempUp || type == FunBtnType_TempDown) {
+        isValidClick = [self clickTempBtnType:type];
     }
-    else if (type == FunBtnType_TempUp) {
-        NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
-        if (curRow == 0) {
-            [self.funSettingPickView selectRow:++curRow inComponent:1 animated:YES];
-            [self setValueTempRow:curRow];
-        }
-        else {
-            isValidClick = NO;
-        }
-    }
-    else if (type == FunBtnType_TempDown) {
-        NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:1];
-        if (curRow == 1) {
-            [self.funSettingPickView selectRow:--curRow inComponent:1 animated:YES];
-            [self setValueTempRow:curRow];
-        }
-        else {
-            isValidClick = NO;
-        }
-    }
-    else if (type == FunBtnType_SpeedUp) {
-        NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
-        if (curRow == 0) {
-            [self.funSettingPickView selectRow:++curRow inComponent:2 animated:YES];
-            [self setValueSpeedRow:curRow];
-        }
-        else {
-            isValidClick = NO;
-        }
-    }
-    else if (type == FunBtnType_SpeedDown) {
-        NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
-        if (curRow == 1) {
-            [self.funSettingPickView selectRow:--curRow inComponent:2 animated:YES];
-            [self setValueSpeedRow:curRow];
-        }
-        else {
-            isValidClick = NO;
-        }
+    else if (type == FunBtnType_SpeedUp || type == FunBtnType_SpeedDown) {
+        isValidClick = [self clickSpeedBtnType:type];
     }
     
     if (isValidClick) {
@@ -241,25 +291,26 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    NSUInteger numberRow = [self.funSettingPickView selectedRowInComponent:0];
-    [self setValueNumberRow:[self pNumberRow:numberRow]];
-    
-    NSUInteger tempRow = [self.funSettingPickView selectedRowInComponent:1];
-    [self setValueTempRow:tempRow];
-    
-    NSUInteger speedRow = [self.funSettingPickView selectedRowInComponent:2];
-    [self setValueSpeedRow:speedRow];
+    if (component == 0) {
+        row = [self pNumberRow:row];
+        [self setValueNumberRow:row];
+        [self.funSettingPickView selectRow:[self pSetNumberRow:row] inComponent:0 animated:NO];
+        [self updatePickViewRow:row inComponent:component];
+    }
+    else if (component == 1) {
+        [self setValueTempRow:row];
+    }
+    else if (component == 2) {
+        [self setValueSpeedRow:row];
+    }
     
     [BLE_VALUE setTimeValue];
     
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectRowNumber:temp:speed:)]) {
         [_delegate didSelectRowNumber:nil temp:nil speed:nil];
     }
-    
-    if (component == 0) {
-        [self.funSettingPickView selectRow:[self pSetNumberRow:[self pNumberRow:row]] inComponent:0 animated:NO];
-    }
 }
+
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
@@ -324,8 +375,17 @@
     if (_speedPickArr) {
         return _speedPickArr;
     }
-    _speedPickArr = [NSArray arrayWithObjects:@"quick",@"steady", nil];
+    _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
     return _speedPickArr;
+}
+
+- (void)setSpeedPickArrType:(NSUInteger)type {
+    if (type == 0) {
+        _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
+    }
+    else {
+        _speedPickArr = [NSArray arrayWithObjects:@"steady", nil];
+    }
 }
 
 
@@ -335,6 +395,15 @@
     }
     _tempPickArr = [NSArray arrayWithObjects:@"room",@"cold", nil];
     return _tempPickArr;
+}
+
+- (void)setTempPickArrType:(NSUInteger)type {
+    if (type == 0) {
+        _tempPickArr = [NSArray arrayWithObjects:@"room",@"cold", nil];
+    }
+    else {
+        _tempPickArr = [NSArray arrayWithObjects:@"cold", nil];
+    }
 }
 
 

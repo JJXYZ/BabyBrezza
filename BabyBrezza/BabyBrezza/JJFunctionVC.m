@@ -82,7 +82,7 @@
 - (void)loadData {
     _funStausType = FunStatusType_Normal;
     [JJMessage sendSettingData];
-    [self.funSettingView setPickViewNumber:BLE_VALUE.number];
+    [self.funSettingView setStartPickViewNumber:BLE_VALUE.number];
     [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
     [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
     [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
@@ -200,19 +200,22 @@
 #pragma mark - Notification
 - (void)nDidConnectPeripheral {
     [self.funBottomView setConnectText];
-    [JJMessage sendSettingData];
+    self.funStausType = FunStatusType_Normal;
 }
 
 - (void)nStatePoweredOff {
     [self.funBottomView setDisconnectText];
+    [self.funTimeView hideAllBtn];
 }
 
 - (void)nDidFailToConnectPeripheral{
     [self.funBottomView setDisconnectText];
+    [self.funTimeView hideAllBtn];
 }
 
 - (void)nDidDisconnectPeripheral{
     [self.funBottomView setDisconnectText];
+    [self.funTimeView hideAllBtn];
 }
 
 - (void)nDidWriteData {
@@ -222,26 +225,22 @@
 - (void)nDidReceiveData {
     if (BLE_VALUE.command.intValue == 1) {
         if (BLE_VALUE.system.intValue == 1) {
-            NSLog(@"设备关机");
             self.funStausType = FunStatusType_Normal;
             [self setValueFunUI];
         }
     }
     else if (BLE_VALUE.command.intValue == 2) {
         if (BLE_VALUE.system.intValue == 2) {
-            NSLog(@"设备待机待操作");
             self.funStausType = FunStatusType_Normal;
             [self setValueFunUI];
         }
     }
     else if (BLE_VALUE.command.intValue == 5) {
         if (BLE_VALUE.system.intValue == 1) {
-            NSLog(@"设备关机");
             self.funStausType = FunStatusType_Normal;
             [self setValueFunUI];
         }
         else if (BLE_VALUE.system.intValue == 2) {
-            NSLog(@"设备待机待操作");
             self.funStausType = FunStatusType_Normal;
             [self setValueFunUI];
         }
@@ -256,7 +255,6 @@
             }
         }
         else {
-            NSLog(@"设备故障");
             self.funStausType = FunStatusType_Error;
         }
     }
@@ -304,7 +302,6 @@
 - (void)clickVoiceBtn:(id)sender {
     self.voiceBtn.isHigh = !self.voiceBtn.isHigh;
     BLE_VALUE.isSoundOpen = !self.voiceBtn.isHigh;
-    [BLE_VALUE playNotiSound:!self.voiceBtn.isHigh];
 }
 
 - (void)clickSettingGuideBtn:(id)sender {
@@ -335,6 +332,8 @@
 }
 
 - (void)clickFunTimecancelBtn:(JJFunSettingControlBtn *)btn {
+    [self.funSettingView setCurState];
+    [self setValueFunUI];
     [JJMessage sendcancelData];
     [self removeCountDownTimer];
     [self.funTimeView showStartBtn];

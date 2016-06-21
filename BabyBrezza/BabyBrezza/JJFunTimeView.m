@@ -138,7 +138,7 @@
 }
 
 - (void)animationTimeLabel {
-    [self.timeLabel.layer addAnimation:[self opacityForever_Animation:1] forKey:nil];
+    [self.timeLabel.layer addAnimation:[self opacityForever_Animation:0.5] forKey:nil];
 }
 
 
@@ -164,6 +164,12 @@
     self.startBtn.hidden = YES;
     self.cancelBtn.hidden = YES;
     self.okBtn.hidden = NO;
+}
+
+- (void)hideAllBtn {
+    self.startBtn.hidden = YES;
+    self.cancelBtn.hidden = YES;
+    self.okBtn.hidden = YES;
 }
 
 #pragma mark - Property

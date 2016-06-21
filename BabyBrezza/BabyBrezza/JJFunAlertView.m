@@ -54,7 +54,7 @@
     _alertLabel.backgroundColor = [UIColor clearColor];
     _alertLabel.textColor = [UIColor blackColor];
     _alertLabel.font = S_FONT(S_SCALE_W_4(25));
-    _alertLabel.text = @"bottle is ready!";
+    _alertLabel.text = @"Bottle is ready!";
     return _alertLabel;
 }
 

@@ -51,4 +51,6 @@ typedef NS_ENUM(NSUInteger, FunStatusType) {
 
 - (void)showOKBtn;
 
+- (void)hideAllBtn;
+
 @end

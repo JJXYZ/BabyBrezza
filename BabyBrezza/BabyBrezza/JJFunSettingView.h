@@ -26,6 +26,8 @@
 
 - (NSUInteger)getPickViewNumber;
 
+- (void)setStartPickViewNumber:(NSString *)number;
+
 - (void)setPickViewNumber:(NSString *)number;
 
 - (NSUInteger)getPickViewTemp;
@@ -39,5 +41,7 @@
 - (void)enable;
 
 - (void)disable;
+
+- (void)setCurState;
 
 @end
