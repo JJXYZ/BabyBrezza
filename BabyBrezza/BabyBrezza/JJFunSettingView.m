@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSArray *tempPickArr;
 @property (nonatomic, strong) NSArray *speedPickArr;
 
+@property (nonatomic, assign) BOOL isShowDefrost;
 
 @end
 
@@ -86,10 +87,18 @@
 
 - (void)updatePickViewRow:(NSInteger)row inComponent:(NSInteger)component {
     if (row == 9) {
-        [self reloadPickViewType:1];
+        if (!self.isShowDefrost) {
+            [self reloadPickViewType:1];
+            [self.funSettingBtnView hiddenTempSpeedBtn];
+        }
+        self.isShowDefrost = YES;
     }
     else {
-        [self reloadPickViewType:0];
+        if (self.isShowDefrost) {
+            [self reloadPickViewType:0];
+            [self.funSettingBtnView showTempSpeedBtn];
+        }
+        self.isShowDefrost = NO;
     }
 }
 
@@ -119,6 +128,7 @@
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
     if (row != [self pNumberRow:curRow]) {
         [self.funSettingPickView selectRow:row + self.numberPickArr.count * NumberPickerViewNum/2 inComponent:0 animated:YES];
+        [self updatePickViewRow:row inComponent:0];
     }
 }
 
@@ -173,7 +183,7 @@
     self.funSettingBtnView.userInteractionEnabled = YES;
 }
 
-- (void)setCurState {
+- (void)setCurValue {
     NSUInteger numberRow = [self.funSettingPickView selectedRowInComponent:0];
     NSUInteger tempRow = [self.funSettingPickView selectedRowInComponent:1];
     NSUInteger speedRow = [self.funSettingPickView selectedRowInComponent:2];
@@ -255,9 +265,8 @@
     else if (type == FunBtnType_SpeedUp || type == FunBtnType_SpeedDown) {
         isValidClick = [self clickSpeedBtnType:type];
     }
-    
+    [self setCurValue];
     if (isValidClick) {
-        [BLE_VALUE setTimeValue];
         if (_delegate && [_delegate respondsToSelector:@selector(clickFunSettingView:)]) {
             [_delegate clickFunSettingView:btn];
         }
@@ -304,7 +313,7 @@
         [self setValueSpeedRow:row];
     }
     
-    [BLE_VALUE setTimeValue];
+    [self setCurValue];
     
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectRowNumber:temp:speed:)]) {
         [_delegate didSelectRowNumber:nil temp:nil speed:nil];
@@ -375,13 +384,13 @@
     if (_speedPickArr) {
         return _speedPickArr;
     }
-    _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
+    _speedPickArr = [NSArray arrayWithObjects:@"quick",@"steady", nil];
     return _speedPickArr;
 }
 
 - (void)setSpeedPickArrType:(NSUInteger)type {
     if (type == 0) {
-        _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
+        _speedPickArr = [NSArray arrayWithObjects:@"quick",@"steady", nil];
     }
     else {
         _speedPickArr = [NSArray arrayWithObjects:@"steady", nil];

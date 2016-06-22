@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
+@property (nonatomic, strong) UILabel *errorLabel;
+
 @property (nonatomic, strong) UILabel *textLabel;
 
 @property (nonatomic, strong) JJFunSettingControlBtn *startBtn;
@@ -41,6 +43,7 @@
 - (void)layoutFunTimeViewUI {
     self.backgroundColor = [UIColor clearColor];
     [self addSubview:self.timeLabel];
+    [self addSubview:self.errorLabel];
     [self addSubview:self.textLabel];
     [self addSubview:self.startBtn];
     [self addSubview:self.cancelBtn];
@@ -53,11 +56,18 @@
         make.height.equalTo(@(S_SCALE_H_4(80)));
     }];
     
-    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.errorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.right.equalTo(self);
         make.left.equalTo(self);
-        make.height.equalTo(@(S_SCALE_H_4(80)));
+        make.height.equalTo(@(S_SCALE_H_4(40)));
+    }];
+    
+    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.errorLabel.mas_bottom);
+        make.right.equalTo(self);
+        make.left.equalTo(self);
+        make.height.equalTo(@(S_SCALE_H_4(40)));
     }];
     
     [self.startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,11 +139,13 @@
 
 - (void)showTimeLabel {
     self.timeLabel.hidden = NO;
+    self.errorLabel.hidden = YES;
     self.textLabel.hidden = YES;
 }
 
 - (void)hideTimeLabel {
     self.timeLabel.hidden = YES;
+    self.errorLabel.hidden = YES;
     self.textLabel.hidden = YES;
 }
 
@@ -144,6 +156,7 @@
 
 - (void)showTextLabel {
     self.timeLabel.hidden = YES;
+    self.errorLabel.hidden = NO;
     self.textLabel.hidden = NO;
 }
 
@@ -154,7 +167,7 @@
     self.okBtn.hidden = YES;
 }
 
-- (void)showcancelBtn {
+- (void)showCancelBtn {
     self.startBtn.hidden = YES;
     self.cancelBtn.hidden = NO;
     self.okBtn.hidden = YES;
@@ -166,10 +179,9 @@
     self.okBtn.hidden = NO;
 }
 
-- (void)hideAllBtn {
+- (void)hideStartCancleBtn {
     self.startBtn.hidden = YES;
     self.cancelBtn.hidden = YES;
-    self.okBtn.hidden = YES;
 }
 
 #pragma mark - Property
@@ -185,6 +197,24 @@
     _timeLabel.font = S_FONT(50);
     _timeLabel.text = @"00:00";
     return _timeLabel;
+}
+
+
+
+
+- (UILabel *)errorLabel {
+    if (_errorLabel) {
+        return _errorLabel;
+    }
+    _errorLabel = [[UILabel alloc] init];
+    _errorLabel.hidden = YES;
+    _errorLabel.numberOfLines = 0;
+    _errorLabel.textAlignment = NSTextAlignmentCenter;
+    _errorLabel.backgroundColor = [UIColor clearColor];
+    _errorLabel.textColor = [UIColor blackColor];
+    _errorLabel.font = S_FONT(30);
+    _errorLabel.text = @"Error";
+    return _errorLabel;
 }
 
 - (UILabel *)textLabel {

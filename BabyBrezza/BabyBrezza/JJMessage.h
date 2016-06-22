@@ -16,7 +16,7 @@
 
 + (void)sendStartData;
 
-+ (void)sendcancelData;
++ (void)sendCancelData;
 
 + (void)receiveData:(NSData *)data;
 

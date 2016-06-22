@@ -47,10 +47,10 @@ typedef NS_ENUM(NSUInteger, FunStatusType) {
 
 - (void)showStartBtn;
 
-- (void)showcancelBtn;
+- (void)showCancelBtn;
 
 - (void)showOKBtn;
 
-- (void)hideAllBtn;
+- (void)hideStartCancleBtn;
 
 @end

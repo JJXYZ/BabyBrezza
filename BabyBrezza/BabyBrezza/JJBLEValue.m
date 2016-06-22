@@ -149,7 +149,7 @@
     if (_speed) {
         return _speed;
     }
-    _speed = @"2";
+    _speed = @"1";
     return _speed;
 }
 

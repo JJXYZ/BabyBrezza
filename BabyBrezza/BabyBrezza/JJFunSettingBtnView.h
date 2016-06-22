@@ -31,5 +31,8 @@
 @property (nonatomic, strong) JJFunSettingBtn *speedUpBtn;
 @property (nonatomic, strong) JJFunSettingBtn *speedDownBtn;
 
+- (void)hiddenTempSpeedBtn;
+
+- (void)showTempSpeedBtn;
 
 @end

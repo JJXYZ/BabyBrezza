@@ -44,8 +44,10 @@
     }
     [self removeRetrieveTimer];
     NSLog(@"创建重连定时器");
-    _retrieveTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(scan) userInfo:nil repeats:YES];
+    _retrieveTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(scan) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_retrieveTimer forMode:NSDefaultRunLoopMode];
+    
+    [_retrieveTimer fire];
 }
 /** 移除重连定时器 */
 - (void)removeRetrieveTimer {

@@ -134,6 +134,8 @@
     [self.funSettingView setPickViewNumber:BLE_VALUE.number];
     [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
     [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
+    
+    
 }
 
 - (void)timeCountDown {
@@ -158,7 +160,7 @@
         [self createCountDownTimer];
         [self showFunSettingView];
         [self.funTimeView showTimeLabel];
-        [self.funTimeView showcancelBtn];
+        [self.funTimeView showCancelBtn];
         [self.funSettingView disable];
     }
     else if (_funStausType == FunStatusType_Normal) {
@@ -200,22 +202,26 @@
 #pragma mark - Notification
 - (void)nDidConnectPeripheral {
     [self.funBottomView setConnectText];
-    self.funStausType = FunStatusType_Normal;
+    if (self.funStausType != FunStatusType_Finish) {
+        [self.funSettingView setCurValue];
+        [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
+        self.funStausType = FunStatusType_Normal;
+    }
 }
 
 - (void)nStatePoweredOff {
     [self.funBottomView setDisconnectText];
-    [self.funTimeView hideAllBtn];
+    [self.funTimeView hideStartCancleBtn];
 }
 
 - (void)nDidFailToConnectPeripheral{
     [self.funBottomView setDisconnectText];
-    [self.funTimeView hideAllBtn];
+    [self.funTimeView hideStartCancleBtn];
 }
 
 - (void)nDidDisconnectPeripheral{
     [self.funBottomView setDisconnectText];
-    [self.funTimeView hideAllBtn];
+    [self.funTimeView hideStartCancleBtn];
 }
 
 - (void)nDidWriteData {
@@ -332,11 +338,12 @@
 }
 
 - (void)clickFunTimecancelBtn:(JJFunSettingControlBtn *)btn {
-    [self.funSettingView setCurState];
+    [self.funSettingView setCurValue];
     [self setValueFunUI];
-    [JJMessage sendcancelData];
+    [JJMessage sendCancelData];
     [self removeCountDownTimer];
     [self.funTimeView showStartBtn];
+    [self.funSettingView enable];
 }
 
 - (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn {

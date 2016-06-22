@@ -116,6 +116,17 @@
     
 }
 
+#pragma mark - Public Method
+- (void)hiddenTempSpeedBtn {
+    self.tempView.hidden = YES;
+    self.speedView.hidden = YES;
+}
+
+- (void)showTempSpeedBtn {
+    self.tempView.hidden = NO;
+    self.speedView.hidden = NO;
+}
+
 
 #pragma mark - Event
 

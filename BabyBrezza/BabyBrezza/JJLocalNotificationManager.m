@@ -67,7 +67,7 @@
 - (void)addLocalNotification {
     /** 系统默认提醒声音 */
     self.localNotification.soundName = UILocalNotificationDefaultSoundName;
-    self.localNotification.alertBody = @"Brezza Success!";
+    self.localNotification.alertBody = @"Bottle is ready!";
     self.localNotification.timeZone = [NSTimeZone defaultTimeZone];
     NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] initWithCapacity:0];
     [userInfo setObject:@"localNotificationObject" forKey:@"localNotificationKey"];

@@ -42,6 +42,6 @@
 
 - (void)disable;
 
-- (void)setCurState;
+- (void)setCurValue;
 
 @end

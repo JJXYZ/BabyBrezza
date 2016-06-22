@@ -27,7 +27,7 @@
     [self sendDataCommand:0x03 system:0x03];
 }
 
-+ (void)sendcancelData {
++ (void)sendCancelData {
     [self sendDataCommand:0x02 system:0x02];
 }
 
