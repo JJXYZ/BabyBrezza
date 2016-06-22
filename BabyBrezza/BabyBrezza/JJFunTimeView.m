@@ -60,14 +60,14 @@
         make.top.equalTo(self);
         make.right.equalTo(self);
         make.left.equalTo(self);
-        make.height.equalTo(@(S_SCALE_H_4(40)));
+        make.height.equalTo(@(S_SCALE_H_4(30)));
     }];
     
     [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.errorLabel.mas_bottom);
         make.right.equalTo(self);
         make.left.equalTo(self);
-        make.height.equalTo(@(S_SCALE_H_4(40)));
+        make.height.equalTo(@(S_SCALE_H_4(50)));
     }];
     
     [self.startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -191,6 +191,7 @@
         return _timeLabel;
     }
     _timeLabel = [[UILabel alloc] init];
+    _timeLabel.hidden = NO;
     _timeLabel.textAlignment = NSTextAlignmentCenter;
     _timeLabel.backgroundColor = [UIColor clearColor];
     _timeLabel.textColor = [UIColor blackColor];
