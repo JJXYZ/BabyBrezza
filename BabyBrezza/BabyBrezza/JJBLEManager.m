@@ -10,7 +10,7 @@
 #import "JJMessage.h"
 
 /** 扫描定时器时间 */
-#define SCAN_TIME 30
+#define SCAN_TIME 20
 
 @interface JJBLEManager () <JJCBCentralManagerDelegate>
 
@@ -89,13 +89,15 @@
     
     NSRange range = [peripheral.name rangeOfString:@"Brezza"];
     if (range.location != NSNotFound) {
-        self.curDisplayPeripheral = peripheral;
-        /** 取消当前设备的连接 */
-        [CENTRAL_MANAGER cancelPeripheralConnection];
-        /** 连接设备 */
-        [CENTRAL_MANAGER connectToPeripherl:peripheral];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DisplayPeripheral object:nil];
+        if((self.curDisplayPeripheral == peripheral) || (self.curDisplayPeripheral == nil)) {
+            self.curDisplayPeripheral = peripheral;
+            /** 取消当前设备的连接 */
+            [CENTRAL_MANAGER cancelPeripheralConnection];
+            /** 连接设备 */
+            [CENTRAL_MANAGER connectToPeripherl:peripheral];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DisplayPeripheral object:nil];
+        }
     }
 }
 
@@ -129,8 +131,9 @@
 
 /** 接收/读取数据成功 */
 - (void)JJCBCentralManager:(JJCBCentralManager *)central didReceiveData:(NSData *)data {
-    [JJMessage receiveData:data];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DidReceiveData object:nil];
+    if ([JJMessage receiveData:data]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DidReceiveData object:nil];
+    }
 }
 
 /** 发送/写数据成功 */

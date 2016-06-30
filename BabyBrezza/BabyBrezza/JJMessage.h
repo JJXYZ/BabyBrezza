@@ -10,7 +10,8 @@
 
 @interface JJMessage : NSObject
 
-
+/** 单例 */
++ (JJMessage *)sharedInstance;
 
 + (void)sendSettingData;
 
@@ -18,7 +19,7 @@
 
 + (void)sendCancelData;
 
-+ (void)receiveData:(NSData *)data;
++ (BOOL)receiveData:(NSData *)data;
 
 //replyBatt设备
 + (void)replyBattLevel;

@@ -14,6 +14,17 @@
 
 @implementation JJMessage
 
+#pragma mark - Lifecycle
+
++ (JJMessage *)sharedInstance {
+    static dispatch_once_t pred = 0;
+    __strong static JJMessage * _sharedObject = nil;
+    dispatch_once(&pred, ^{
+        _sharedObject = [[self alloc] init];
+    });
+    return _sharedObject;
+}
+
 #pragma mark - Private Methods
 
 #pragma mark - Public Methods
@@ -67,75 +78,82 @@
 }
 
 
-+ (void)receiveData:(NSData *)data {
++ (BOOL)receiveData:(NSData *)data {
+    __block BOOL isValidData = NO;
     [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-        unsigned char *dataBytes = (unsigned char*)bytes;
-        for (NSInteger i = 0; i < byteRange.length; i++) {
-            NSString *hexStr = [NSString stringWithFormat:@"%02d", (dataBytes[i]) & 0xff];
-            
-            if (i == 0  || i == 1) {
-                hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
-                if (![hexStr isEqualToString:@"a5"] &&
-                    ![hexStr isEqualToString:@"ff"]) {
-                    *stop = YES;
+                
+        if (byteRange.length != 15) {
+            return ;
+        }
+        
+        unsigned char *dataBytes = (unsigned char *)bytes;
+        
+        if((dataBytes[0]!=0xa5) || (dataBytes[1]!=0xff)) {
+            return ;
+        }
+        
+        unsigned char sum = 0;
+        for (NSInteger i = 0; i < byteRange.length-1; i++) {
+            sum += dataBytes[i];
+        }
+        if (sum != dataBytes[14]) {
+            return ;
+        }
+        
+        unsigned char head1 = dataBytes[0];
+        unsigned char head2 = dataBytes[1];
+        unsigned char command = dataBytes[2];
+        
+        unsigned char hour = dataBytes[3];
+        unsigned char minute = dataBytes[4];
+        unsigned char second = dataBytes[5];
+        
+        unsigned char number = dataBytes[6];
+        unsigned char speed = dataBytes[7];
+        unsigned char temp = dataBytes[8];
+        
+        unsigned char temperature = dataBytes[9];
+        unsigned char var = dataBytes[10];
+        unsigned char reserve_1 = dataBytes[11];
+        unsigned char reserve_2 = dataBytes[12];
+        
+        unsigned char system = dataBytes[13];
+        unsigned char flagl = dataBytes[14];
+        
+        if (command == 5) {
+            if (system == 2) {
+                if((number == 0) && (speed == 0) && (temp == 0)) {
+                    isValidData = NO;
+                }
+                else {
+                    isValidData = YES;
                 }
             }
-            
-            [self setValueIndex:i String:hexStr];
+            else if (system == 3) {
+                isValidData = YES;
+            }
+        }
+        
+        if (isValidData) {
+            BLE_VALUE.head1 = [NSString stringWithFormat:@"%x", head1 & 0xff];
+            BLE_VALUE.head2 = [NSString stringWithFormat:@"%x", head2 & 0xff];
+            BLE_VALUE.command = [NSString stringWithFormat:@"%02d", command & 0xff];
+            BLE_VALUE.hour = [NSString stringWithFormat:@"%02d", hour & 0xff];
+            BLE_VALUE.minute = [NSString stringWithFormat:@"%02d", minute & 0xff];
+            BLE_VALUE.second = [NSString stringWithFormat:@"%02d", second & 0xff];
+            BLE_VALUE.number = [NSString stringWithFormat:@"%02d", number & 0xff];
+            BLE_VALUE.speed = [NSString stringWithFormat:@"%02d", speed & 0xff];
+            BLE_VALUE.temp = [NSString stringWithFormat:@"%02d", temp & 0xff];
+            BLE_VALUE.temperature = [NSString stringWithFormat:@"%02d", temperature & 0xff];
+            BLE_VALUE.var = [NSString stringWithFormat:@"%02d", var & 0xff];
+            BLE_VALUE.reserve_1 = [NSString stringWithFormat:@"%02d", reserve_1 & 0xff];
+            BLE_VALUE.reserve_2 = [NSString stringWithFormat:@"%02d", reserve_2 & 0xff];
+            BLE_VALUE.system = [NSString stringWithFormat:@"%02d", system & 0xff];
+            BLE_VALUE.flagl = [NSString stringWithFormat:@"%02d", flagl & 0xff];
         }
     }];
-}
-
-+ (void)setValueIndex:(NSInteger)index String:(NSString *)hexStr {
-    switch (index) {
-        case 0:
-            BLE_VALUE.head1 = hexStr;
-            break;
-        case 1:
-            BLE_VALUE.head2 = hexStr;
-            break;
-        case 2:
-            BLE_VALUE.command = hexStr;
-            break;
-        case 3:
-            BLE_VALUE.hour = hexStr;
-            break;
-        case 4:
-            BLE_VALUE.minute = hexStr;
-            break;
-        case 5:
-            BLE_VALUE.second = hexStr;
-            break;
-        case 6:
-            BLE_VALUE.number = hexStr;
-            break;
-        case 7:
-            BLE_VALUE.speed = hexStr;
-            break;
-        case 8:
-            BLE_VALUE.temp = hexStr;
-            break;
-        case 9:
-            BLE_VALUE.temperature = hexStr;
-            break;
-        case 10:
-            BLE_VALUE.var = hexStr;
-            break;
-        case 11:
-            BLE_VALUE.reserve_1 = hexStr;
-            break;
-        case 12:
-            BLE_VALUE.reserve_2 = hexStr;
-            break;
-        case 13:
-            BLE_VALUE.system = hexStr;
-            break;
-        case 14:
-            BLE_VALUE.flagl = hexStr;
-            break;
-        default:
-            break;
-    }
+    
+    return isValidData;
 }
 
 

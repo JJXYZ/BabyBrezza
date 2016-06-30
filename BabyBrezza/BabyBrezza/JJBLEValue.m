@@ -42,7 +42,11 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        _number = @"4";
+        _temp = @"1";
+        _speed = @"1";
         _isSoundOpen = YES;
+        [self setTimeValue];
     }
     return self;
 }

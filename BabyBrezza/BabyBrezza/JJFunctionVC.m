@@ -81,11 +81,11 @@
 #pragma mark - Private Methods
 - (void)loadData {
     _funStausType = FunStatusType_Normal;
-    [JJMessage sendSettingData];
     [self.funSettingView setStartPickViewNumber:BLE_VALUE.number];
     [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
     [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
     [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
+    [JJMessage sendSettingData];
 }
 
 - (void)layoutFuncionUI {
@@ -229,24 +229,8 @@
 }
 
 - (void)nDidReceiveData {
-    if (BLE_VALUE.command.intValue == 1) {
-        if (BLE_VALUE.system.intValue == 1) {
-            self.funStausType = FunStatusType_Normal;
-            [self setValueFunUI];
-        }
-    }
-    else if (BLE_VALUE.command.intValue == 2) {
+    if (BLE_VALUE.command.intValue == 5) {
         if (BLE_VALUE.system.intValue == 2) {
-            self.funStausType = FunStatusType_Normal;
-            [self setValueFunUI];
-        }
-    }
-    else if (BLE_VALUE.command.intValue == 5) {
-        if (BLE_VALUE.system.intValue == 1) {
-            self.funStausType = FunStatusType_Normal;
-            [self setValueFunUI];
-        }
-        else if (BLE_VALUE.system.intValue == 2) {
             self.funStausType = FunStatusType_Normal;
             [self setValueFunUI];
         }
@@ -334,6 +318,7 @@
 #pragma mark - JJFunTimeViewDelegate
 
 - (void)clickFunTimeStartBtn:(JJFunSettingControlBtn *)btn {
+    if((BLE_VALUE.minute.intValue + BLE_VALUE.second.intValue) == 0) return;
     [JJMessage sendStartData];
 }
 
