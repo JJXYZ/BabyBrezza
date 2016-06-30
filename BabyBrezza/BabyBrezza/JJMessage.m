@@ -11,6 +11,17 @@
 #import "JJCBCentralManager.h"
 #import "JJBLEValue.h"
 
+@interface JJMessage ()
+
+@property (nonatomic, strong) NSTimer *delayTimer;
+
+@property (nonatomic, assign) int command;
+
+@property (nonatomic, assign) int system;
+
+@property (nonatomic, assign) BOOL isBusying;
+
+@end
 
 @implementation JJMessage
 
@@ -27,19 +38,48 @@
 
 #pragma mark - Private Methods
 
+- (void)delaySendDataCommand:(int)command system:(int)system {
+    self.isBusying = YES;
+    self.command = command;
+    self.system = system;
+    [self createDelayTimer];
+}
+
+- (void)delaySendData {
+    self.isBusying = NO;
+    [JJMessage sendDataCommand:self.command system:self.system];
+}
+
+
+#pragma mark - NSTimer
+
+- (void)createDelayTimer {
+    [self removeDelayTimer];
+    self.delayTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(delaySendData) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.delayTimer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)removeDelayTimer {
+    if (self.delayTimer) {
+        [self.delayTimer invalidate];
+        self.delayTimer = nil;
+    }
+}
+
+
 #pragma mark - Public Methods
 
 
 + (void)sendSettingData {
-    [self sendDataCommand:0x03 system:0x02];
+    [[JJMessage sharedInstance] delaySendDataCommand:0x03 system:0x02];
 }
 
 + (void)sendStartData {
-    [self sendDataCommand:0x03 system:0x03];
+    [JJMessage sendDataCommand:0x03 system:0x03];
 }
 
 + (void)sendCancelData {
-    [self sendDataCommand:0x02 system:0x02];
+    [JJMessage sendDataCommand:0x02 system:0x02];
 }
 
 
@@ -77,11 +117,14 @@
     [CENTRAL_MANAGER writeData:data];
 }
 
-
-+ (BOOL)receiveData:(NSData *)data {
+- (BOOL)receiveData:(NSData *)data {
+    if (self.isBusying) {
+        return NO;
+    }
+    
     __block BOOL isValidData = NO;
     [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-                
+        
         if (byteRange.length != 15) {
             return ;
         }
@@ -154,6 +197,10 @@
     }];
     
     return isValidData;
+}
+
++ (BOOL)receiveData:(NSData *)data {
+    return [[JJMessage sharedInstance] receiveData:data];
 }
 
 
