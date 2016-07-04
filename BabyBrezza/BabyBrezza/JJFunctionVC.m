@@ -229,7 +229,13 @@
 }
 
 - (void)nDidReceiveData {
-    if (BLE_VALUE.command.intValue == 5) {
+    if (BLE_VALUE.command.intValue == 2) {
+        if (BLE_VALUE.system.intValue == 2) {
+            self.funStausType = FunStatusType_Normal;
+            [self setValueFunUI];
+        }
+    }
+    else if (BLE_VALUE.command.intValue == 5) {
         if (BLE_VALUE.system.intValue == 2) {
             self.funStausType = FunStatusType_Normal;
             [self setValueFunUI];
@@ -329,6 +335,8 @@
     [self removeCountDownTimer];
     [self.funTimeView showStartBtn];
     [self.funSettingView enable];
+    
+    [JJMessage sendSettingData];
 }
 
 - (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn {

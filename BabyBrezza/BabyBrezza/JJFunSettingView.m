@@ -336,6 +336,19 @@
     return nil;
 }
 
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *pickerLabel = (UILabel *)view;
+    if (![pickerLabel isKindOfClass:[UILabel class]]) {
+        pickerLabel = [[UILabel alloc] init];
+        pickerLabel.adjustsFontSizeToFitWidth = YES;
+        pickerLabel.textAlignment = NSTextAlignmentCenter;
+        pickerLabel.backgroundColor = [UIColor clearColor];
+        pickerLabel.font = VAGRounded_FONT(17);
+    }
+    pickerLabel.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
+
 
 #pragma mark - Property
 

@@ -163,7 +163,12 @@
         unsigned char system = dataBytes[13];
         unsigned char flagl = dataBytes[14];
         
-        if (command == 5) {
+        if (command == 2) {
+            if (system == 2) {
+                isValidData = YES;
+            }
+        }
+        else if (command == 5) {
             if (system == 2) {
                 if((number == 0) && (speed == 0) && (temp == 0)) {
                     isValidData = NO;
