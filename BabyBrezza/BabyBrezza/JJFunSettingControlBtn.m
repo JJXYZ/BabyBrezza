@@ -35,10 +35,10 @@
 
 - (void)layoutControllerBtnUI {
     if (IS_IPHONE4) {
-        self.titleLabel.font = S_FONT(22);
+        self.titleLabel.font = VAGRounded_FONT(22);
     }
     else {
-        self.titleLabel.font = S_FONT(24);
+        self.titleLabel.font = VAGRounded_FONT(24);
     }
     
 }

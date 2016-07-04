@@ -44,6 +44,7 @@
 		69ABAFF61D16B6B1008D9BC3 /* NSString+JJSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ABAFF11D16B6B1008D9BC3 /* NSString+JJSafe.m */; };
 		69F9379F1BBBE90F005F7399 /* UIView+JJCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */; };
 		69F937AA1BBBEFA4005F7399 /* JJPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F937A51BBBEFA4005F7399 /* JJPeripheralManager.m */; };
+		A382F03B1D2A01CD00CA4688 /* VAGRounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A382F03A1D2A01CD00CA4688 /* VAGRounded-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +126,7 @@
 		69F9379E1BBBE90F005F7399 /* UIView+JJCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JJCommon.m"; sourceTree = "<group>"; };
 		69F937A41BBBEFA4005F7399 /* JJPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPeripheralManager.h; sourceTree = "<group>"; };
 		69F937A51BBBEFA4005F7399 /* JJPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPeripheralManager.m; sourceTree = "<group>"; };
+		A382F03A1D2A01CD00CA4688 /* VAGRounded-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRounded-Light.otf"; sourceTree = "<group>"; };
 		A6CDA07874C5E95588F39D5E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,6 +236,7 @@
 		6973F4131BBBD00400D7737D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A382F03A1D2A01CD00CA4688 /* VAGRounded-Light.otf */,
 				6973F4141BBBD00400D7737D /* main.m */,
 				691D8F171CF893E700170430 /* BabyBrezza-Prefix.pch */,
 			);
@@ -512,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				696AF8E01D05DF4B00E89E9B /* noti_sound.mp3 in Resources */,
+				A382F03B1D2A01CD00CA4688 /* VAGRounded-Light.otf in Resources */,
 				6973F4201BBBD00400D7737D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
+#define VAGRounded_FONT(FONTSIZE)    [UIFont fontWithName:@"VAGRounded-Light" size:FONTSIZE]
+
 @interface BBUtils : NSObject
 
 + (id)getI4:(id)i4 i5:(id)i5 i6:(id)i6 i6p:(id)i6p;

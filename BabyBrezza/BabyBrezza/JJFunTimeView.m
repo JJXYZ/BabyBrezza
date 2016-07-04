@@ -203,7 +203,7 @@
     _timeLabel.textAlignment = NSTextAlignmentCenter;
     _timeLabel.backgroundColor = [UIColor clearColor];
     _timeLabel.textColor = [UIColor blackColor];
-    _timeLabel.font = S_FONT(50);
+    _timeLabel.font = VAGRounded_FONT(50);
     _timeLabel.text = @"00:00";
     return _timeLabel;
 }
@@ -221,7 +221,7 @@
     _errorLabel.textAlignment = NSTextAlignmentCenter;
     _errorLabel.backgroundColor = [UIColor clearColor];
     _errorLabel.textColor = [UIColor blackColor];
-    _errorLabel.font = S_FONT(24); //LLY modified 30 to 24
+    _errorLabel.font = VAGRounded_FONT(24); //LLY modified 30 to 24
     _errorLabel.text = @"Error";
     return _errorLabel;
 }
@@ -236,7 +236,7 @@
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
-    _textLabel.font = S_FONT(16);//LLY modified 20 to 16
+    _textLabel.font = VAGRounded_FONT(16);//LLY modified 20 to 16
     _textLabel.text = @"Please see troubleshooting section\n in the instruction manual";
     return _textLabel;
 }

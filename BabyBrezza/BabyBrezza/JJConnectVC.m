@@ -52,7 +52,7 @@
         return _titleLabel;
     }
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.font = S_FONT(S_SCALE_W_4(25));
+    _titleLabel.font = VAGRounded_FONT(S_SCALE_W_4(25));
     _titleLabel.numberOfLines = 0;
     _titleLabel.frame = CGRectMake(0, 0, S_SCALE_W_4(250), S_SCALE_W_4(100));
     _titleLabel.textAlignment = NSTextAlignmentCenter;

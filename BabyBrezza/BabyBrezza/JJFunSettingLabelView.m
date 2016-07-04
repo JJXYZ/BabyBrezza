@@ -68,7 +68,7 @@
     _numberLabel.textAlignment = NSTextAlignmentCenter;
     _numberLabel.backgroundColor = [UIColor clearColor];
     _numberLabel.textColor = [UIColor blackColor];
-    _numberLabel.font = S_FONT(S_SCALE_W_4(16));
+    _numberLabel.font = VAGRounded_FONT(S_SCALE_W_4(16));
     _numberLabel.text = @"setting";
     return _numberLabel;
 }
@@ -81,7 +81,7 @@
     _speedLabel.textAlignment = NSTextAlignmentCenter;
     _speedLabel.backgroundColor = [UIColor clearColor];
     _speedLabel.textColor = [UIColor blackColor];
-    _speedLabel.font = S_FONT(S_SCALE_W_4(16));
+    _speedLabel.font = VAGRounded_FONT(S_SCALE_W_4(16));
     _speedLabel.text = @"speed";
     return _speedLabel;
 }
@@ -95,7 +95,7 @@
     _tempLabel.textAlignment = NSTextAlignmentCenter;
     _tempLabel.backgroundColor = [UIColor clearColor];
     _tempLabel.textColor = [UIColor blackColor];
-    _tempLabel.font = S_FONT(S_SCALE_W_4(16));
+    _tempLabel.font = VAGRounded_FONT(S_SCALE_W_4(16));
     _tempLabel.text = @"start temp";
     return _tempLabel;
 }

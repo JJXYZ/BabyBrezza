@@ -159,7 +159,7 @@
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
-    _textLabel.font = S_FONT(S_SCALE_W_4(18));
+    _textLabel.font = VAGRounded_FONT(S_SCALE_W_4(18));
     _textLabel.text = @"scan for your bottle warmer";
     return _textLabel;
 }
@@ -172,7 +172,7 @@
     _versionLabel.textAlignment = NSTextAlignmentCenter;
     _versionLabel.backgroundColor = [UIColor clearColor];
     _versionLabel.textColor = [UIColor blackColor];
-    _versionLabel.font = S_FONT(S_SCALE_W_4(18));
+    _versionLabel.font = VAGRounded_FONT(S_SCALE_W_4(18));
     _versionLabel.text = @"Brezza v0.7.01";
     return _versionLabel;
 }

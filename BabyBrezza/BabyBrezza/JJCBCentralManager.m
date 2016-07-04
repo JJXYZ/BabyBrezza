@@ -135,7 +135,7 @@
 #pragma mark - Public Methods
 
 - (void)showAlertView {
-    UIAlertView  *alert = [[UIAlertView alloc]initWithTitle:@"Turn on Bluetooth" message:@"An app wants to turn on Bluetooth" delegate:self cancelButtonTitle:@"Allow" otherButtonTitles: nil];
+    UIAlertView  *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Bluetooth" message:@"An app wants to turn on Bluetooth" delegate:self cancelButtonTitle:@"Allow" otherButtonTitles: nil];
     [alert show];
 }
 

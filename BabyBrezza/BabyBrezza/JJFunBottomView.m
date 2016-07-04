@@ -67,7 +67,7 @@
     _stateLabel.textAlignment = NSTextAlignmentCenter;
     _stateLabel.backgroundColor = [UIColor clearColor];
     _stateLabel.textColor = [UIColor blackColor];
-    _stateLabel.font = S_FONT(14);
+    _stateLabel.font = VAGRounded_FONT(14);
     _stateLabel.text = @"connected";
     return _stateLabel;
 }

@@ -95,7 +95,7 @@
     [_backBtn addSubview:imageView];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(28, 10, 80, 30)];
-    label.font = S_FONT(16);
+    label.font = VAGRounded_FONT(16);
     label.textAlignment = NSTextAlignmentLeft;
     label.userInteractionEnabled = NO;
     label.text = @"back";
