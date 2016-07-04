@@ -30,7 +30,27 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:@{CBCentralManagerOptionRestoreIdentifierKey: @"restoreIdentifier"}];
+#if  __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 //蓝牙power没打开时alert提示框
+                                 [NSNumber numberWithBool:YES],CBCentralManagerOptionShowPowerAlertKey,
+                                 //重设centralManager恢复的IdentifierKey
+                                 @"restoreIdentifier",CBCentralManagerOptionRestoreIdentifierKey,
+                                 nil];
+        
+#else
+        NSDictionary *options = nil;
+#endif
+        NSArray *backgroundModes = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"UIBackgroundModes"];
+        if ([backgroundModes containsObject:@"bluetooth-central"]) {
+            //后台模式
+            self.centralManager = [[CBCentralManager alloc]initWithDelegate:self queue:dispatch_get_main_queue() options:options];
+        }
+        else {
+            //非后台模式
+            self.centralManager = [[CBCentralManager alloc]initWithDelegate:self queue:dispatch_get_main_queue()];
+        }
+
         _isAutoConnect = YES;
     }
     return self;
