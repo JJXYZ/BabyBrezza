@@ -48,6 +48,9 @@
 /** 声音开关 */
 @property (nonatomic, assign) BOOL isSoundOpen;
 
+/** 初始化数据 */
+- (void)initData;
+
 - (void)playNotiSound:(BOOL)isSound;
 
 - (void)setTimeValue;

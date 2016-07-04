@@ -42,9 +42,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _number = @"4";
-        _temp = @"1";
-        _speed = @"1";
+        [self initData];
         _isSoundOpen = YES;
         [self setTimeValue];
     }
@@ -53,6 +51,13 @@
 
 
 #pragma mark - Public Methods
+
+/** 初始化数据 */
+- (void)initData {
+    _number = @"4";
+    _temp = @"1";
+    _speed = @"1";
+}
 
 - (void)clearParam {
     self.head1 = nil;

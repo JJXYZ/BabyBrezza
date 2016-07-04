@@ -138,7 +138,6 @@
         [_delegate clickFunTimeOKBtn:btn];
         
         //LLY @0701
-        BLE_MANAGER.curDisplayPeripheral = nil;
         CENTRAL_MANAGER.curPeripheral    = nil;
     }
 }

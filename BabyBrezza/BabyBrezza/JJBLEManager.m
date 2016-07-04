@@ -67,6 +67,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_TimerStopScan object:nil];
 }
 
+#pragma mark - Public Methods
+
+/** 初始化数据 */
+- (void)initData {
+    
+}
+
 - (void)stopScan {
     [CENTRAL_MANAGER stopScan];
     [self removeScanTimer];
@@ -88,16 +95,17 @@
 - (void)JJCBCentralManager:(JJCBCentralManager *)central displayPeripheral:(CBPeripheral *)peripheral {
     
     NSRange range = [peripheral.name rangeOfString:@"Brezza"];
-    if (range.location != NSNotFound) {
-        if((self.curDisplayPeripheral == peripheral) || (self.curDisplayPeripheral == nil)) {
-            self.curDisplayPeripheral = peripheral;
-            /** 取消当前设备的连接 */
-            [CENTRAL_MANAGER cancelPeripheralConnection];
-            /** 连接设备 */
-            [CENTRAL_MANAGER connectToPeripherl:peripheral];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DisplayPeripheral object:nil];
-        }
+    if (peripheral.name.length &&
+        range.location != NSNotFound) {
+        
+        self.curDisplayPeripheral = peripheral;
+
+        /** 取消当前设备的连接 */
+        [CENTRAL_MANAGER cancelPeripheralConnection];
+        /** 连接设备 */
+        [CENTRAL_MANAGER connectToPeripherl:peripheral];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DisplayPeripheral object:peripheral];
     }
 }
 

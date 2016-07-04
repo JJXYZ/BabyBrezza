@@ -51,13 +51,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self addMainNotification];
-    CENTRAL_MANAGER.isAutoConnect = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self removeMainNotification];
-    CENTRAL_MANAGER.isAutoConnect = YES;
 }
 
 #pragma mark - Private Methods
@@ -65,12 +63,9 @@
     [self.view addSubview:self.scanBtn];
     [self.view addSubview:self.textLabel];
     [self.view addSubview:self.versionLabel];
-    [JJCBCentralManager sharedInstance];
-    [JJBLEManager sharedInstance];
     
-    //LLY @0701
-    BLE_MANAGER.curDisplayPeripheral = nil;
-    CENTRAL_MANAGER.curPeripheral    = nil;
+    [CENTRAL_MANAGER initData];
+    [BLE_MANAGER initData];
 }
 
 - (void)addMainNotification {
@@ -81,19 +76,11 @@
 }
 
 - (void)removeMainNotification {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFY_DidConnectPeripheral object:nil];
-    
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFY_DidConnectPeripheral object:nil];    
 }
 
 - (void)pushConnectedVC {
     JJConnectVC *vc = [[JJConnectVC alloc] init];
-    
-    //LLY @0701
-    BLE_VALUE.number = @"4";
-    BLE_VALUE.temp   = @"1";
-    BLE_VALUE.speed  = @"1";
-    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -102,6 +89,8 @@
 - (void)nDidConnectPeripheral {
     self.scanBtn.hidden = NO;
     [SVProgressHUD dismiss];
+    [BLE_VALUE initData];
+    CENTRAL_MANAGER.isAutoConnect = YES;
     [self pushConnectedVC];
 }
 
@@ -173,7 +162,7 @@
     _versionLabel.backgroundColor = [UIColor clearColor];
     _versionLabel.textColor = [UIColor blackColor];
     _versionLabel.font = VAGRounded_FONT(S_SCALE_W_4(18));
-    _versionLabel.text = @"Brezza v0.7.01";
+    _versionLabel.text = @"Brezza v0.7.04";
     return _versionLabel;
 }
 

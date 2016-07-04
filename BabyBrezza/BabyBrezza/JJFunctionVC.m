@@ -333,7 +333,8 @@
 
 - (void)clickFunTimeOKBtn:(JJFunSettingControlBtn *)btn {
     [CENTRAL_MANAGER cancelPeripheralConnection];
-    [CENTRAL_MANAGER removeRetrieveTimer];
+    CENTRAL_MANAGER.isAutoConnect = NO;
+    [CENTRAL_MANAGER initData];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

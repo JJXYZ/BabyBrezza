@@ -42,6 +42,11 @@
     if (!self.isAutoConnect) {
         return ;
     }
+    
+    if (!self.curPeripheral) {
+        return ;
+    }
+    
     [self removeRetrieveTimer];
     NSLog(@"创建重连定时器");
     _retrieveTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(scan) userInfo:nil repeats:YES];
@@ -133,6 +138,11 @@
 
 
 #pragma mark - Public Methods
+
+/** 初始化数据 */
+- (void)initData {
+    self.curPeripheral = nil;
+}
 
 - (void)showAlertView {
     UIAlertView  *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Bluetooth" message:@"An app wants to turn on Bluetooth" delegate:self cancelButtonTitle:@"Allow" otherButtonTitles: nil];
@@ -260,7 +270,6 @@
         case CBCentralManagerStatePoweredOff:
         {
             NSLog(@"CoreBluetooth BLE hardware is powered off");
-            self.curPeripheral = nil;
             
             [self showAlertView];
             
@@ -312,7 +321,16 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     
     NSLog(@"发现了:%@ RSSI:%@", peripheral.name, RSSI);
-    if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:displayPeripheral:)]) {
+    
+    if (self.curPeripheral) {
+        if ([peripheral.name isEqualToString:self.curPeripheral.name] &&
+            [peripheral.identifier.UUIDString isEqualToString:self.curPeripheral.identifier.UUIDString]) {
+            if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:displayPeripheral:)]) {
+                [_delegate JJCBCentralManager:self displayPeripheral:peripheral];
+            }
+        }
+    }
+    else if (_delegate && [_delegate respondsToSelector:@selector(JJCBCentralManager:displayPeripheral:)]) {
         [_delegate JJCBCentralManager:self displayPeripheral:peripheral];
     }
 }
@@ -352,19 +370,12 @@
     /** 创建重连定时器 */
     [self creatRetrieveTimer];
     
-    if ([self.curPeripheral.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
-        self.curPeripheral = nil;
-    }
 }
 
 /** 设备失去连接 */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
     NSLog(@"失去连接: %@", peripheral);
-    
-    if ([self.curPeripheral.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
-        self.curPeripheral = nil;
-    }
     
     /** 创建重连定时器 */
     [self creatRetrieveTimer];

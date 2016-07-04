@@ -17,7 +17,11 @@
 /** 单例 */
 + (JJBLEManager *)sharedInstance;
 
+/** 持有peripheral代理 */
 @property (nonatomic, strong) CBPeripheral *curDisplayPeripheral;
+
+/** 初始化数据 */
+- (void)initData;
 
 /** 停止扫描 */
 - (void)stopScan;

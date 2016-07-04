@@ -30,6 +30,9 @@
 /** 是否允许自动重连 */
 @property (nonatomic, assign) BOOL isAutoConnect;
 
+/** 初始化数据 */
+- (void)initData;
+
 /** 开始扫描 */
 - (void)scan;
 
