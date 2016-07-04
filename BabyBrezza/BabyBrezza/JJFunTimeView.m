@@ -9,6 +9,10 @@
 #import "JJFunTimeView.h"
 #import "JJFunSettingControlBtn.h"
 
+//LLY @0702
+#import "JJBLEManager.h"
+#import "JJCBCentralManager.h"
+
 @interface JJFunTimeView ()
 
 @property (nonatomic, strong) UILabel *timeLabel;
@@ -132,6 +136,10 @@
     
     if (_delegate && [_delegate respondsToSelector:@selector(clickFunTimeOKBtn:)]) {
         [_delegate clickFunTimeOKBtn:btn];
+        
+        //LLY @0701
+        BLE_MANAGER.curDisplayPeripheral = nil;
+        CENTRAL_MANAGER.curPeripheral    = nil;
     }
 }
 
@@ -213,7 +221,7 @@
     _errorLabel.textAlignment = NSTextAlignmentCenter;
     _errorLabel.backgroundColor = [UIColor clearColor];
     _errorLabel.textColor = [UIColor blackColor];
-    _errorLabel.font = S_FONT(30);
+    _errorLabel.font = S_FONT(24); //LLY modified 30 to 24
     _errorLabel.text = @"Error";
     return _errorLabel;
 }
@@ -228,7 +236,7 @@
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
-    _textLabel.font = S_FONT(20);
+    _textLabel.font = S_FONT(16);//LLY modified 20 to 16
     _textLabel.text = @"Please see troubleshooting section\n in the instruction manual";
     return _textLabel;
 }

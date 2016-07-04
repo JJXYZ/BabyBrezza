@@ -76,7 +76,8 @@
     if (_dataArr) {
         return _dataArr;
     }
-    _dataArr = [[NSArray alloc] initWithObjects:@"steady_room",@"quick_room",@"quick_cold",@"steady_cold", nil];
+    //LLY @0701
+    _dataArr = [[NSArray alloc] initWithObjects:@"quick_room",@"quick_cold",@"steady_room",@"steady_cold", nil];
     return _dataArr;
 }
 
@@ -84,9 +85,22 @@
     if (_backBtn) {
         return _backBtn;
     }
+    //LLY @0702
     _backBtn = [[UIButton alloc] init];
-    _backBtn.frame = CGRectMake(5, 20, 35, 35);
-    [_backBtn setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
+    _backBtn.frame = CGRectMake(5, 10, 120, 30);
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 30, 30)];
+    imageView.userInteractionEnabled = NO;
+    imageView.image = [UIImage imageNamed:@"leftArrow"];
+    [_backBtn addSubview:imageView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(28, 10, 80, 30)];
+    label.font = S_FONT(16);
+    label.textAlignment = NSTextAlignmentLeft;
+    label.userInteractionEnabled = NO;
+    label.text = @"back";
+    [_backBtn addSubview:label];
+    
     [_backBtn addTarget:self action:@selector(clickBackBtn:) forControlEvents:UIControlEventTouchUpInside];
     return _backBtn;
 }

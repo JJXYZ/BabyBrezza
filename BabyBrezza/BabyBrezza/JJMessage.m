@@ -172,7 +172,9 @@
                     isValidData = YES;
                 }
             }
-            else if (system == 3) {
+            //LLY @0702 modified the 'else if' to 'else'
+            else //if (system == 3)
+            {
                 isValidData = YES;
             }
         }

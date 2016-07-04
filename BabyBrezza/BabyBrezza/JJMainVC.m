@@ -67,6 +67,10 @@
     [self.view addSubview:self.versionLabel];
     [JJCBCentralManager sharedInstance];
     [JJBLEManager sharedInstance];
+    
+    //LLY @0701
+    BLE_MANAGER.curDisplayPeripheral = nil;
+    CENTRAL_MANAGER.curPeripheral    = nil;
 }
 
 - (void)addMainNotification {
@@ -84,6 +88,12 @@
 
 - (void)pushConnectedVC {
     JJConnectVC *vc = [[JJConnectVC alloc] init];
+    
+    //LLY @0701
+    BLE_VALUE.number = @"4";
+    BLE_VALUE.temp   = @"1";
+    BLE_VALUE.speed  = @"1";
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
