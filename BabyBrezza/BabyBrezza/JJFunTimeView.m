@@ -8,7 +8,7 @@
 
 #import "JJFunTimeView.h"
 #import "JJFunSettingControlBtn.h"
-
+#import "UIButton+JJCommon.h"
 //LLY @0702
 #import "JJBLEManager.h"
 #import "JJCBCentralManager.h"
@@ -248,8 +248,10 @@
     _startBtn = [[JJFunSettingControlBtn alloc] init];
     [_startBtn setTitle:@"start" forState:UIControlStateNormal];
     _startBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
-    _startBtn.backgroundColor = [UIColor funControlBtnGreenColor];
     _startBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
+    [_startBtn setBackgroundColor:[UIColor funControlBtnGreenColor] forState:UIControlStateNormal];
+    [_startBtn setBackgroundColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    _startBtn.layer.masksToBounds = YES;
     [_startBtn addTarget:self action:@selector(clickStartBtn:) forControlEvents:UIControlEventTouchUpInside];
     _startBtn.hidden = NO;
     return _startBtn;
@@ -264,6 +266,9 @@
     _cancelBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _cancelBtn.backgroundColor = [UIColor funControlBtnOrangeColor];
     _cancelBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
+    [_cancelBtn setBackgroundColor:[UIColor funControlBtnOrangeColor] forState:UIControlStateNormal];
+    [_cancelBtn setBackgroundColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    _cancelBtn.layer.masksToBounds = YES;
     [_cancelBtn addTarget:self action:@selector(clickcancelBtn:) forControlEvents:UIControlEventTouchUpInside];
     _cancelBtn.hidden = YES;
     return _cancelBtn;
@@ -277,7 +282,9 @@
     _okBtn = [[JJFunSettingControlBtn alloc] init];
     [_okBtn setTitle:@"ok" forState:UIControlStateNormal];
     _okBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
-    _okBtn.backgroundColor = [UIColor funControlBtnGreenColor];
+    [_okBtn setBackgroundColor:[UIColor funControlBtnGreenColor] forState:UIControlStateNormal];
+    [_okBtn setBackgroundColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    _okBtn.layer.masksToBounds = YES;
     _okBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
     [_okBtn addTarget:self action:@selector(clickOKBtn:) forControlEvents:UIControlEventTouchUpInside];
     _okBtn.hidden = YES;
