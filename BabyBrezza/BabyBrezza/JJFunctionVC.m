@@ -43,6 +43,8 @@
 
 @property (nonatomic, assign) FunStatusType funStausType;
 
+@property (nonatomic, assign) BOOL isBeginReceiveData;
+
 @end
 
 @implementation JJFunctionVC
@@ -85,7 +87,13 @@
     [self.funSettingView setPickViewTemp:BLE_VALUE.temp];
     [self.funSettingView setPickViewSpeed:BLE_VALUE.speed];
     [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
-    [JJMessage sendSettingData];
+    [self performSelector:@selector(sendSettingData) withObject:nil afterDelay:3];
+}
+
+- (void)sendSettingData {
+    if (!_isBeginReceiveData) {
+        [JJMessage sendSettingData];
+    }
 }
 
 - (void)layoutFuncionUI {
@@ -194,7 +202,7 @@
 
 
 - (void)funSuccessMinutes:(NSUInteger)minutes seconds:(NSUInteger)seconds {
-    if (!minutes && !seconds && self.funStausType == FunStatusType_Start) {
+    if (!minutes && !seconds) {
         self.funStausType = FunStatusType_Finish;
     }
 }
@@ -229,6 +237,7 @@
 }
 
 - (void)nDidReceiveData {
+    self.isBeginReceiveData = YES;
     if (BLE_VALUE.command.intValue == 2) {
         if (BLE_VALUE.system.intValue == 2) {
             self.funStausType = FunStatusType_Normal;

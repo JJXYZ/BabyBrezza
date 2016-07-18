@@ -152,6 +152,12 @@
 
 - (void)setPickViewSpeed:(NSString *)speed {
     NSInteger row = speed.integerValue - 1;
+    if (row == 0) {
+        row = 1;
+    }
+    else {
+        row = 0;
+    }
     NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:2];
     if (row != curRow) {
         [self.funSettingPickView selectRow:row inComponent:2 animated:YES];
@@ -169,6 +175,12 @@
 }
 
 - (void)setValueSpeedRow:(NSUInteger)row {
+    if (row == 0) {
+        row = 1;
+    }
+    else {
+        row = 0;
+    }
     NSUInteger speed = row + 1;
     BLE_VALUE.speed = [NSString stringWithFormat:@"%lu", (unsigned long)speed];
 }
@@ -397,13 +409,13 @@
     if (_speedPickArr) {
         return _speedPickArr;
     }
-    _speedPickArr = [NSArray arrayWithObjects:@"quick",@"steady", nil];
+    _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
     return _speedPickArr;
 }
 
 - (void)setSpeedPickArrType:(NSUInteger)type {
     if (type == 0) {
-        _speedPickArr = [NSArray arrayWithObjects:@"quick",@"steady", nil];
+        _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
     }
     else {
         _speedPickArr = [NSArray arrayWithObjects:@"steady", nil];

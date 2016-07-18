@@ -113,7 +113,7 @@
     return ;
 #endif
     
-#if 1
+#if 0
     [self pushConnectedVC];
     return ;
 #endif
