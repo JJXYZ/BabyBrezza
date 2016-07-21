@@ -18,4 +18,11 @@
 #import "BBUtils.h"
 #import "JJBLENotifyName.h"
 
+//LLY @0708
+#ifdef DEBUG
+#else
+#define NSLog(...){}
+#endif
+
+
 #endif /* BabyBrezza_Prefix_pch */

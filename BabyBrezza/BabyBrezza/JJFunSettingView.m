@@ -12,6 +12,10 @@
 #import "JJFunSettingBtn.h"
 #import "JJBLEValue.h"
 
+
+//LLY @0706
+//#define LLY_SHOW_3LINES
+
 #define PickerView_H 100
 
 #define NumberPickerViewNum 1000
@@ -100,6 +104,13 @@
         }
         self.isShowDefrost = NO;
     }
+    
+    //LLY @0706
+    #ifdef LLY_SHOW_3LINES
+    [self.funSettingPickView reloadComponent:0];
+    #endif
+    
+    
 }
 
 - (void)reloadPickViewType:(NSUInteger)type {
@@ -109,6 +120,10 @@
     [self.funSettingPickView reloadComponent:2];
 }
 
+//LLY test
+- (void)refeshPickerView{
+    [self.funSettingPickView reloadComponent:0];
+}
 
 #pragma mark - Public Methods
 
@@ -263,6 +278,53 @@
     return isValidClick;
 }
 
+//LLY @0706 : added the mathod
+#ifdef LLY_SHOW_3LINES
+- (BOOL) checkDisplayedRow:(NSInteger)row{
+    BOOL check;
+    NSInteger i,n;
+    
+    
+    n = [self getPickViewNumber];
+    
+    
+    NSUInteger curRow = [self.funSettingPickView selectedRowInComponent:0];
+    
+    NSString *t = [NSString stringWithFormat:@"currow=%d, num=%d, titleForRow=", curRow, n];
+    NSString *s = [self.numberPickArr objectAtIndex:[self pNumberRow:row]];
+    t=[t stringByAppendingString:s];
+    NSLog(t);
+    
+    if([s compare:@"defrost"] == 0)
+    {
+        i = self.numberPickArr.count;
+    }
+    else
+    {
+        i = s.intValue;
+    }
+    
+    check = true;
+    
+    NSInteger i_1 = [self pNumberRow:i-1];
+    NSInteger i_2 = [self pNumberRow:i+1];
+    
+    if(n != i)
+    {
+        n = [self pNumberRow:n];
+        
+        if((n != i_1) && (n != i_2))
+        {
+            check = false;
+        }
+    }
+    t = [NSString stringWithFormat:@"currow=%d, n=%d, i=%d, i-1=%d, i+1=%d", curRow, n, i, i_1, i_2];
+    NSLog(t);
+    
+    return check;
+}
+#endif //LLY_SHOW_3LINES
+
 
 #pragma mark - JJFunSettingBtnViewDelegate
 - (void)clickFunSettingBtnView:(JJFunSettingBtn *)btn {
@@ -335,8 +397,25 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    if (component == 0) {
+    if (component == 0)
+    {
+        //LLY @0706
+        #ifdef LLY_SHOW_3LINES
+        NSString *s = @"blank";
+        bool check = [self checkDisplayedRow:row];
+        if(check == true)
+        {
+            s = [self.numberPickArr objectAtIndex:[self pNumberRow:row]];
+        };
+        
+        NSLog(s);
+        return s;
+        
+        #else  //LLY_SHOW_3LINES
+        //xugong's code
         return [self.numberPickArr objectAtIndex:[self pNumberRow:row]];
+        
+        #endif //LLY_SHOW_3LINES
     }
     else if (component == 1) {
         return [self.tempPickArr objectAtIndex:row];
@@ -355,9 +434,22 @@
         pickerLabel.adjustsFontSizeToFitWidth = YES;
         pickerLabel.textAlignment = NSTextAlignmentCenter;
         pickerLabel.backgroundColor = [UIColor clearColor];
-        pickerLabel.font = VAGRounded_FONT(17);
+        pickerLabel.font = VAGRounded_FONT(24);             //LLY @0705 17-->24
     }
     pickerLabel.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    
+    //LLY @0706
+    #ifdef LLY_SHOW_3LINES
+    if((component == 0) && ([self checkDisplayedRow:row] == false))
+    {
+        pickerLabel.textColor = [UIColor clearColor];
+    }
+    else
+    {
+        pickerLabel.textColor = [UIColor blackColor];
+    }
+    #endif //LLY_SHOW_3LINES
+    
     return pickerLabel;
 }
 

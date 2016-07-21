@@ -91,7 +91,7 @@
 }
 
 - (void)sendSettingData {
-    if (!_isBeginReceiveData) {
+    if (!self.isBeginReceiveData) {
         [JJMessage sendSettingData];
     }
 }
@@ -202,19 +202,23 @@
 
 
 - (void)funSuccessMinutes:(NSUInteger)minutes seconds:(NSUInteger)seconds {
-    if (!minutes && !seconds) {
+    if (!minutes && !seconds && self.funStausType != FunStatusType_Finish) {
         self.funStausType = FunStatusType_Finish;
     }
 }
 
 #pragma mark - Notification
 - (void)nDidConnectPeripheral {
+    
     [self.funBottomView setConnectText];
     if (self.funStausType != FunStatusType_Finish) {
         [self.funSettingView setCurValue];
         [self setFunTimeViewText:BLE_VALUE.getTime.integerValue];
         self.funStausType = FunStatusType_Normal;
     }
+    
+    self.isBeginReceiveData = NO;
+    [self performSelector:@selector(sendSettingData) withObject:nil afterDelay:3];
 }
 
 - (void)nStatePoweredOff {

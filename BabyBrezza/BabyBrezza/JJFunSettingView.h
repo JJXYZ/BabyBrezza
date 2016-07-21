@@ -24,6 +24,8 @@
 
 @property (nonatomic, weak) id <JJFunSettingViewDelegate> delegate;
 
+- (void)refeshPickerView;
+
 - (NSUInteger)getPickViewNumber;
 
 - (void)setStartPickViewNumber:(NSString *)number;
