@@ -69,7 +69,7 @@
     _numberLabel.backgroundColor = [UIColor clearColor];
     _numberLabel.textColor = [UIColor blackColor];
     _numberLabel.font = VAGRounded_FONT(S_SCALE_W_4(16));
-    _numberLabel.text = @"setting";
+    _numberLabel.text = [BBUtils languageStrType:JJLanguageStrTypeSetting];
     return _numberLabel;
 }
 
@@ -82,7 +82,7 @@
     _speedLabel.backgroundColor = [UIColor clearColor];
     _speedLabel.textColor = [UIColor blackColor];
     _speedLabel.font = VAGRounded_FONT(S_SCALE_W_4(16));
-    _speedLabel.text = @"speed";
+    _speedLabel.text = [BBUtils languageStrType:JJLanguageStrTypeSpeed];
     return _speedLabel;
 }
 
@@ -96,7 +96,7 @@
     _tempLabel.backgroundColor = [UIColor clearColor];
     _tempLabel.textColor = [UIColor blackColor];
     _tempLabel.font = VAGRounded_FONT(S_SCALE_W_4(16));
-    _tempLabel.text = @"start temp";
+    _tempLabel.text = [BBUtils languageStrType:JJLanguageStrTypeStartTemp];
     return _tempLabel;
 }
 

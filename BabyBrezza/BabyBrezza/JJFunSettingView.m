@@ -501,16 +501,16 @@
     if (_speedPickArr) {
         return _speedPickArr;
     }
-    _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
+    _speedPickArr = [NSArray arrayWithObjects:[BBUtils languageStrType:JJLanguageStrTypeSteedy],[BBUtils languageStrType:JJLanguageStrTypeQuick], nil];
     return _speedPickArr;
 }
 
 - (void)setSpeedPickArrType:(NSUInteger)type {
     if (type == 0) {
-        _speedPickArr = [NSArray arrayWithObjects:@"steady",@"quick", nil];
+        _speedPickArr = [NSArray arrayWithObjects:[BBUtils languageStrType:JJLanguageStrTypeSteedy],[BBUtils languageStrType:JJLanguageStrTypeQuick], nil];
     }
     else {
-        _speedPickArr = [NSArray arrayWithObjects:@"steady", nil];
+        _speedPickArr = [NSArray arrayWithObjects:[BBUtils languageStrType:JJLanguageStrTypeSteedy], nil];
     }
 }
 
@@ -519,16 +519,16 @@
     if (_tempPickArr) {
         return _tempPickArr;
     }
-    _tempPickArr = [NSArray arrayWithObjects:@"room",@"cold", nil];
+    _tempPickArr = [NSArray arrayWithObjects:[BBUtils languageStrType:JJLanguageStrTypeRoom],[BBUtils languageStrType:JJLanguageStrTypeCode], nil];
     return _tempPickArr;
 }
 
 - (void)setTempPickArrType:(NSUInteger)type {
     if (type == 0) {
-        _tempPickArr = [NSArray arrayWithObjects:@"room",@"cold", nil];
+        _tempPickArr = [NSArray arrayWithObjects:[BBUtils languageStrType:JJLanguageStrTypeRoom],[BBUtils languageStrType:JJLanguageStrTypeCode], nil];
     }
     else {
-        _tempPickArr = [NSArray arrayWithObjects:@"cold", nil];
+        _tempPickArr = [NSArray arrayWithObjects:[BBUtils languageStrType:JJLanguageStrTypeCode], nil];
     }
 }
 

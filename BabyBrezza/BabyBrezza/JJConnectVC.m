@@ -8,6 +8,7 @@
 
 #import "JJConnectVC.h"
 #import "JJFunctionVC.h"
+#import "JJBLEManager.h"
 
 @interface JJConnectVC ()
 
@@ -18,9 +19,11 @@
 @implementation JJConnectVC
 
 #pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self layoutConnectUI];
+    [self languageBinding];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -45,6 +48,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)languageBinding {
+    @weakify(self);
+    [RACObserve([JJBLEManager sharedInstance], languageType) subscribeNext:^(NSNumber *languageType) {
+        @strongify(self);
+        self.titleLabel.text = [BBUtils languageStrType:JJLanguageStrTypeBWC];
+    }];
+}
+
 #pragma mark - Property
 
 - (UILabel *)titleLabel {
@@ -56,7 +67,7 @@
     _titleLabel.numberOfLines = 0;
     _titleLabel.frame = CGRectMake(0, 0, S_SCALE_W_4(250), S_SCALE_W_4(100));
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.text = @"Bottle warmer \n connected!";
+    _titleLabel.text = kBottleWarmerConnected_EN;
     _titleLabel.center = CGPointMake(self.view.center.x, self.view.center.y);
     return _titleLabel;
 }

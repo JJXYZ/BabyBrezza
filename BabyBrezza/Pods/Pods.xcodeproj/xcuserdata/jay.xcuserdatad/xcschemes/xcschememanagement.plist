@@ -19,7 +19,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-BabyBrezza.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReactiveCocoa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,7 +37,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>374ADFE99908049D3F35830780FFF02F</key>
+		<key>1568EAC47D5C035A7BDFDEF9559BC49E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,27 +52,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>56426DBC79C7BEB4BD078AE59B60900B</key>
+		<key>888995E8357A313BFD0275D7E65F4485</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>875CB5287123729176F8E07799B5D4A2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8F46BAF8AC2C5239585902AB6ADCD8B1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B281DA29A9C3EDFB45BA53651F6BA611</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E8C702578D4B221BE1B1F7E01FE04FA4</key>
+		<key>B804EBE0BF6AF0091E3DB635948F8CBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

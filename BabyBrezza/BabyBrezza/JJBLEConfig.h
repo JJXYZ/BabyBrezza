@@ -25,6 +25,9 @@
 #define UD_KEY_CUR_PERIPHERAL_UUID @"curPeripheral_uuid"
 #define UD_KEY_CUR_PERIPHERAL_NAME @"curPeripheral_name"
 
+//语言
+#define UD_KEY_LANGUAGE @"UD_KEY_LANGUAGE"
+
 //头1	头2	命令	时	分	秒	容量
 //(OZ)	速度模式	工作模式	温度	协议版本	保留	保留	系统状态	校验和
 #define GATT_HEAD_1			0		//头1
@@ -60,13 +63,6 @@ typedef NS_ENUM(NSInteger, JJBLEConnectType)
     BLEConnectTypeConnecting,          //正在连接
     BLEConnectTypeConnected,           //已经连接
     BLEConnectTypeDisConnecting,       //正在失去连接/正在停止连接
-};
-
-//语言
-typedef NS_ENUM(NSInteger, JJBLELanguateType)
-{
-    JJBLELanguateTypeEN = 0,    //英语
-    JJBLELanguateTypeFR,        //法语
 };
 
 

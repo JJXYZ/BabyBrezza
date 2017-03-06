@@ -384,7 +384,7 @@
     label.font = VAGRounded_FONT(16);
     label.textAlignment = NSTextAlignmentRight;
     label.userInteractionEnabled = NO;
-    label.text = @"setting guide";
+    label.text = [BBUtils languageStrType:JJLanguageStrTypeSetGuide];
     [_settingGuideBtn addSubview:label];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 0, 25, 25)];
     imageView.userInteractionEnabled = NO;

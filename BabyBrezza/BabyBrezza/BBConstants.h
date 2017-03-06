@@ -9,6 +9,54 @@
 #ifndef BBConstants_h
 #define BBConstants_h
 
+//语言
+typedef NS_ENUM(NSInteger, JJLanguageType)
+{
+    JJLanguageTypeEN = 0,    //英语
+    JJLanguageTypeFR,        //法语
+};
+
+typedef NS_ENUM(NSInteger, JJLanguageStrType) {
+    JJLanguageStrTypeENFR = 0,
+    /** kStartBottleWarmer_EN */
+    JJLanguageStrTypeSBW,
+    /** kScanForYourBottleWarmer_EN */
+    JJLanguageStrTypeSFYBW,
+    /** kBottleWarmerConnected_EN */
+    JJLanguageStrTypeBWC,
+    /** kSettingGuide_EN */
+    JJLanguageStrTypeSetGuide,
+    /** kSetting_EN */
+    JJLanguageStrTypeSetting,
+    /** kSpeed_EN */
+    JJLanguageStrTypeSpeed,
+    /** kStartTemp_EN */
+    JJLanguageStrTypeStartTemp,
+    /** kRoom_EN */
+    JJLanguageStrTypeRoom,
+    /** kCode_EN */
+    JJLanguageStrTypeCode,
+    /** kSteady_EN */
+    JJLanguageStrTypeSteedy,
+    /** kQuick_EN */
+    JJLanguageStrTypeQuick,
+    /** kStart_EN */
+    JJLanguageStrTypeStart,
+    /** kConnect_EN */
+    JJLanguageStrTypeConnect,
+    /** kDisconnect_EN */
+    JJLanguageStrTypeDisconnect,
+    /** kCancel_EN */
+    JJLanguageStrTypeCancel,
+    /** kBottleIsReady_EN */
+    JJLanguageStrTypeBIR,
+    /** kError_EN */
+    JJLanguageStrTypeError,
+    /** kPleaseSeeTrouble_EN */
+    JJLanguageStrTypePST,
+};
+
+
 static NSString * const kEN = @"EN";
 static NSString * const kFR = @"FR";
 
@@ -48,7 +96,7 @@ static NSString * const kQuick_FR = @"rapide";
 static NSString * const kStart_EN = @"start";
 static NSString * const kStart_FR = @"demarrer";
 
-static NSString * const kConnect_EN = @"connect";
+static NSString * const kConnect_EN = @"connected";
 static NSString * const kConnect_FR = @"connecté";
 
 static NSString * const kDisconnect_EN = @"disconnect";
@@ -57,7 +105,7 @@ static NSString * const kDisconnect_FR = @"déconnecté";
 static NSString * const kCancel_EN = @"cancel";
 static NSString * const kCancel_FR = @"annuler";
 
-static NSString * const kBottleIsReady_EN = @"Bottle is ready";
+static NSString * const kBottleIsReady_EN = @"Bottle is ready!";
 static NSString * const kBottleIsReady_FR = @"Le biberon eat prêt!";
 
 static NSString * const kError_EN = @"Error";

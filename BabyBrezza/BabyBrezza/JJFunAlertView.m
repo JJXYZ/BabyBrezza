@@ -54,7 +54,7 @@
     _alertLabel.backgroundColor = [UIColor clearColor];
     _alertLabel.textColor = [UIColor blackColor];
     _alertLabel.font = VAGRounded_FONT(S_SCALE_W_4(25));
-    _alertLabel.text = @"Bottle is ready!";
+    _alertLabel.text = [BBUtils languageStrType:JJLanguageStrTypeBIR];
     return _alertLabel;
 }
 

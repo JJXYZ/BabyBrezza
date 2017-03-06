@@ -221,7 +221,7 @@
     _errorLabel.backgroundColor = [UIColor clearColor];
     _errorLabel.textColor = [UIColor blackColor];
     _errorLabel.font = VAGRounded_FONT(24); //LLY modified 30 to 24
-    _errorLabel.text = @"Error";
+    _errorLabel.text = [BBUtils languageStrType:JJLanguageStrTypeError];
     return _errorLabel;
 }
 
@@ -236,7 +236,7 @@
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
     _textLabel.font = VAGRounded_FONT(16);//LLY modified 20 to 16
-    _textLabel.text = @"Please see troubleshooting section\n in the instruction manual";
+    _textLabel.text = [BBUtils languageStrType:JJLanguageStrTypePST];
     return _textLabel;
 }
 
@@ -246,7 +246,7 @@
         return _startBtn;
     }
     _startBtn = [[JJFunSettingControlBtn alloc] init];
-    [_startBtn setTitle:@"start" forState:UIControlStateNormal];
+    [_startBtn setTitle:[BBUtils languageStrType:JJLanguageStrTypeStart] forState:UIControlStateNormal];
     _startBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _startBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
     [_startBtn setBackgroundColor:[UIColor funControlBtnGreenColor] forState:UIControlStateNormal];
@@ -262,7 +262,7 @@
         return _cancelBtn;
     }
     _cancelBtn = [[JJFunSettingControlBtn alloc] init];
-    [_cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
+    [_cancelBtn setTitle:[BBUtils languageStrType:JJLanguageStrTypeCancel] forState:UIControlStateNormal];
     _cancelBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _cancelBtn.backgroundColor = [UIColor funControlBtnOrangeColor];
     _cancelBtn.layer.cornerRadius = F_T_BTN_SIZE/2;

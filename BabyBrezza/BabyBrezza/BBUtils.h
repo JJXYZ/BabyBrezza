@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "BBConstants.h"
 
 #define VAGRounded_FONT(FONTSIZE)    [UIFont fontWithName:@"VAGRounded-Light" size:FONTSIZE]
+
+#define BOLD_FONT(FONTSIZE)    [UIFont fontWithName:@"Helvetica-Bold" size:FONTSIZE]
 
 @interface BBUtils : NSObject
 
@@ -18,5 +20,12 @@
 + (CGFloat)getFloatI4:(CGFloat)i4 i5:(CGFloat)i5 i6:(CGFloat)i6 i6p:(CGFloat)i6p;
 
 + (NSString *)convertDataToHexStr:(NSData *)data;
+
++ (NSString *)languageStrType:(JJLanguageStrType)strType;
+
+/** 语言 */
++ (void)saveLanguageType:(JJLanguageType)type;
+
++ (NSNumber *)getLanguageNum;
 
 @end

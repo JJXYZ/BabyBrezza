@@ -12,6 +12,7 @@
 #import "JJBLEManager.h"
 #import "JJMessage.h"
 #import "JJBLEValue.h"
+#import "JJLanguageBtn.h"
 /** VC */
 #import "JJConnectVC.h"
 #import "JJFunctionVC.h"
@@ -25,6 +26,10 @@
 @property (nonatomic, strong) UILabel *textLabel;
 
 @property (nonatomic, strong) UILabel *versionLabel;
+
+@property (nonatomic, strong) JJLanguageBtn *enBtn;
+
+@property (nonatomic, strong) JJLanguageBtn *frBtn;
 
 @end
 
@@ -46,6 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self layoutMainUI];
+    [self languageBinding];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,9 +69,28 @@
     [self.view addSubview:self.scanBtn];
     [self.view addSubview:self.textLabel];
     [self.view addSubview:self.versionLabel];
+    [self.view addSubview:self.enBtn];
+    [self.view addSubview:self.frBtn];
     
     [CENTRAL_MANAGER initData];
     [BLE_MANAGER initData];
+    
+}
+
+- (void)languageBinding {
+    @weakify(self);
+    [RACObserve([JJBLEManager sharedInstance], languageType) subscribeNext:^(NSNumber *languageType) {
+        @strongify(self);
+        self.textLabel.text = [BBUtils languageStrType:JJLanguageStrTypeSFYBW];
+        if (languageType.integerValue == JJLanguageTypeEN) {
+            [self.enBtn boldTitle:YES];
+            [self.frBtn boldTitle:NO];
+        }
+        else {
+            [self.enBtn boldTitle:NO];
+            [self.frBtn boldTitle:YES];
+        }
+    }];
 }
 
 - (void)addMainNotification {
@@ -113,7 +138,7 @@
     return ;
 #endif
     
-#if 0
+#if 1
     [self pushConnectedVC];
     return ;
 #endif
@@ -124,8 +149,13 @@
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
 }
 
+- (void)clickENBtn:(id)sender {
+    [BBUtils saveLanguageType:JJLanguageTypeEN];
+}
 
-
+- (void)clickFRBtn:(id)sender {
+    [BBUtils saveLanguageType:JJLanguageTypeFR];
+}
 
 #pragma mark - Property
 - (UIButton *)scanBtn {
@@ -149,7 +179,7 @@
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textColor = [UIColor blackColor];
     _textLabel.font = VAGRounded_FONT(S_SCALE_W_4(18));
-    _textLabel.text = @"scan for your bottle warmer";
+    _textLabel.text = kScanForYourBottleWarmer_EN;
     return _textLabel;
 }
 
@@ -166,5 +196,25 @@
     return _versionLabel;
 }
 
+- (JJLanguageBtn *)enBtn {
+    if (!_enBtn) {
+        _enBtn = [[JJLanguageBtn alloc] initWithFrame:CGRectMake(10, 10, 44, 44)];
+        _enBtn.tLabel.text = kEN;
+        [_enBtn boldTitle:YES];
+        [_enBtn addTarget:self action:@selector(clickENBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _enBtn;
+}
+
+- (JJLanguageBtn *)frBtn {
+    if (!_frBtn) {
+        _frBtn = [[JJLanguageBtn alloc] initWithFrame:CGRectMake(60, 10, 44, 44)];
+        _frBtn.tLabel.text = kFR;
+        [_enBtn boldTitle:NO];
+        [_frBtn addTarget:self action:@selector(clickFRBtn:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _frBtn;
+}
 
 @end

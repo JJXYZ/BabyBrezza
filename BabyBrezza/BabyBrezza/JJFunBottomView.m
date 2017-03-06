@@ -50,11 +50,11 @@
 #pragma mark - Public Methods
 
 - (void)setConnectText {
-    self.stateLabel.text = @"connected";
+    self.stateLabel.text = [BBUtils languageStrType:JJLanguageStrTypeConnect];
 }
 
 - (void)setDisconnectText {
-    self.stateLabel.text = @"disconnected";
+    self.stateLabel.text = [BBUtils languageStrType:JJLanguageStrTypeDisconnect];
 }
 
 #pragma mark - Property
@@ -68,7 +68,7 @@
     _stateLabel.backgroundColor = [UIColor clearColor];
     _stateLabel.textColor = [UIColor blackColor];
     _stateLabel.font = VAGRounded_FONT(14);
-    _stateLabel.text = @"connected";
+    _stateLabel.text = [BBUtils languageStrType:JJLanguageStrTypeConnect];
     return _stateLabel;
 }
 

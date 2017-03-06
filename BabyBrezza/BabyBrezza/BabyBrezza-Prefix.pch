@@ -18,6 +18,7 @@
 #import "BBUtils.h"
 #import "JJBLENotifyName.h"
 #import "BBConstants.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 //LLY @0708
 #ifdef DEBUG

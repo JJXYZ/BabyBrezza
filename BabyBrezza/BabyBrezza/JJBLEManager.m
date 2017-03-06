@@ -36,6 +36,14 @@
     self = [super init];
     if (self) {
         CENTRAL_MANAGER.delegate = self;
+        
+        if ([BBUtils getLanguageNum].integerValue == JJLanguageTypeFR) {
+            self.languageType = @(JJLanguageTypeFR);
+        }
+        else {
+            self.languageType = @(JJLanguageTypeEN);
+        }
+
     }
     return self;
 }
@@ -153,7 +161,7 @@
 
 - (NSNumber *)languageType {
     if (!_languageType) {
-        _languageType = @(JJBLELanguateTypeEN);
+        _languageType = [BBUtils getLanguageNum];
     }
     return _languageType;
 }
