@@ -83,6 +83,7 @@
 		6973F44C1BBBD1E700D7737D /* JJRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRootVC.m; sourceTree = "<group>"; };
 		6973F44E1BBBD20D00D7737D /* JJMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMainVC.h; sourceTree = "<group>"; };
 		6973F44F1BBBD20D00D7737D /* JJMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMainVC.m; sourceTree = "<group>"; };
+		697E77F71E6D0F7800313241 /* BBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBConstants.h; sourceTree = "<group>"; };
 		69AB0F761CF9648E00F15D4A /* JJRootNC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRootNC.h; sourceTree = "<group>"; };
 		69AB0F771CF9648E00F15D4A /* JJRootNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRootNC.m; sourceTree = "<group>"; };
 		69AB0F7A1CF96A4A00F15D4A /* JJConnectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJConnectVC.h; sourceTree = "<group>"; };
@@ -390,6 +391,7 @@
 		69F937991BBBE544005F7399 /* Define */ = {
 			isa = PBXGroup;
 			children = (
+				697E77F71E6D0F7800313241 /* BBConstants.h */,
 			);
 			name = Define;
 			sourceTree = "<group>";

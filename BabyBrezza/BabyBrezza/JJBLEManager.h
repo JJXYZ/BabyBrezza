@@ -20,6 +20,9 @@
 /** 持有peripheral代理 */
 @property (nonatomic, strong) CBPeripheral *curDisplayPeripheral;
 
+/** 语言 */
+@property (nonatomic, strong) NSNumber *languageType;
+
 /** 初始化数据 */
 - (void)initData;
 

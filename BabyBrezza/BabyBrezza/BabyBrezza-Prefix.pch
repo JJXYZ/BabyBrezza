@@ -17,6 +17,7 @@
 #import "UIImage+JJCommon.h"
 #import "BBUtils.h"
 #import "JJBLENotifyName.h"
+#import "BBConstants.h"
 
 //LLY @0708
 #ifdef DEBUG

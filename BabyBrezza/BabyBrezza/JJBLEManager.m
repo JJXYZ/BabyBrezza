@@ -149,4 +149,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_DidWriteData object:nil];
 }
 
+#pragma mark - Property
+
+- (NSNumber *)languageType {
+    if (!_languageType) {
+        _languageType = @(JJBLELanguateTypeEN);
+    }
+    return _languageType;
+}
+
 @end

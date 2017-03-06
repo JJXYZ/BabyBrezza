@@ -62,4 +62,12 @@ typedef NS_ENUM(NSInteger, JJBLEConnectType)
     BLEConnectTypeDisConnecting,       //正在失去连接/正在停止连接
 };
 
+//语言
+typedef NS_ENUM(NSInteger, JJBLELanguateType)
+{
+    JJBLELanguateTypeEN = 0,    //英语
+    JJBLELanguateTypeFR,        //法语
+};
+
+
 #endif /* JJBLEConfig_h */
