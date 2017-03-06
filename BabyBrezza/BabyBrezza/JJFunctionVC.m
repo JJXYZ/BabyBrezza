@@ -182,8 +182,8 @@
         [self removeCountDownTimer];
         [self showFunSettingView];
         [self.funTimeView showTextLabel];
-        [self.funTimeView showStartBtn];
-        [self.funSettingView enable];
+        //LLY 0818[self.funTimeView showStartBtn];
+        //LLY 0818[self.funSettingView enable];
     }
     else if (_funStausType == FunStatusType_Finish) {
         [self removeCountDownTimer];

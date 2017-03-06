@@ -162,7 +162,7 @@
     _versionLabel.backgroundColor = [UIColor clearColor];
     _versionLabel.textColor = [UIColor blackColor];
     _versionLabel.font = VAGRounded_FONT(S_SCALE_W_4(18));
-    _versionLabel.text = @"Brezza v0.7.19";
+    _versionLabel.text = @"Brezza v1.0";  //LLY 0818
     return _versionLabel;
 }
 
