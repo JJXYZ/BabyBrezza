@@ -119,6 +119,20 @@
     return nil;
 }
 
++ (id)objectEN:(id)EN FR:(id)FR {
+    NSNumber *languageType = [JJBLEManager sharedInstance].languageType;
+    switch (languageType.integerValue) {
+        case JJLanguageTypeEN: {
+            return EN;
+        }
+        case JJLanguageTypeFR: {
+            return FR;
+        }
+    }
+    return nil;
+}
+
+
 /** 语言 */
 + (void)saveLanguageType:(JJLanguageType)type {
     [JJBLEManager sharedInstance].languageType = @(type);

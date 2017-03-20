@@ -61,19 +61,19 @@ static NSString * const kEN = @"EN";
 static NSString * const kFR = @"FR";
 
 static NSString * const kStartBottleWarmer_EN = @"start bottle warmer";
-static NSString * const kStartBottleWarmer_FR = @"chauffe-biberon intelligent";
+static NSString * const kStartBottleWarmer_FR = @"Chauffe-biberon intelligent";
 
 static NSString * const kScanForYourBottleWarmer_EN = @"scan for your bottle warmer";
-static NSString * const kScanForYourBottleWarmer_FR = @"chercher le chauffe-biberon";
+static NSString * const kScanForYourBottleWarmer_FR = @"Chercher le chauffe-biberon";
 
 static NSString * const kBottleWarmerConnected_EN = @"Bottle warmer \n connected!";
-static NSString * const kBottleWarmerConnected_FR = @"Connexion éatable avec le chauffe-biberon!";
+static NSString * const kBottleWarmerConnected_FR = @"Connexion établie avec le chauffe-biberon";
 
 static NSString * const kSettingGuide_EN = @"setting guide";
-static NSString * const kSettingGuide_FR = @"guide des rélages";
+static NSString * const kSettingGuide_FR = @"guide des réglages";
 
 static NSString * const kSetting_EN = @"setting";
-static NSString * const kSetting_FR = @"rélage";
+static NSString * const kSetting_FR = @"réglages";
 
 static NSString * const kSpeed_EN = @"speed";
 static NSString * const kSpeed_FR = @"vitesse";
@@ -94,7 +94,7 @@ static NSString * const kQuick_EN = @"quick";
 static NSString * const kQuick_FR = @"rapide";
 
 static NSString * const kStart_EN = @"start";
-static NSString * const kStart_FR = @"demarrer";
+static NSString * const kStart_FR = @"démarrer";
 
 static NSString * const kConnect_EN = @"connected";
 static NSString * const kConnect_FR = @"connecté";
@@ -106,7 +106,7 @@ static NSString * const kCancel_EN = @"cancel";
 static NSString * const kCancel_FR = @"annuler";
 
 static NSString * const kBottleIsReady_EN = @"Bottle is ready!";
-static NSString * const kBottleIsReady_FR = @"Le biberon eat prêt!";
+static NSString * const kBottleIsReady_FR = @"Le biberon est prét!";
 
 static NSString * const kError_EN = @"Error";
 static NSString * const kError_FR = @"Erreur";

@@ -23,6 +23,10 @@
 
 + (NSString *)languageStrType:(JJLanguageStrType)strType;
 
++ (NSString *)languageEN:(NSString *)EN FR:(NSString *)FR;
+
++ (id)objectEN:(id)EN FR:(id)FR;
+
 /** 语言 */
 + (void)saveLanguageType:(JJLanguageType)type;
 

@@ -77,7 +77,7 @@
         return _dataArr;
     }
     //LLY @0701
-    _dataArr = [[NSArray alloc] initWithObjects:@"quick_room",@"quick_cold",@"steady_room",@"steady_cold", nil];
+    _dataArr = [BBUtils objectEN:[[NSArray alloc] initWithObjects:@"quick_room",@"quick_cold",@"steady_room",@"steady_cold", nil] FR:[[NSArray alloc] initWithObjects:@"quick_room_fr",@"quick_cold_fr",@"steady_room_fr",@"steady_cold_fr", nil]];
     return _dataArr;
 }
 

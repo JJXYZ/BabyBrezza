@@ -8,6 +8,7 @@
 
 #import "JJRootVC.h"
 #import "UIColor+JJColor.h"
+#import "JJBLEManager.h"
 
 @interface JJRootVC ()
 
@@ -33,6 +34,20 @@
     self.navigationController.navigationBar.translucent = YES;
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self rootBinding];
+}
+
+- (void)rootBinding {
+    @weakify(self);
+    [RACObserve([JJBLEManager sharedInstance], languageType) subscribeNext:^(NSNumber *languageType) {
+        @strongify(self);
+        NSString *imageStrEN = [BBUtils getI4:@"app_bg_i4" i5:@"app_bg_i5" i6:@"app_bg_i6" i6p:@"app_bg_i6p"];
+        
+        NSString *imageStrFR = [BBUtils getI4:@"app_bg_i4_fr" i5:@"app_bg_i5_fr" i6:@"app_bg_i6_fr" i6p:@"app_bg_i6p_fr"];
+        
+        self.bgImgView.image = [UIImage imageNamed:[BBUtils languageEN:imageStrEN FR:imageStrFR]];
+    }];
 }
 
 
