@@ -44,6 +44,8 @@ typedef NS_ENUM(NSInteger, JJLanguageStrType) {
     JJLanguageStrTypeStart,
     /** kConnect_EN */
     JJLanguageStrTypeConnect,
+    /** kDefrost_EN */
+    JJLanguageStrTypeDefrost,
     /** kDisconnect_EN */
     JJLanguageStrTypeDisconnect,
     /** kCancel_EN */
@@ -70,10 +72,10 @@ static NSString * const kBottleWarmerConnected_EN = @"Bottle warmer \n connected
 static NSString * const kBottleWarmerConnected_FR = @"Connexion établie avec le chauffe-biberon";
 
 static NSString * const kSettingGuide_EN = @"setting guide";
-static NSString * const kSettingGuide_FR = @"guide des réglages";
+static NSString * const kSettingGuide_FR = @"guide des réglage";
 
 static NSString * const kSetting_EN = @"setting";
-static NSString * const kSetting_FR = @"réglages";
+static NSString * const kSetting_FR = @"réglage";
 
 static NSString * const kSpeed_EN = @"speed";
 static NSString * const kSpeed_FR = @"vitesse";
@@ -98,6 +100,9 @@ static NSString * const kStart_FR = @"démarrer";
 
 static NSString * const kConnect_EN = @"connected";
 static NSString * const kConnect_FR = @"connecté";
+
+static NSString * const kDefrost_EN = @"defrost";
+static NSString * const kDefrost_FR = @"décongeler";
 
 static NSString * const kDisconnect_EN = @"disconnect";
 static NSString * const kDisconnect_FR = @"déconnecté";

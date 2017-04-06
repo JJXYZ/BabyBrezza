@@ -493,7 +493,7 @@
     if (_numberPickArr) {
         return _numberPickArr;
     }
-    _numberPickArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"defrost", nil];
+    _numberPickArr = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",[BBUtils languageStrType:JJLanguageStrTypeDefrost], nil];
     return _numberPickArr;
 }
 

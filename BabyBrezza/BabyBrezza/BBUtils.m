@@ -87,6 +87,9 @@
         case JJLanguageStrTypeConnect: {
             return [self languageEN:kConnect_EN FR:kConnect_FR];
         }
+        case JJLanguageStrTypeDefrost: {
+            return [self languageEN:kDefrost_EN FR:kDefrost_FR];
+        }
         case JJLanguageStrTypeDisconnect: {
             return [self languageEN:kDisconnect_EN FR:kDisconnect_FR];
         }
