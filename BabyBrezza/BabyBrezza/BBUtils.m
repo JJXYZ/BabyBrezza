@@ -96,6 +96,9 @@
         case JJLanguageStrTypeCancel: {
             return [self languageEN:kCancel_EN FR:kCancel_FR];
         }
+        case JJLanguageStrTypeBack: {
+            return [self languageEN:kBack_EN FR:kBack_FR];
+        }
         case JJLanguageStrTypeBIR: {
             return [self languageEN:kBottleIsReady_EN FR:kBottleIsReady_FR];
         }

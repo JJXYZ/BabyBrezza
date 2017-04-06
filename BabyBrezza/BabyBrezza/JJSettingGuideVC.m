@@ -98,7 +98,7 @@
     label.font = VAGRounded_FONT(16);
     label.textAlignment = NSTextAlignmentLeft;
     label.userInteractionEnabled = NO;
-    label.text = @"back";
+    label.text = [BBUtils languageStrType:JJLanguageStrTypeBack];
     [_backBtn addSubview:label];
     
     [_backBtn addTarget:self action:@selector(clickBackBtn:) forControlEvents:UIControlEventTouchUpInside];

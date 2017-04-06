@@ -755,14 +755,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Betesh (4CX7BKCX3C)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 9849TXU237;
 				INFOPLIST_FILE = BabyBrezza/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.babybrezza.bottlewarmer;
 				PRODUCT_NAME = BabyBrezza;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "58030ab5-38bb-488b-af57-e8809f44ea7f";
+				PROVISIONING_PROFILE_SPECIFIER = babybrezzaTestProfile;
 				SKIP_INSTALL = NO;
 			};
 			name = Release;

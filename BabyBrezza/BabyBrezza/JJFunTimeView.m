@@ -246,6 +246,7 @@
         return _startBtn;
     }
     _startBtn = [[JJFunSettingControlBtn alloc] init];
+    _startBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [_startBtn setTitle:[BBUtils languageStrType:JJLanguageStrTypeStart] forState:UIControlStateNormal];
     _startBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _startBtn.layer.cornerRadius = F_T_BTN_SIZE/2;
@@ -262,6 +263,7 @@
         return _cancelBtn;
     }
     _cancelBtn = [[JJFunSettingControlBtn alloc] init];
+    _cancelBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [_cancelBtn setTitle:[BBUtils languageStrType:JJLanguageStrTypeCancel] forState:UIControlStateNormal];
     _cancelBtn.frame = CGRectMake(0, 0, F_T_BTN_SIZE, F_T_BTN_SIZE);
     _cancelBtn.backgroundColor = [UIColor funControlBtnOrangeColor];

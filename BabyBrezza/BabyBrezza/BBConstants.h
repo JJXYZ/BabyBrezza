@@ -50,6 +50,8 @@ typedef NS_ENUM(NSInteger, JJLanguageStrType) {
     JJLanguageStrTypeDisconnect,
     /** kCancel_EN */
     JJLanguageStrTypeCancel,
+    /** kBack_EN */
+    JJLanguageStrTypeBack,
     /** kBottleIsReady_EN */
     JJLanguageStrTypeBIR,
     /** kError_EN */
@@ -109,6 +111,9 @@ static NSString * const kDisconnect_FR = @"déconnecté";
 
 static NSString * const kCancel_EN = @"cancel";
 static NSString * const kCancel_FR = @"annuler";
+
+static NSString * const kBack_EN = @"back";
+static NSString * const kBack_FR = @"retour";
 
 static NSString * const kBottleIsReady_EN = @"Bottle is ready!";
 static NSString * const kBottleIsReady_FR = @"Le biberon est prét!";
