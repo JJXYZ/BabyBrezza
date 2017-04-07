@@ -74,7 +74,7 @@ static NSString * const kBottleWarmerConnected_EN = @"Bottle warmer \n connected
 static NSString * const kBottleWarmerConnected_FR = @"Connexion établie avec le chauffe-biberon";
 
 static NSString * const kSettingGuide_EN = @"setting guide";
-static NSString * const kSettingGuide_FR = @"guide des réglage";
+static NSString * const kSettingGuide_FR = @"guide des réglages";
 
 static NSString * const kSetting_EN = @"setting";
 static NSString * const kSetting_FR = @"réglage";
