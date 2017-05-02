@@ -68,10 +68,10 @@ static NSString * const kStartBottleWarmer_EN = @"start bottle warmer";
 static NSString * const kStartBottleWarmer_FR = @"Chauffe-biberon intelligent";
 
 static NSString * const kScanForYourBottleWarmer_EN = @"scan for your bottle warmer";
-static NSString * const kScanForYourBottleWarmer_FR = @"Chercher le chauffe-biberon";
+static NSString * const kScanForYourBottleWarmer_FR = @"chercher le chauffe-biberon";
 
 static NSString * const kBottleWarmerConnected_EN = @"Bottle warmer \n connected!";
-static NSString * const kBottleWarmerConnected_FR = @"Connexion établie avec le chauffe-biberon";
+static NSString * const kBottleWarmerConnected_FR = @"Connexion établie avec le chauffe-biberon!";
 
 static NSString * const kSettingGuide_EN = @"setting guide";
 static NSString * const kSettingGuide_FR = @"guide des réglages";
