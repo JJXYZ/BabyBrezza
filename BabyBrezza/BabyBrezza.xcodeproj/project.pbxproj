@@ -656,8 +656,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Betesh (4CX7BKCX3C)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Betesh (4CX7BKCX3C)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Baby Brezza Enterprises LLC (9849TXU237)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Baby Brezza Enterprises LLC (9849TXU237)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -734,7 +734,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Betesh (4CX7BKCX3C)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Baby Brezza Enterprises LLC (9849TXU237)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Baby Brezza Enterprises LLC (9849TXU237)";
 				DEVELOPMENT_TEAM = 9849TXU237;
 				INFOPLIST_FILE = BabyBrezza/Info.plist;
